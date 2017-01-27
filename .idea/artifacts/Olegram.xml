@@ -1,0 +1,12 @@
+<component name="ArtifactManager">
+  <artifact type="jar" build-on-make="true" name="Olegram">
+    <output-path>$PROJECT_DIR$/out/artifacts/Olegram</output-path>
+    <root id="archive" name="Olegram.jar">
+      <element id="module-output" name="Olegram" />
+      <element id="library" level="project" name="TelegramApiBridge" />
+      <element id="directory" name="META-INF">
+        <element id="file-copy" path="$PROJECT_DIR$/META-INF/MANIFEST.MF" />
+      </element>
+    </root>
+  </artifact>
+</component>
