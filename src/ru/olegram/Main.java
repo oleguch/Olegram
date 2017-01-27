@@ -29,7 +29,7 @@ public class Main {
         bridge.authSendCode(phoneNumber);                                                  //Отправляем код через смс
 
         while (true) {
-            System.out.println("Введите код из СМС");
+            System.out.println("Введите код из СМС:");
             String smsCode = reader.readLine().trim();
             try {
                 AuthAuthorization signIn = bridge.authSignIn(smsCode);                       //отправляем только код из смс и авторизовываем пользователя
