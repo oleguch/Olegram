@@ -1,19 +1,17 @@
 package ru.olegram;
 
-
-
-
-
 import org.javagram.TelegramApiBridge;
 import org.javagram.response.AuthAuthorization;
 import org.javagram.response.AuthCheckedPhone;
-import org.javagram.response.AuthSentCode;
 import org.javagram.response.object.User;
+import org.javagram.response.object.UserContact;
 import org.telegram.api.engine.RpcException;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.ArrayList;
+
 
 public class Main {
 
@@ -32,6 +30,7 @@ public class Main {
             System.out.println("Введите код из СМС:");
             String smsCode = reader.readLine().trim();
             try {
+
                 AuthAuthorization signIn = bridge.authSignIn(smsCode);                       //отправляем только код из смс и авторизовываем пользователя
                 nameUser = signIn.getUser();                                                 //Если получилось, получаем имя
                 System.out.println(nameUser);
@@ -53,6 +52,17 @@ public class Main {
             }
             break;
         }
+
+        ArrayList<UserContact> myFriends = bridge.contactsGetContacts();
+
+        System.out.println("###############################Список друзей:############################" + myFriends);
+
+        for (UserContact friend : myFriends) {
+            System.out.println("Имя: " + friend.getFirstName());
+            System.out.println("Фамилия: " + friend.getLastName());
+            System.out.println("Телефон: " + friend.getPhone() + "\n");
+        }
+
         bridge.authLogOut();
     }
 }
