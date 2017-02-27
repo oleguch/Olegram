@@ -15,19 +15,29 @@ import java.util.ArrayList;
 
 public class Main {
 
+    private static BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+    private static TelegramApiBridge bridge;
+
+    static {
+        try {
+            bridge = new TelegramApiBridge("149.154.167.50:443", 95568, "e5649ac9f0c517643f3c8cad067ac7b0");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
     public static void main(String[] args) throws IOException {
-        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
-        TelegramApiBridge bridge = new TelegramApiBridge("149.154.167.50:443", 95568, "e5649ac9f0c517643f3c8cad067ac7b0");
+
         System.out.println("##########################################Введите номер телефона (в виде 79001234567)");
-        String phoneNumber = reader.readLine().trim();                                  //Вводим номер телефона и запоминаем номер
-        phoneNumber = phoneNumber.replaceAll("\\D+","");                                 //Убираем всё, кроме цифр
-        AuthCheckedPhone checkPhone = bridge.authCheckPhone(phoneNumber);              //Проверяем номер телефон
-        System.out.println(checkPhone.isRegistered());                                  //выводим рзультат проверки
+        String phoneNumber = reader.readLine().trim();                                     //Вводим номер телефона и запоминаем номер
+        phoneNumber = phoneNumber.replaceAll("\\D+","");                                   //Убираем всё, кроме цифр
+        AuthCheckedPhone checkPhone = bridge.authCheckPhone(phoneNumber);                  //Проверяем номер телефон
+        System.out.println(checkPhone.isRegistered());                                     //выводим рзультат проверки
         bridge.authSendCode(phoneNumber);                                                  //Отправляем код через смс
         if (!checkPhone.isRegistered())
-            registration(bridge);
+            registration();
         else
-            authBySMS(bridge);
+            authBySMS();
 
         ArrayList<UserContact> myFriends = bridge.contactsGetContacts();
         System.out.println("###############################Список друзей:############################" + myFriends);
@@ -39,23 +49,21 @@ public class Main {
         bridge.authLogOut();
     }
 
-    private static void registration(TelegramApiBridge bridge) throws IOException {
-        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+    private static void registration() throws IOException {
         System.out.println("Номер не зарегестрирован");
         System.out.println("Вы не зарегистрированы. Введите свое имя:");
         String firstName = reader.readLine().trim();                              //просим ввести имя и фамилию
         System.out.println("Введите свою фамилию:");
         String lastName = reader.readLine().trim();
-        authBySMS(bridge, firstName, lastName);                         //отправляем на регистрацию
+        authBySMS(firstName, lastName);                         //отправляем на регистрацию
     }
 
-    private static void authBySMS  (TelegramApiBridge bridge) throws IOException {
-        authBySMS(bridge, null, null);
+    private static void authBySMS  () throws IOException {
+        authBySMS(null, null);
     }
 
-    private static void authBySMS  (TelegramApiBridge bridge, String firstName, String lastName) throws IOException {
+    private static void authBySMS  (String firstName, String lastName) throws IOException {
         while (true) {
-            BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
             System.out.println("Введите код из СМС:");
             String smsCode = reader.readLine().trim();
             try {
@@ -68,7 +76,7 @@ public class Main {
                 }
             } catch (RpcException e) {                                                       //Если возникла ошибка
                 if (e.getMessage().equals("PHONE_CODE_INVALID")) {                              //Если неверный код
-                    System.out.println("Введен неверный номер");                             //Выводим сообщение
+                    System.out.println("Введен неверный код");                             //Выводим сообщение
                     continue;
                 }
             }
@@ -76,7 +84,7 @@ public class Main {
         }
     }
 
-    public static User getName (AuthAuthorization sign){
+    private static User getName(AuthAuthorization sign){
         return sign.getUser();
     }
 }
