@@ -2,9 +2,6 @@ package ru.olegram;
 
 import javax.swing.*;
 
-/**
- * Created by olegu on 07.05.2017.
- */
 public class FormConfirmSMS {
     public JPanel getRootPanel() {
         return rootPanel;
@@ -21,4 +18,14 @@ public class FormConfirmSMS {
     private JPanel rootPanel;
     private JTextField fieldSMS;
     private JButton buttonSMS;
+
+    public JLabel getTextFromFormSMS() {
+        return textFromFormSMS;
+    }
+
+    public FormConfirmSMS() {
+        getFieldSMS().setText("На номер " + Main.phoneNumber + " отправен код через СМС. " + "\n" + "Введите его в следующем поле.");
+    }
+
+    private JLabel textFromFormSMS;
 }

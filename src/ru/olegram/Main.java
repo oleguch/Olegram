@@ -1,5 +1,6 @@
 package ru.olegram;
 
+import com.sun.xml.internal.ws.policy.privateutil.PolicyUtils;
 import org.javagram.TelegramApiBridge;
 import org.javagram.response.AuthAuthorization;
 import org.javagram.response.AuthCheckedPhone;
@@ -19,18 +20,15 @@ import java.util.ArrayList;
 
 public class Main {
 
-    static JFrame frame = new JFrame("changeForms");
+    static JFrame frame = new JFrame("Olegram");
     static FormConfirmSMS formConfirmSMS = new FormConfirmSMS();
     static FormPhone formPhone = new FormPhone();
     static FormNewUser formNewUser = new FormNewUser();
+    static FormFriends formFriends = new FormFriends();
+    static String phoneNumber;
 
-
-
-    private static BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+    //private static BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
     private static TelegramApiBridge bridge;
-
-
-
 
     static {
         try {
@@ -41,9 +39,9 @@ public class Main {
     }
 
     public static void main(String[] args) throws IOException {
-
         frame.setContentPane(formPhone.getRootPanel());
 
+        //                  Реакция на кнопку Продолжить в окне ввода номера телефона
         formPhone.getButtonPhone().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -54,33 +52,55 @@ public class Main {
                 }
             }
         });
-        //frame.getRootPane().getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke("ctrl ENTER"), "changeForm");
-        //frame.getRootPane().getActionMap().put("changeForm", changeForm);
+
+        //                  Переключение окон при нажатии Enter
+        Action changeForm = new AbstractAction() {
+            public void actionPerformed(ActionEvent e) {
+                System.out.println(frame.getContentPane().getName());
+                try {
+                    if (frame.getContentPane().getName().equals("FormPhone"))
+                        checkPhone();
+                    else if (frame.getContentPane().getName().equals("FormConfirmSMS"))
+                        authBySMS();
+                    else if (frame.getContentPane().getName().equals("FormNewUser"))
+                        checkNewUser();
+                } catch (IOException e1) {
+                    e1.printStackTrace();
+                }
+            }
+        };
+        frame.getRootPane().getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke("ENTER"), "changeForm");
+        frame.getRootPane().getActionMap().put("changeForm", changeForm);
 
         frame.setSize(800,600);
         frame.setMinimumSize(new Dimension(600,200));
         frame.setLocationRelativeTo(null);
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         frame.setVisible(true);
-        //System.out.println("##########################################Введите номер телефона (в виде 79001234567)");
-        //String phoneNumber = reader.readLine().trim();                                     //Вводим номер телефона и запоминаем номер
-        //phoneNumber = phoneNumber.replaceAll("\\D+","");                                   //Убираем всё, кроме цифр
-        //AuthCheckedPhone checkPhone = bridge.authCheckPhone(phoneNumber);                  //Проверяем номер телефон
-        //System.out.println(checkPhone.isRegistered());                                     //выводим рзультат проверки
-        //bridge.authSendCode(phoneNumber);                                                  //Отправляем код через смс
-        //if (!checkPhone.isRegistered())
-        //    registration();
-        //else
-        //    authBySMS();
 
-//        ArrayList<UserContact> myFriends = bridge.contactsGetContacts();
-//        System.out.println("###############################Список друзей:############################" + myFriends);
-//        for (UserContact friend : myFriends) {
-//            System.out.println("Имя: " + friend.getFirstName());
-//            System.out.println("Фамилия: " + friend.getLastName());
-//            System.out.println("Телефон: " + friend.getPhone() + "\n");
-//        }
         bridge.authLogOut();
+    }
+
+    private static void checkPhone() throws IOException {
+        phoneNumber = formPhone.getFieldPhone().getText().replaceAll("\\D+","");
+        try {
+            AuthCheckedPhone checkPhone = bridge.authCheckPhone(phoneNumber);
+            bridge.authSendCode(phoneNumber);
+            if (!checkPhone.isRegistered())
+                registration();
+            else
+                authBySMS();
+        } catch (RpcException e2) {                                                       //Если возникла ошибка
+            if (e2.getMessage().equals("PHONE_NUMBER_INVALID")) {                              //Если неверный номер телефона
+                System.out.println("Введен неверный номер телефона");                             //Выводим сообщение
+                JOptionPane.showMessageDialog(formPhone.getRootPanel(), "Введен неверный номер телефона");
+                formConfirmSMS.getFieldSMS().requestFocus();
+            } else if (e2.getMessage().substring(0,10).equals("FLOOD_WAIT")) {
+                System.out.println("Много попыток входа");                             //Выводим сообщение
+                JOptionPane.showMessageDialog(formPhone.getRootPanel(), "Много попыток входа, ждите " + e2.getMessage().substring(11) + " секунд");
+                formConfirmSMS.getFieldSMS().requestFocus();
+            }
+        }
     }
 
     private static void registration() throws IOException {
@@ -88,10 +108,6 @@ public class Main {
         frame.getContentPane().revalidate();
         frame.getContentPane().repaint();
         System.out.println("Номер не зарегестрирован");
-//        System.out.println("Вы не зарегистрированы. Введите свое имя:");
-//        String firstName = reader.readLine().trim();                              //просим ввести имя и фамилию
-//        System.out.println("Введите свою фамилию:");
-//        String lastName = reader.readLine().trim();
         formNewUser.getButtonReg().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -101,25 +117,21 @@ public class Main {
                     e1.printStackTrace();
                 }
             }
-
-            private void checkNewUser() throws IOException {
-                String firstName = formNewUser.getRegName().getText().trim();
-                String lastName = formNewUser.getRegSurname().getText().trim();
-                if (firstName.length() == 0) {
-                    JOptionPane.showMessageDialog(formNewUser.getRootPanel(), "Не заполнено поле Имя");
-                    formNewUser.getRegName().requestFocus();
-                } else if (lastName.length() == 0) {
-                    JOptionPane.showMessageDialog(formNewUser.getRootPanel(), "Не заполнено поле Фамилия");
-                    formNewUser.getRegSurname().requestFocus();
-                } else {
-                    authBySMS(firstName, lastName);
-
-                }
-
-            }
         });
+    }
 
-        //authBySMS(firstName, lastName);                         //отправляем на регистрацию
+    private static void checkNewUser() throws IOException {
+        String firstName = formNewUser.getRegName().getText().trim();
+        String lastName = formNewUser.getRegSurname().getText().trim();
+        if (firstName.length() == 0) {
+            JOptionPane.showMessageDialog(formNewUser.getRootPanel(), "Не заполнено поле Имя");
+            formNewUser.getRegName().requestFocus();
+        } else if (lastName.length() == 0) {
+            JOptionPane.showMessageDialog(formNewUser.getRootPanel(), "Не заполнено поле Фамилия");
+            formNewUser.getRegSurname().requestFocus();
+        } else {
+            authBySMS(firstName, lastName);
+        }
     }
 
     private static void authBySMS  () throws IOException {
@@ -130,34 +142,49 @@ public class Main {
         frame.setContentPane(formConfirmSMS.getRootPanel());
         frame.getContentPane().revalidate();
         frame.getContentPane().repaint();
-        final String[] smsCode = new String[1];
+        formConfirmSMS.getFieldSMS().requestFocus();
         formConfirmSMS.getButtonSMS().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                smsCode[0] = formConfirmSMS.getFieldSMS().getText();
+                String smsCode = formConfirmSMS.getFieldSMS().getText();
+                System.out.println("+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++Введите код из СМС:");
+                try {
+                    if ((firstName == null) && (lastName == null)) {                //Если только bridge передается, то авторизовываем, иначе регистрируем
+                        AuthAuthorization signIn = bridge.authSignIn(smsCode);                       //отправляем только код из смс и авторизовываем пользователя
+                        System.out.println("################################### Name: ############## " + getName(signIn));                                        //Если получилось, получаем имя
+                    } else {
+                        AuthAuthorization signUp = bridge.authSignUp(smsCode, firstName, lastName);    //и регистрируем, отправив код из смс, имя и фамилию
+                        System.out.println("################################### Name: ################### " + getName(signUp));                                        //выводим имя
+                    }
+                    toFormFriends();
+                } catch (RpcException e2) {                                                       //Если возникла ошибка
+                    if (e2.getMessage().equals("PHONE_CODE_INVALID")) {                              //Если неверный код
+                        System.out.println("Введен неверный код");                             //Выводим сообщение
+                        JOptionPane.showMessageDialog(formConfirmSMS.getRootPanel(),"Введен неверный код");
+                        formConfirmSMS.getFieldSMS().requestFocus();
+                    }
+                } catch (IOException e1) {
+                    e1.printStackTrace();
+                }
             }
         });
-        while (true) {
-            System.out.println("+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++Введите код из СМС:");
+    }
 
-            //String smsCode = reader.readLine().trim();
-            try {
-                if ((firstName == null) && (lastName == null)) {                //Если только bridge передается, то авторизовываем, иначе регистрируем
-                    AuthAuthorization signIn = bridge.authSignIn(smsCode[0]);                       //отправляем только код из смс и авторизовываем пользователя
-                    System.out.println("################################### Name: ############## " + getName(signIn));                                        //Если получилось, получаем имя
-                } else {
-                    AuthAuthorization signUp = bridge.authSignUp(smsCode[0], firstName, lastName);    //и регистрируем, отправив код из смс, имя и фамилию
-                    System.out.println("################################### Name: ################### " + getName(signUp));                                        //выводим имя
-                }
-            } catch (RpcException e) {                                                       //Если возникла ошибка
-                if (e.getMessage().equals("PHONE_CODE_INVALID")) {                              //Если неверный код
-                    System.out.println("Введен неверный код");                             //Выводим сообщение
-                    JOptionPane.showMessageDialog(formConfirmSMS.getRootPanel(),"Введен неверный код");
-                    formConfirmSMS.getFieldSMS().requestFocus();
-                    continue;
-                }
-            }
-            break;
+    private static void toFormFriends() throws IOException {
+        frame.setContentPane(formFriends.getRootPanel());
+        frame.getContentPane().revalidate();
+        frame.getContentPane().repaint();
+        ArrayList<UserContact> myFriends = bridge.contactsGetContacts();
+        System.out.println("###############################Список друзей:############################" + myFriends);
+        for (UserContact friend : myFriends) {
+            System.out.println("Имя: " + friend.getFirstName());
+            System.out.println("Фамилия: " + friend.getLastName());
+            System.out.println("Телефон: " + friend.getPhone() + "\n");
+            formFriends.getTextFriends().setText(
+                    formFriends.getTextFriends().getText() + "\n" +
+                    "Имя: " + friend.getFirstName() + "\n" +
+                    "Фамилия " + friend.getLastName() + "\n" +
+                    "Телефон: " + friend.getPhone() + "\n");
         }
     }
 
@@ -165,19 +192,6 @@ public class Main {
         return sign.getUser();
     }
 
-    private static void checkPhone() throws IOException {
-        String phoneNumber = formPhone.getFieldPhone().getText().replaceAll("\\D+","");
-        if (phoneNumber.length() != 11) {
-            JOptionPane.showMessageDialog(formPhone.getRootPanel(), "Неверно заполнен номер");
-            formPhone.getFieldPhone().requestFocus();
-        } else {
-            AuthCheckedPhone checkPhone = bridge.authCheckPhone(phoneNumber);
-            bridge.authSendCode(phoneNumber);
-            if (!checkPhone.isRegistered())
-                registration();
-            else
-                authBySMS();
-        }
 
-    }
+
 }
