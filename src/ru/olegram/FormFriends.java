@@ -7,6 +7,8 @@ import javax.swing.*;
  */
 public class FormFriends {
     private JPanel rootPanel;
+    private JTextPane textFriends;
+    private JTextArea textAreaFriends;
 
     public JPanel getRootPanel() {
         return rootPanel;
@@ -15,6 +17,9 @@ public class FormFriends {
     public JTextPane getTextFriends() {
         return textFriends;
     }
+    public JTextArea getTextAreaFriends() {
+        return textAreaFriends;
+    }
 
-    private JTextPane textFriends;
+
 }

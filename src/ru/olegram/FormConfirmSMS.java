@@ -18,14 +18,15 @@ public class FormConfirmSMS {
     private JPanel rootPanel;
     private JTextField fieldSMS;
     private JButton buttonSMS;
+    private JTextArea textLabelSMS;
 
-    public JLabel getTextFromFormSMS() {
-        return textFromFormSMS;
+
+
+    public JTextArea getTextLabelSMS() {
+        return textLabelSMS;
     }
 
-    public FormConfirmSMS() {
-        getFieldSMS().setText("На номер " + Main.phoneNumber + " отправен код через СМС. " + "\n" + "Введите его в следующем поле.");
-    }
 
-    private JLabel textFromFormSMS;
+
+
 }

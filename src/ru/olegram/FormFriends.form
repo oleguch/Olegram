@@ -2,7 +2,7 @@
 <form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="ru.olegram.FormFriends">
   <grid id="27dc6" binding="rootPanel" layout-manager="GridBagLayout">
     <constraints>
-      <xy x="20" y="20" width="500" height="400"/>
+      <xy x="20" y="20" width="500" height="418"/>
     </constraints>
     <properties>
       <name value="FormFriends"/>
@@ -23,7 +23,7 @@
       </vspacer>
       <component id="c7acc" class="javax.swing.JLabel">
         <constraints>
-          <grid row="1" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+          <grid row="1" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
           <gridbag weightx="0.0" weighty="0.0"/>
         </constraints>
         <properties>
@@ -33,7 +33,7 @@
       </component>
       <vspacer id="6aecf">
         <constraints>
-          <grid row="6" column="1" row-span="1" col-span="1" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
+          <grid row="7" column="1" row-span="1" col-span="1" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
           <gridbag weightx="0.0" weighty="1.0"/>
         </constraints>
       </vspacer>
@@ -43,15 +43,6 @@
           <gridbag weightx="1.0" weighty="0.0"/>
         </constraints>
       </hspacer>
-      <component id="f36f" class="javax.swing.JTextPane" binding="textFriends">
-        <constraints>
-          <grid row="5" column="1" row-span="1" col-span="1" vsize-policy="6" hsize-policy="6" anchor="0" fill="3" indent="0" use-parent-layout="false">
-            <preferred-size width="150" height="50"/>
-          </grid>
-          <gridbag weightx="0.0" weighty="0.0"/>
-        </constraints>
-        <properties/>
-      </component>
       <vspacer id="b3676">
         <constraints>
           <grid row="2" column="1" row-span="1" col-span="1" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
@@ -60,7 +51,7 @@
       </vspacer>
       <component id="df65d" class="javax.swing.JLabel">
         <constraints>
-          <grid row="3" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+          <grid row="3" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
           <gridbag weightx="0.0" weighty="0.0"/>
         </constraints>
         <properties>
@@ -73,6 +64,45 @@
           <gridbag weightx="0.0" weighty="0.0" ipady="5"/>
         </constraints>
       </vspacer>
+      <scrollpane id="1da17">
+        <constraints>
+          <grid row="5" column="1" row-span="1" col-span="1" vsize-policy="7" hsize-policy="7" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+          <gridbag weightx="0.0" weighty="0.0"/>
+        </constraints>
+        <properties>
+          <preferredSize width="200" height="200"/>
+        </properties>
+        <border type="none"/>
+        <children>
+          <component id="f36f" class="javax.swing.JTextPane" binding="textFriends">
+            <constraints/>
+            <properties>
+              <editable value="false"/>
+              <opaque value="false"/>
+              <preferredSize width="200" height="200"/>
+            </properties>
+          </component>
+        </children>
+      </scrollpane>
+      <scrollpane id="419f5">
+        <constraints>
+          <grid row="6" column="1" row-span="1" col-span="1" vsize-policy="7" hsize-policy="7" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+          <gridbag weightx="0.0" weighty="0.0"/>
+        </constraints>
+        <properties/>
+        <border type="none"/>
+        <children>
+          <component id="f2cb6" class="javax.swing.JTextArea" binding="textAreaFriends">
+            <constraints/>
+            <properties>
+              <editable value="false"/>
+              <minimumSize width="200" height="100"/>
+              <opaque value="false"/>
+              <preferredSize width="200" height="100"/>
+            </properties>
+          </component>
+        </children>
+      </scrollpane>
     </children>
   </grid>
 </form>

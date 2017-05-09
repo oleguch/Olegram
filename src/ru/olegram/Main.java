@@ -1,20 +1,17 @@
 package ru.olegram;
 
-import com.sun.xml.internal.ws.policy.privateutil.PolicyUtils;
+
 import org.javagram.TelegramApiBridge;
 import org.javagram.response.AuthAuthorization;
 import org.javagram.response.AuthCheckedPhone;
 import org.javagram.response.object.User;
 import org.javagram.response.object.UserContact;
 import org.telegram.api.engine.RpcException;
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
 import java.util.ArrayList;
 
 
@@ -26,8 +23,8 @@ public class Main {
     static FormNewUser formNewUser = new FormNewUser();
     static FormFriends formFriends = new FormFriends();
     static String phoneNumber;
+    static AuthCheckedPhone checkPhone;
 
-    //private static BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
     private static TelegramApiBridge bridge;
 
     static {
@@ -61,7 +58,10 @@ public class Main {
                     if (frame.getContentPane().getName().equals("FormPhone"))
                         checkPhone();
                     else if (frame.getContentPane().getName().equals("FormConfirmSMS"))
-                        authBySMS();
+                        if (!checkPhone.isRegistered()) {
+                            confirmSMS(formNewUser.getRegName().getText(), formNewUser.getRegSurname().getText());          //не уверен что сработает, проверить уже не на чем
+                        } else
+                            confirmSMS(null, null);
                     else if (frame.getContentPane().getName().equals("FormNewUser"))
                         checkNewUser();
                 } catch (IOException e1) {
@@ -84,7 +84,7 @@ public class Main {
     private static void checkPhone() throws IOException {
         phoneNumber = formPhone.getFieldPhone().getText().replaceAll("\\D+","");
         try {
-            AuthCheckedPhone checkPhone = bridge.authCheckPhone(phoneNumber);
+            checkPhone = bridge.authCheckPhone(phoneNumber);
             bridge.authSendCode(phoneNumber);
             if (!checkPhone.isRegistered())
                 registration();
@@ -107,15 +107,13 @@ public class Main {
         frame.setContentPane(formNewUser.getRootPanel());
         frame.getContentPane().revalidate();
         frame.getContentPane().repaint();
+        formNewUser.getRegName().requestFocus();
         System.out.println("Номер не зарегестрирован");
-        formNewUser.getButtonReg().addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                try {
-                    checkNewUser();
-                } catch (IOException e1) {
-                    e1.printStackTrace();
-                }
+        formNewUser.getButtonReg().addActionListener(e -> {
+            try {
+                checkNewUser();
+            } catch (IOException e1) {
+                e1.printStackTrace();
             }
         });
     }
@@ -140,42 +138,44 @@ public class Main {
 
     private static void authBySMS  (String firstName, String lastName) throws IOException {
         frame.setContentPane(formConfirmSMS.getRootPanel());
+        formConfirmSMS.getTextLabelSMS().setText("На номер " + Main.phoneNumber + "\nотправен код через СМС. " + "\nВведите его в следующем поле.");
         frame.getContentPane().revalidate();
         frame.getContentPane().repaint();
         formConfirmSMS.getFieldSMS().requestFocus();
-        formConfirmSMS.getButtonSMS().addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                String smsCode = formConfirmSMS.getFieldSMS().getText();
-                System.out.println("+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++Введите код из СМС:");
-                try {
-                    if ((firstName == null) && (lastName == null)) {                //Если только bridge передается, то авторизовываем, иначе регистрируем
-                        AuthAuthorization signIn = bridge.authSignIn(smsCode);                       //отправляем только код из смс и авторизовываем пользователя
-                        System.out.println("################################### Name: ############## " + getName(signIn));                                        //Если получилось, получаем имя
-                    } else {
-                        AuthAuthorization signUp = bridge.authSignUp(smsCode, firstName, lastName);    //и регистрируем, отправив код из смс, имя и фамилию
-                        System.out.println("################################### Name: ################### " + getName(signUp));                                        //выводим имя
-                    }
-                    toFormFriends();
-                } catch (RpcException e2) {                                                       //Если возникла ошибка
-                    if (e2.getMessage().equals("PHONE_CODE_INVALID")) {                              //Если неверный код
-                        System.out.println("Введен неверный код");                             //Выводим сообщение
-                        JOptionPane.showMessageDialog(formConfirmSMS.getRootPanel(),"Введен неверный код");
-                        formConfirmSMS.getFieldSMS().requestFocus();
-                    }
-                } catch (IOException e1) {
-                    e1.printStackTrace();
-                }
-            }
-        });
+        formConfirmSMS.getButtonSMS().addActionListener(e -> confirmSMS(firstName, lastName));
     }
 
-    private static void toFormFriends() throws IOException {
+    private static void confirmSMS(String firstName, String lastName) {
+        String smsCode = formConfirmSMS.getFieldSMS().getText();
+        System.out.println("Введите код из СМС:");
+        try {
+            if ((firstName == null) && (lastName == null)) {                                    //Если фио пустые, то авторизовываем, иначе регистрируем
+                AuthAuthorization signIn = bridge.authSignIn(smsCode);                          //отправляем только код из смс и авторизовываем пользователя
+                System.out.println(" Name: " + getName(signIn));                                        //Если получилось, получаем имя
+            } else {
+                AuthAuthorization signUp = bridge.authSignUp(smsCode, firstName, lastName);    //и регистрируем, отправив код из смс, имя и фамилию
+                System.out.println(" NewName: " + getName(signUp));                                        //выводим имя
+            }
+            Thread.sleep(100);                  //ВНИМАНИЕ, почему-то иначе дейсвтует через раз, бывает сразу отображает контакты, бывает зависает окно
+            toFormFriends();
+        } catch (RpcException e2) {                                                       //Если возникла ошибка
+            if (e2.getMessage().equals("PHONE_CODE_INVALID")) {                              //Если неверный код
+                System.out.println("Введен неверный код");                             //Выводим сообщение
+                JOptionPane.showMessageDialog(formConfirmSMS.getRootPanel(),"Введен неверный код");
+                formConfirmSMS.getFieldSMS().requestFocus();
+            }
+        } catch (IOException | InterruptedException e1) {
+            e1.printStackTrace();
+        }
+    }
+
+    private static void toFormFriends() throws IOException, InterruptedException {
+
         frame.setContentPane(formFriends.getRootPanel());
         frame.getContentPane().revalidate();
         frame.getContentPane().repaint();
         ArrayList<UserContact> myFriends = bridge.contactsGetContacts();
-        System.out.println("###############################Список друзей:############################" + myFriends);
+        System.out.println("Список друзей:" + myFriends);
         for (UserContact friend : myFriends) {
             System.out.println("Имя: " + friend.getFirstName());
             System.out.println("Фамилия: " + friend.getLastName());
@@ -183,7 +183,11 @@ public class Main {
             formFriends.getTextFriends().setText(
                     formFriends.getTextFriends().getText() + "\n" +
                     "Имя: " + friend.getFirstName() + "\n" +
-                    "Фамилия " + friend.getLastName() + "\n" +
+                    "Фамилия: " + friend.getLastName() + "\n" +
+                    "Телефон: " + friend.getPhone() + "\n");
+            formFriends.getTextAreaFriends().append("\n" +
+                    "Имя: " + friend.getFirstName() + "\n" +
+                    "Фамилия: " + friend.getLastName() + "\n" +
                     "Телефон: " + friend.getPhone() + "\n");
         }
     }
@@ -191,7 +195,4 @@ public class Main {
     private static User getName(AuthAuthorization sign){
         return sign.getUser();
     }
-
-
-
 }
