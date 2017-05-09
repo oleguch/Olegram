@@ -23,7 +23,8 @@ public class FormConfirmSMS {
     private JTextField fieldSMS;
     private JButton buttonSMS;
     private JTextArea textLabelSMS;
-
+    private JPanel innerPanel;
+    private JPasswordField passwordField;
 
 
     public JTextArea getTextLabelSMS() {
@@ -52,5 +53,17 @@ public class FormConfirmSMS {
                 System.exit(0);
             }
         });
+    }
+
+    public JPanel getInnerPanel() {
+        return innerPanel;
+    }
+
+    public void setInnerPanel(JPanel innerPanel) {
+        this.innerPanel = innerPanel;
+    }
+
+    public JPasswordField getPasswordField() {
+        return passwordField;
     }
 }

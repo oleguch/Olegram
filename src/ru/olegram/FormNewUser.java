@@ -14,6 +14,7 @@ public class FormNewUser {
     private JButton buttonReg;
     private JButton min;
     private JButton butExit;
+    private JPanel innerPanel;
 
     public JPanel getRootPanel() {
         return rootPanel;

@@ -13,6 +13,7 @@ public class FormFriends {
     private JTextArea textAreaFriends;
     private JButton min;
     private JButton butExit;
+    private JPanel innerpanel;
 
     public JPanel getRootPanel() {
         return rootPanel;

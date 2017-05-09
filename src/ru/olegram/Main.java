@@ -18,12 +18,12 @@ import java.util.ArrayList;
 public class Main {
 
     static JFrame frame = new JFrame("Olegram");
-    static FormConfirmSMS formConfirmSMS = new FormConfirmSMS();
-    static FormPhone formPhone = new FormPhone();
-    static FormNewUser formNewUser = new FormNewUser();
-    static FormFriends formFriends = new FormFriends();
-    static String phoneNumber;
-    static AuthCheckedPhone checkPhone;
+    private static FormConfirmSMS formConfirmSMS = new FormConfirmSMS();
+    private static FormPhone formPhone = new FormPhone();
+    private static FormNewUser formNewUser = new FormNewUser();
+    private static FormFriends formFriends = new FormFriends();
+    private static String phoneNumber;
+    private static AuthCheckedPhone checkPhone;
 
     private static TelegramApiBridge bridge;
 
@@ -37,6 +37,12 @@ public class Main {
 
     public static void main(String[] args) throws IOException, ClassNotFoundException, UnsupportedLookAndFeelException, InstantiationException, IllegalAccessException {
         frame.setContentPane(formPhone.getRootPanel());
+        formPhone.getButton1().addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                System.out.println(formPhone.getPasswordField1().getPassword().toString());
+            }
+        });
 
         //                  Реакция на кнопку Продолжить в окне ввода номера телефона
         formPhone.getButtonPhone().addActionListener(new ActionListener() {
@@ -97,11 +103,11 @@ public class Main {
             if (e2.getMessage().equals("PHONE_NUMBER_INVALID")) {                              //Если неверный номер телефона
                 System.out.println("Введен неверный номер телефона");                             //Выводим сообщение
                 JOptionPane.showMessageDialog(formPhone.getRootPanel(), "Введен неверный номер телефона");
-                formConfirmSMS.getFieldSMS().requestFocus();
+                formPhone.getFieldPhone().requestFocus();
             } else if (e2.getMessage().substring(0,10).equals("FLOOD_WAIT")) {
                 System.out.println("Много попыток входа");                             //Выводим сообщение
                 JOptionPane.showMessageDialog(formPhone.getRootPanel(), "Много попыток входа, ждите " + e2.getMessage().substring(11) + " секунд");
-                formConfirmSMS.getFieldSMS().requestFocus();
+                formPhone.getFieldPhone().requestFocus();
             }
         }
     }
@@ -149,7 +155,8 @@ public class Main {
     }
 
     private static void confirmSMS(String firstName, String lastName) {
-        String smsCode = formConfirmSMS.getFieldSMS().getText();
+        //String smsCode = formConfirmSMS.getFieldSMS().getText();
+        String smsCode = formConfirmSMS.getPasswordField().getPassword().toString();
         System.out.println("Введите код из СМС:");
         try {
             if ((firstName == null) && (lastName == null)) {                                    //Если фио пустые, то авторизовываем, иначе регистрируем

@@ -11,6 +11,10 @@ public class FormPhone {
     private JButton buttonPhone;
     private JButton min;
     private JButton butExit;
+    private JPanel innerPanel;
+    private JPasswordField passwordField1;
+    private JButton button1;
+
 
     public JPanel getRootPanel() {
         return rootPanel;
@@ -42,13 +46,27 @@ public class FormPhone {
                 System.exit(0);
             }
         });
-        ImageIcon buttonExitIcon = new ImageIcon("e:\\Java\\Project\\SkillBox\\Olegram\\src\\ru\\olegram\\buttonExit.png");
-        getButExit().setBorderPainted(false);
-        getButExit().setFocusPainted(false);
-        getButExit().setIcon(buttonExitIcon);
+        getFieldPhone().requestFocus();
     }
 
     public JButton getButExit() {
         return butExit;
+    }
+
+    public JPanel getInnerPanel() {
+        return innerPanel;
+    }
+
+
+    public void setInnerPanel(JPanel innerPanel) {
+        this.innerPanel = innerPanel;
+    }
+
+    public JPasswordField getPasswordField1() {
+        return passwordField1;
+    }
+
+    public JButton getButton1() {
+        return button1;
     }
 }

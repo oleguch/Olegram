@@ -9,7 +9,7 @@
     </properties>
     <border type="none"/>
     <children>
-      <grid id="39966" layout-manager="GridBagLayout">
+      <grid id="39966" binding="innerpanel" layout-manager="GridBagLayout">
         <constraints border-constraint="Center"/>
         <properties>
           <name value="FormFriends"/>
@@ -86,7 +86,7 @@
                 <properties>
                   <editable value="false"/>
                   <opaque value="false"/>
-                  <preferredSize width="200" height="200"/>
+                  <preferredSize width="200" height="23"/>
                 </properties>
               </component>
             </children>
