@@ -35,7 +35,7 @@ public class Main {
         }
     }
 
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) throws IOException, ClassNotFoundException, UnsupportedLookAndFeelException, InstantiationException, IllegalAccessException {
         frame.setContentPane(formPhone.getRootPanel());
 
         //                  Реакция на кнопку Продолжить в окне ввода номера телефона
@@ -75,7 +75,10 @@ public class Main {
         frame.setSize(800,600);
         frame.setMinimumSize(new Dimension(600,200));
         frame.setLocationRelativeTo(null);
-        frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        //frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+        frame.setUndecorated(true);
+        frame.setResizable(false);
         frame.setVisible(true);
 
         bridge.authLogOut();

@@ -1,20 +1,16 @@
 package ru.olegram;
 
-import javafx.stage.Stage;
-
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-/**
- * Created by olegu on 07.05.2017.
- */
+
 public class FormPhone {
     private JTextField fieldPhone;
     private JPanel rootPanel;
     private JButton buttonPhone;
-    private JButton button1;
-    private JButton button2;
+    private JButton min;
+    private JButton butExit;
 
     public JPanel getRootPanel() {
         return rootPanel;
@@ -28,18 +24,31 @@ public class FormPhone {
         return buttonPhone;
     }
 
-    public JButton getButton1() {
-        return button1;
+    public JButton getMin() {
+        return min;
     }
 
     public FormPhone() {
-        getButton1().addActionListener(new ActionListener() {
+        getMin().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 Main.frame.setState(JFrame.ICONIFIED);
-                //Main.frame.dispose();
-                //System.exit(0);
             }
         });
+        getButExit().addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Main.frame.dispose();
+                System.exit(0);
+            }
+        });
+        ImageIcon buttonExitIcon = new ImageIcon("e:\\Java\\Project\\SkillBox\\Olegram\\src\\ru\\olegram\\buttonExit.png");
+        getButExit().setBorderPainted(false);
+        getButExit().setFocusPainted(false);
+        getButExit().setIcon(buttonExitIcon);
+    }
+
+    public JButton getButExit() {
+        return butExit;
     }
 }
