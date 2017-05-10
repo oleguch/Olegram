@@ -1,5 +1,7 @@
 package ru.olegram;
 
+import org.telegram.api.engine.RpcException;
+
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -9,10 +11,6 @@ public class FormConfirmSMS {
         return rootPanel;
     }
 
-    public JTextField getFieldSMS() {
-        return fieldSMS;
-    }
-
     public JButton getButtonSMS() {
         return buttonSMS;
     }
@@ -20,11 +18,11 @@ public class FormConfirmSMS {
     private JPanel rootPanel;
     private JButton min;
     private JButton butExit;
-    private JTextField fieldSMS;
     private JButton buttonSMS;
     private JTextArea textLabelSMS;
     private JPanel innerPanel;
     private JPasswordField passwordField;
+    private JPanel titleBar;
 
 
     public JTextArea getTextLabelSMS() {
@@ -40,30 +38,27 @@ public class FormConfirmSMS {
     }
 
     public FormConfirmSMS() {
-        getMin().addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                Main.frame.setState(JFrame.ICONIFIED);
-            }
-        });
-        getButExit().addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                Main.frame.dispose();
-                System.exit(0);
-            }
-        });
+
     }
 
     public JPanel getInnerPanel() {
         return innerPanel;
     }
 
-    public void setInnerPanel(JPanel innerPanel) {
-        this.innerPanel = innerPanel;
+    public JPanel getTitleBar() {
+        return titleBar;
     }
 
     public JPasswordField getPasswordField() {
         return passwordField;
+    }
+
+    public void messageError(RpcException e2) {
+        if (e2.getMessage().equals("PHONE_CODE_INVALID")) {                              //Если неверный код
+            System.out.println("Введен неверный код");                             //Выводим сообщение
+            JOptionPane.showMessageDialog(getRootPanel(),"Введен неверный код");
+            getPasswordField().setText(null);
+            getPasswordField().requestFocus();
+        }
     }
 }

@@ -1,8 +1,6 @@
 package ru.olegram;
 
 import javax.swing.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 /**
  * Created by olegu on 07.05.2017.
@@ -12,9 +10,10 @@ public class FormNewUser {
     private JTextField regName;
     private JTextField regSurname;
     private JButton buttonReg;
-    private JButton min;
+    private JButton butMinimize;
     private JButton butExit;
     private JPanel innerPanel;
+    private JPanel titleBar;
 
     public JPanel getRootPanel() {
         return rootPanel;
@@ -32,27 +31,19 @@ public class FormNewUser {
         return buttonReg;
     }
 
-    public JButton getMin() {
-        return min;
+    public JButton getButMinimize() {
+        return butMinimize;
     }
 
     public JButton getButExit() {
         return butExit;
     }
 
+    public JPanel getTitleBar() {
+        return titleBar;
+    }
+
     public FormNewUser() {
-        getMin().addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                Main.frame.setState(JFrame.ICONIFIED);
-            }
-        });
-        getButExit().addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                Main.frame.dispose();
-                System.exit(0);
-            }
-        });
+
     }
 }

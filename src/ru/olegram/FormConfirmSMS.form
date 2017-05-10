@@ -50,24 +50,15 @@
               <gridbag weightx="0.0" weighty="0.0"/>
             </constraints>
           </vspacer>
-          <component id="4a282" class="javax.swing.JTextField" binding="fieldSMS">
-            <constraints>
-              <grid row="5" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
-                <preferred-size width="150" height="-1"/>
-              </grid>
-              <gridbag weightx="0.0" weighty="0.0"/>
-            </constraints>
-            <properties/>
-          </component>
           <vspacer id="42a7c">
             <constraints>
-              <grid row="7" column="1" row-span="1" col-span="1" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
+              <grid row="6" column="1" row-span="1" col-span="1" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
               <gridbag weightx="0.0" weighty="0.0"/>
             </constraints>
           </vspacer>
           <component id="36ddf" class="javax.swing.JButton" binding="buttonSMS">
             <constraints>
-              <grid row="8" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+              <grid row="7" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
               <gridbag weightx="0.0" weighty="0.0"/>
             </constraints>
             <properties>
@@ -91,7 +82,7 @@
           </component>
           <grid id="9639d" layout-manager="BorderLayout" hgap="0" vgap="0">
             <constraints>
-              <grid row="8" column="2" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+              <grid row="7" column="2" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
               <gridbag weightx="0.0" weighty="0.0"/>
             </constraints>
             <properties/>
@@ -100,7 +91,7 @@
           </grid>
           <component id="ef1ab" class="javax.swing.JPasswordField" binding="passwordField">
             <constraints>
-              <grid row="6" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+              <grid row="5" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
                 <preferred-size width="150" height="-1"/>
               </grid>
               <gridbag weightx="0.0" weighty="0.0"/>
@@ -109,7 +100,7 @@
           </component>
         </children>
       </grid>
-      <grid id="d2811" layout-manager="GridBagLayout">
+      <grid id="d2811" binding="titleBar" layout-manager="GridBagLayout">
         <constraints border-constraint="North"/>
         <properties/>
         <border type="none"/>
@@ -121,9 +112,10 @@
             </constraints>
             <properties>
               <borderPainted value="false"/>
+              <focusPainted value="false"/>
               <icon value="ru/olegram/buttonMinimize.png"/>
               <preferredSize width="32" height="32"/>
-              <text value="_"/>
+              <text value=""/>
             </properties>
           </component>
           <component id="31cb2" class="javax.swing.JButton" binding="butExit">
@@ -133,6 +125,7 @@
             </constraints>
             <properties>
               <borderPainted value="false"/>
+              <focusPainted value="false"/>
               <icon value="ru/olegram/buttonExit.png"/>
               <label value=""/>
               <preferredSize width="32" height="32"/>

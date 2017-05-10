@@ -1,8 +1,11 @@
 package ru.olegram;
 
+import org.telegram.api.engine.RpcException;
+
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 
 
 public class FormPhone {
@@ -12,61 +15,42 @@ public class FormPhone {
     private JButton min;
     private JButton butExit;
     private JPanel innerPanel;
-    private JPasswordField passwordField1;
-    private JButton button1;
-
+    private JPanel titleBar;
 
     public JPanel getRootPanel() {
         return rootPanel;
     }
-
     public JTextField getFieldPhone() {
         return fieldPhone;
     }
-
     public JButton getButtonPhone() {
         return buttonPhone;
     }
-
     public JButton getMin() {
         return min;
     }
-
-    public FormPhone() {
-        getMin().addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                Main.frame.setState(JFrame.ICONIFIED);
-            }
-        });
-        getButExit().addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                Main.frame.dispose();
-                System.exit(0);
-            }
-        });
-        getFieldPhone().requestFocus();
+    public JPanel getTitleBar() {
+        return titleBar;
     }
-
     public JButton getButExit() {
         return butExit;
     }
 
-    public JPanel getInnerPanel() {
-        return innerPanel;
+    public FormPhone() {
+
+        getFieldPhone().requestFocus();
+        getFieldPhone().requestFocusInWindow();
     }
 
-
-    public void setInnerPanel(JPanel innerPanel) {
-        this.innerPanel = innerPanel;
-    }
-
-    public JPasswordField getPasswordField1() {
-        return passwordField1;
-    }
-
-    public JButton getButton1() {
-        return button1;
+    public void messengerError(Exception e){
+        if (e.getMessage().equals("PHONE_NUMBER_INVALID")) {                              //Если неверный номер телефона
+            System.out.println("Введен неверный номер телефона");                             //Выводим сообщение
+            JOptionPane.showMessageDialog(getRootPanel(), "Введен неверный номер телефона");
+            getFieldPhone().requestFocus();
+        } else if (e.getMessage().substring(0,10).equals("FLOOD_WAIT")) {
+            System.out.println("Много попыток входа");                             //Выводим сообщение
+            JOptionPane.showMessageDialog(getRootPanel(), "Много попыток входа, ждите " + e.getMessage().substring(11) + " секунд");
+            getFieldPhone().requestFocus();
+        }
     }
 }

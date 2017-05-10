@@ -131,12 +131,12 @@
           </component>
         </children>
       </grid>
-      <grid id="f2c80" layout-manager="GridBagLayout">
+      <grid id="f2c80" binding="titleBar" layout-manager="GridBagLayout">
         <constraints border-constraint="North"/>
         <properties/>
         <border type="none"/>
         <children>
-          <component id="a29ec" class="javax.swing.JButton" binding="min">
+          <component id="a29ec" class="javax.swing.JButton" binding="butMinimize">
             <constraints>
               <grid row="0" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
               <gridbag weightx="0.0" weighty="1.0"/>
@@ -145,7 +145,7 @@
               <borderPainted value="false"/>
               <icon value="ru/olegram/buttonMinimize.png"/>
               <preferredSize width="32" height="32"/>
-              <text value="_"/>
+              <text value=""/>
             </properties>
           </component>
           <component id="de2b6" class="javax.swing.JButton" binding="butExit">
@@ -155,9 +155,10 @@
             </constraints>
             <properties>
               <borderPainted value="false"/>
+              <focusPainted value="false"/>
               <icon value="ru/olegram/buttonExit.png"/>
               <preferredSize width="32" height="32"/>
-              <text value="X"/>
+              <text value=""/>
             </properties>
           </component>
           <hspacer id="32598">
