@@ -1,10 +1,6 @@
-package ru.olegram;
-
 import org.telegram.api.engine.RpcException;
 
 import javax.swing.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 public class FormConfirmSMS {
     public JPanel getRootPanel() {
@@ -16,25 +12,13 @@ public class FormConfirmSMS {
     }
 
     private JPanel rootPanel;
-    private JButton min;
-    private JButton butExit;
     private JButton buttonSMS;
     private JTextArea textLabelSMS;
     private JPanel innerPanel;
     private JPasswordField passwordField;
-    private JPanel titleBar;
-
 
     public JTextArea getTextLabelSMS() {
         return textLabelSMS;
-    }
-
-    public JButton getMin() {
-        return min;
-    }
-
-    public JButton getButExit() {
-        return butExit;
     }
 
     public FormConfirmSMS() {
@@ -43,10 +27,6 @@ public class FormConfirmSMS {
 
     public JPanel getInnerPanel() {
         return innerPanel;
-    }
-
-    public JPanel getTitleBar() {
-        return titleBar;
     }
 
     public JPasswordField getPasswordField() {

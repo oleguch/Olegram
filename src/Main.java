@@ -1,4 +1,3 @@
-package ru.olegram;
 import org.javagram.TelegramApiBridge;
 import org.javagram.response.AuthAuthorization;
 import org.javagram.response.AuthCheckedPhone;
@@ -12,17 +11,14 @@ public class Main {
     private static String phoneNumber;
     private static AuthCheckedPhone checkPhone;
     private static MyFrame frame;
-
     private static TelegramApiBridge bridge;
 
     public static TelegramApiBridge getBridge() {
         return bridge;
     }
-
     public static String getPhoneNumber() {
         return phoneNumber;
     }
-
     public static AuthCheckedPhone getCheckPhone() {
         return checkPhone;
     }
@@ -51,7 +47,7 @@ public class Main {
             else
                 frame.authBySMS();
         } catch (RpcException e2) {                                                       //Если возникла ошибка
-            frame.getFormPhone().messengerError(e2);
+            frame.getFormPhone().messageError(e2);
         }
     }
 
@@ -70,7 +66,7 @@ public class Main {
                 AuthAuthorization signUp = Main.getBridge().authSignUp(smsCode, firstName, lastName);    //и регистрируем, отправив код из смс, имя и фамилию
                 System.out.println(" NewName: " + getName(signUp));                                      //выводим имя
             }
-            Thread.sleep(100);                  //ВНИМАНИЕ, почему-то иначе дейсвтует через раз, бывает сразу отображает контакты, бывает зависает окно
+            Thread.sleep(100);                  //ВНИМАНИЕ, почему-то иначе действует через раз, бывает сразу отображает контакты, бывает зависает окно
             frame.toFormFriends();
         } catch (RpcException e2) {                                                       //Если возникла ошибка
             frame.getFormConfirmSMS().messageError(e2);
