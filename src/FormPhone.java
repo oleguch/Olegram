@@ -5,7 +5,8 @@ public class FormPhone {
     private JTextField fieldPhone;
     private JPanel rootPanel;
     private JButton buttonPhone;
-
+    private JLabel titleLabel;
+    private JLabel label;
 
     public JPanel getRootPanel() {
         return rootPanel;

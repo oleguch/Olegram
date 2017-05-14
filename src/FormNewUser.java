@@ -8,6 +8,10 @@ public class FormNewUser {
     private JTextField regName;
     private JTextField regSurname;
     private JButton buttonReg;
+    private JLabel titleLabel;
+    private JLabel label;
+    private JLabel labelName;
+    private JLabel labelSurname;
 
     public JPanel getRootPanel() {
         return rootPanel;

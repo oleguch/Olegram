@@ -5,6 +5,9 @@ public class FormFriends {
 
     private DefaultListModel listModel = new DefaultListModel();
     private JList friendsList;
+    private JLabel titlelabel;
+    private JLabel label;
+    private JScrollPane scrollList;
 
     public JPanel getRootPanel() {
         return rootPanel;

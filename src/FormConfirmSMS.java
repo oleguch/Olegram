@@ -14,8 +14,8 @@ public class FormConfirmSMS {
     private JPanel rootPanel;
     private JButton buttonSMS;
     private JTextArea textLabelSMS;
-    private JPanel innerPanel;
     private JPasswordField passwordField;
+    private JLabel titleLabel;
 
     public JTextArea getTextLabelSMS() {
         return textLabelSMS;
@@ -23,10 +23,6 @@ public class FormConfirmSMS {
 
     public FormConfirmSMS() {
 
-    }
-
-    public JPanel getInnerPanel() {
-        return innerPanel;
     }
 
     public JPasswordField getPasswordField() {

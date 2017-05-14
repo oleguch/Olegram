@@ -2,15 +2,15 @@
 <form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="FormWindow">
   <grid id="27dc6" binding="rootPanel" custom-create="true" layout-manager="BorderLayout" hgap="0" vgap="0">
     <constraints>
-      <xy x="20" y="20" width="515" height="400"/>
+      <xy x="20" y="20" width="272" height="400"/>
     </constraints>
     <properties/>
     <border type="none"/>
     <children>
-      <grid id="1e276" binding="titleBar" layout-manager="FlowLayout" hgap="0" vgap="5" flow-align="2">
+      <grid id="1e276" binding="titleBar" layout-manager="FlowLayout" hgap="0" vgap="0" flow-align="2">
         <constraints border-constraint="North"/>
         <properties>
-          <preferredSize width="79" height="40"/>
+          <preferredSize width="79" height="32"/>
         </properties>
         <border type="none"/>
         <children>
@@ -18,6 +18,8 @@
             <constraints/>
             <properties>
               <borderPainted value="false"/>
+              <defaultCapable value="true"/>
+              <focusPainted value="false"/>
               <label value=""/>
               <preferredSize width="32" height="32"/>
               <text value=""/>
