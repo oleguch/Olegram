@@ -1,4 +1,5 @@
 import javax.swing.*;
+import java.awt.event.ActionListener;
 
 /**
  * Created by olegu on 07.05.2017.
@@ -31,5 +32,11 @@ public class FormNewUser {
 
     public FormNewUser() {
 
+    }
+
+    public void addActionListenerForChangeForm(ActionListener actionListener) {
+        getButtonReg().addActionListener(actionListener);
+        getRegName().addActionListener(actionListener);
+        getRegSurname().addActionListener(actionListener);
     }
 }

@@ -1,5 +1,6 @@
 import javax.swing.*;
 import javax.swing.text.MaskFormatter;
+import java.awt.event.ActionListener;
 import java.text.ParseException;
 
 
@@ -27,15 +28,8 @@ public class FormPhone {
         getFieldPhoneFormatted().requestFocusInWindow();
     }
 
-    public void messageError(Exception e){
-        if (e.getMessage().equals("PHONE_NUMBER_INVALID")) {                              //Если неверный номер телефона
-            System.out.println("Введен неверный номер телефона");                             //Выводим сообщение
-            JOptionPane.showMessageDialog(getRootPanel(), "Введен неверный номер телефона");
-            getFieldPhoneFormatted().requestFocus();
-        } else if (e.getMessage().substring(0,10).equals("FLOOD_WAIT")) {
-            System.out.println("Много попыток входа");                             //Выводим сообщение
-            JOptionPane.showMessageDialog(getRootPanel(), "Много попыток входа, ждите " + e.getMessage().substring(11) + " секунд");
-            getFieldPhoneFormatted().requestFocus();
-        }
+    public void addActionListenerForChangeForm(ActionListener actionListener) {
+        getButtonPhone().addActionListener(actionListener);
+        getFieldPhoneFormatted().addActionListener(actionListener);
     }
 }

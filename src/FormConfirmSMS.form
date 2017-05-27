@@ -67,10 +67,11 @@
         </constraints>
         <properties>
           <editable value="false"/>
-          <minimumSize width="250" height="50"/>
+          <font size="16"/>
+          <minimumSize width="250" height="70"/>
           <opaque value="false"/>
-          <preferredSize width="250" height="50"/>
-          <text value="fdgdfg"/>
+          <preferredSize width="250" height="70"/>
+          <text value=""/>
         </properties>
       </component>
       <grid id="ac00b" layout-manager="BorderLayout" hgap="0" vgap="0">
@@ -84,12 +85,16 @@
       </grid>
       <component id="aa2fa" class="javax.swing.JPasswordField" binding="passwordField">
         <constraints>
-          <grid row="5" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+          <grid row="5" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="0" fill="0" indent="0" use-parent-layout="false">
             <preferred-size width="150" height="-1"/>
           </grid>
           <gridbag weightx="0.0" weighty="0.0"/>
         </constraints>
-        <properties/>
+        <properties>
+          <font size="24"/>
+          <preferredSize width="250" height="40"/>
+          <text value=""/>
+        </properties>
       </component>
     </children>
   </grid>

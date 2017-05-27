@@ -1,6 +1,7 @@
 import org.telegram.api.engine.RpcException;
 
 import javax.swing.*;
+import java.awt.event.ActionListener;
 
 public class FormConfirmSMS {
     public JPanel getRootPanel() {
@@ -22,19 +23,15 @@ public class FormConfirmSMS {
     }
 
     public FormConfirmSMS() {
-
+        passwordField.setHorizontalAlignment(0);
     }
 
     public JPasswordField getPasswordField() {
         return passwordField;
     }
 
-    public void messageError(RpcException e2) {
-        if (e2.getMessage().equals("PHONE_CODE_INVALID")) {                              //Если неверный код
-            System.out.println("Введен неверный код");                             //Выводим сообщение
-            JOptionPane.showMessageDialog(getRootPanel(),"Введен неверный код");
-            getPasswordField().setText(null);
-            getPasswordField().requestFocus();
-        }
+    public void addActionListenerForChangeForm(ActionListener actionListener) {
+        getButtonSMS().addActionListener(actionListener);
+        getPasswordField().addActionListener(actionListener);
     }
 }
