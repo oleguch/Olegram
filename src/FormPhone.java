@@ -1,8 +1,10 @@
 import javax.swing.*;
+import javax.swing.text.MaskFormatter;
+import java.text.ParseException;
 
 
 public class FormPhone {
-    private JTextField fieldPhone;
+    private JFormattedTextField fieldPhone;
     private JPanel rootPanel;
     private JButton buttonPhone;
     private JLabel titleLabel;
@@ -11,15 +13,17 @@ public class FormPhone {
     public JPanel getRootPanel() {
         return rootPanel;
     }
-    public JTextField getFieldPhone() {
+    public JFormattedTextField getFieldPhone() {
         return fieldPhone;
     }
     public JButton getButtonPhone() {
         return buttonPhone;
     }
 
-    public FormPhone() {
-        getFieldPhone().requestFocus();
+    public FormPhone() throws ParseException {
+        MaskFormatter maskPhone = new MaskFormatter("+#(###)###-##-##");
+        maskPhone.setPlaceholderCharacter('*');
+        maskPhone.install(getFieldPhone());
         getFieldPhone().requestFocusInWindow();
     }
 
