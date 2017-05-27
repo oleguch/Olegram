@@ -4,7 +4,7 @@ import java.text.ParseException;
 
 
 public class FormPhone {
-    private JFormattedTextField fieldPhone;
+    private JFormattedTextField fieldPhoneFormatted;
     private JPanel rootPanel;
     private JButton buttonPhone;
     private JLabel titleLabel;
@@ -13,8 +13,8 @@ public class FormPhone {
     public JPanel getRootPanel() {
         return rootPanel;
     }
-    public JFormattedTextField getFieldPhone() {
-        return fieldPhone;
+    public JFormattedTextField getFieldPhoneFormatted() {
+        return fieldPhoneFormatted;
     }
     public JButton getButtonPhone() {
         return buttonPhone;
@@ -23,19 +23,19 @@ public class FormPhone {
     public FormPhone() throws ParseException {
         MaskFormatter maskPhone = new MaskFormatter("+#(###)###-##-##");
         maskPhone.setPlaceholderCharacter('*');
-        maskPhone.install(getFieldPhone());
-        getFieldPhone().requestFocusInWindow();
+        maskPhone.install(getFieldPhoneFormatted());
+        getFieldPhoneFormatted().requestFocusInWindow();
     }
 
     public void messageError(Exception e){
         if (e.getMessage().equals("PHONE_NUMBER_INVALID")) {                              //Если неверный номер телефона
             System.out.println("Введен неверный номер телефона");                             //Выводим сообщение
             JOptionPane.showMessageDialog(getRootPanel(), "Введен неверный номер телефона");
-            getFieldPhone().requestFocus();
+            getFieldPhoneFormatted().requestFocus();
         } else if (e.getMessage().substring(0,10).equals("FLOOD_WAIT")) {
             System.out.println("Много попыток входа");                             //Выводим сообщение
             JOptionPane.showMessageDialog(getRootPanel(), "Много попыток входа, ждите " + e.getMessage().substring(11) + " секунд");
-            getFieldPhone().requestFocus();
+            getFieldPhoneFormatted().requestFocus();
         }
     }
 }
