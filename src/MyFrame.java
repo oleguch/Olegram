@@ -5,6 +5,7 @@ import org.javagram.response.object.User;
 import org.javagram.response.object.UserContact;
 import org.telegram.api.engine.RpcException;
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
@@ -69,6 +70,7 @@ public class MyFrame extends JFrame{
         formPhone.getFieldPhoneFormatted().requestFocusInWindow();
         setTitle("Olegram");
         setSize(800,600);
+        setMinimumSize(new Dimension(500,400));
         setUndecorated(true);
         setResizable(false);
         setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
@@ -174,42 +176,50 @@ public class MyFrame extends JFrame{
     private void checkPhone() throws IOException {
         //phoneNumber = getFormPhone().getFieldPhoneFormatted().getText().replaceAll("\\D+","");
         phoneNumber = (String) getFormPhone().getFieldPhoneFormatted().getValue();
-        String phoneOnlyNumber = phoneNumber.replaceAll("\\D+","");
-        try {
-            checkPhone = getBridge().authCheckPhone(phoneOnlyNumber);
-            getBridge().authSendCode(getPhoneNumber());
-            if (!checkPhone.isRegistered())
-                toFormNewUser();
-            else
-                toFormConfirmSMS();
-        } catch (RpcException e) {                                                       //Если возникла ошибка
-            switch (checkMessageError(e)) {
-                case ERROR_PHONE_NUMBER_INVALID:
-                    System.out.println("Введен неверный номер телефона");                             //Выводим сообщение
-                    showMessage("Введен неверный номер телефона");
-                    getFormPhone().getFieldPhoneFormatted().requestFocus();
-                    break;
-                case ERROR_FLOOD:
-                    System.out.println("Много попыток входа");                             //Выводим сообщение
-                    showMessage("Много попыток входа, ждите " + e.getMessage().substring(11) + " секунд");
-                    getFormPhone().getFieldPhoneFormatted().requestFocus();
-                    break;
-                default:
-                    e.printStackTrace();
+        if (phoneNumber == null)
+            showMessage("Введен пустой номер");
+        else {
+            String phoneOnlyNumber = phoneNumber.replaceAll("\\D+", "");
+            try {
+                checkPhone = getBridge().authCheckPhone(phoneOnlyNumber);
+                getBridge().authSendCode(getPhoneNumber());
+                if (!checkPhone.isRegistered())
+                    toFormNewUser();
+                else
+                    toFormConfirmSMS();
+            } catch (RpcException e) {                                                       //Если возникла ошибка
+                switch (checkMessageError(e)) {
+                    case ERROR_PHONE_NUMBER_INVALID:
+                        System.out.println("Введен неверный номер телефона");                             //Выводим сообщение
+                        showMessage("Введен неверный номер телефона");
+                        getFormPhone().getFieldPhoneFormatted().requestFocus();
+                        break;
+                    case ERROR_FLOOD:
+                        System.out.println("Много попыток входа");                             //Выводим сообщение
+                        showMessage("Много попыток входа, ждите " + e.getMessage().substring(11) + " секунд");
+                        getFormPhone().getFieldPhoneFormatted().requestFocus();
+                        break;
+                    default:
+                        e.printStackTrace();
+                }
             }
         }
     }
 
     private void checkPhoneLocal() throws IOException {
         phoneNumber = (String) getFormPhone().getFieldPhoneFormatted().getValue();
+        if (phoneNumber == null)
+            showMessage("Введен пустой номер");
+        else {
 //        phoneNumber = getFormPhone().getFieldPhoneFormatted().getText();
-        String phoneOnlyNumber = phoneNumber.replaceAll("\\D+","");
-        if (phoneOnlyNumber.equals("71111111111"))
-            toFormNewUser();
-        else if (phoneOnlyNumber.equals("72222222222")) {
-            toFormConfirmSMS();
-        } else
-            showMessage("Ошибка номера");
+            String phoneOnlyNumber = phoneNumber.replaceAll("\\D+", "");
+            if (phoneOnlyNumber.equals("71111111111"))
+                toFormNewUser();
+            else if (phoneOnlyNumber.equals("72222222222")) {
+                toFormConfirmSMS();
+            } else
+                showMessage("Ошибка номера");
+        }
     }
 
     private void showMessage(String message) {

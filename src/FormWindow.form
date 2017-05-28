@@ -5,14 +5,18 @@
       <xy x="20" y="20" width="272" height="400"/>
     </constraints>
     <properties/>
-    <border type="none"/>
+    <border type="empty">
+      <size top="2" left="2" bottom="2" right="2"/>
+    </border>
     <children>
       <grid id="1e276" binding="titleBar" layout-manager="FlowLayout" hgap="0" vgap="0" flow-align="2">
         <constraints border-constraint="North"/>
         <properties>
           <preferredSize width="79" height="32"/>
         </properties>
-        <border type="none"/>
+        <border type="none">
+          <size top="2" left="2" bottom="2" right="2"/>
+        </border>
         <children>
           <component id="19738" class="javax.swing.JButton" binding="butMinimize" custom-create="true">
             <constraints/>
@@ -39,7 +43,9 @@
       <grid id="ebd7a" binding="contentPanel" layout-manager="BorderLayout" hgap="0" vgap="0">
         <constraints border-constraint="Center"/>
         <properties/>
-        <border type="none"/>
+        <border type="none">
+          <size top="2" left="2" bottom="2" right="2"/>
+        </border>
         <children/>
       </grid>
     </children>

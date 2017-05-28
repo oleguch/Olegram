@@ -11,6 +11,7 @@ public class FormWindow extends JPanel {
     private JPanel rootPanel;
     private JPanel contentPanel;
     private ComponentMover componentMover;
+    private ComponentResizer componentResizer;
 
     public FormWindow(MyFrame frame) {
         //setContentPanel(frame.getFormPhone().getRootPanel());
@@ -20,6 +21,8 @@ public class FormWindow extends JPanel {
         frame.getRootPane().setWindowDecorationStyle(JRootPane.NONE);
         componentMover = new ComponentMover(frame, titleBar);       //добавляем перемещение
         componentMover.setChangeCursor(false);                      //убираем курсор перемещения
+        componentResizer = new ComponentResizer(frame);
+        //componentResizer.setMinimumSize(new Dimension(500,400));
         butMinimize.addActionListener(new ActionListener() {        //сворачивание
             @Override
             public void actionPerformed(ActionEvent e) {
