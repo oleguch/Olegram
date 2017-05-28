@@ -223,7 +223,9 @@ public class MyFrame extends JFrame{
     }
 
     private void showMessage(String message) {
-        JOptionPane.showMessageDialog(MyFrame.this, message, "Ошибка", JOptionPane.WARNING_MESSAGE);
+        //JOptionPane.showMessageDialog(MyFrame.this, message, "Ошибка", JOptionPane.WARNING_MESSAGE);
+        //int result = FormWindow.showOptionDialog(MyFrame.this, message, JOptionPane.WARNING_MESSAGE, JOptionPane.DEFAULT_OPTION, null, null, null);
+        FormWindow.showOptionDialog(MyFrame.this, message, JOptionPane.WARNING_MESSAGE);
     }
 
     private void confirmSMS(String firstName, String lastName) {
