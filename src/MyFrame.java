@@ -255,11 +255,11 @@ public class MyFrame extends JFrame{
     }
     private void confirmSMSLocal() throws IOException, InterruptedException {
         String smsCode = new String(getFormConfirmSMS().getPasswordField().getPassword());
-        if (smsCode.equals("1111"))
+        if (smsCode.equals("111111"))
             toFormFriends();
         else {
             showMessage("Неверный код");
-            getFormConfirmSMS().getPasswordField().setText(null);
+            getFormConfirmSMS().getPasswordField().setText("");
             getFormConfirmSMS().getPasswordField().requestFocus();
         }
     }
