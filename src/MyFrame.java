@@ -97,19 +97,17 @@ public class MyFrame extends JFrame{
         public void actionPerformed(ActionEvent e) {
             try {
                 if (formWindow.getContentPanel().equals(getFormPhone().getRootPanel()))
-                    //checkPhone();
-                    checkPhoneLocal();
+                    checkPhone();
+                    //checkPhoneLocal();
                 else if (formWindow.getContentPanel().equals(getConfirmSMS().getRootPanel()))
-//                    if (!getCheckPhone().isRegistered()) {
-//                        confirmSMS(formNewUser.getRegName().getText(), formNewUser.getRegSurname().getText());
-//                    } else
-//                        confirmSMS(null, null);
-                        confirmSMSLocal();
+                    if (!getCheckPhone().isRegistered()) {
+                        confirmSMS(formNewUser.getRegName().getText(), formNewUser.getRegSurname().getText());
+                    } else
+                        confirmSMS(null, null);
+                    //    confirmSMSLocal();
                 else if (formWindow.getContentPanel().equals(getFormNewUser().getRootPanel()))
                     checkNewUser();
             } catch (IOException e1) {
-                e1.printStackTrace();
-            } catch (InterruptedException e1) {
                 e1.printStackTrace();
             }
         }
@@ -151,8 +149,8 @@ public class MyFrame extends JFrame{
 
     private void toFormFriends() throws IOException, InterruptedException {
         getFormWindow().setContentPanel(getFormFriends().getRootPanel());
-        //getFriendsList();
-        getFriendsListLocal();
+        getFriendsList();
+        //getFriendsListLocal();
     }
 
     //Для работы с серверами Telegram
@@ -224,8 +222,8 @@ public class MyFrame extends JFrame{
 
     private void showMessage(String message) {
         //JOptionPane.showMessageDialog(MyFrame.this, message, "Ошибка", JOptionPane.WARNING_MESSAGE);
-        //int result = FormWindow.showOptionDialog(MyFrame.this, message, JOptionPane.WARNING_MESSAGE, JOptionPane.DEFAULT_OPTION, null, null, null);
-        FormWindow.showOptionDialog(MyFrame.this, message, JOptionPane.WARNING_MESSAGE);
+        FormWindow.showOptionDialog(MyFrame.this, message, JOptionPane.WARNING_MESSAGE, JOptionPane.DEFAULT_OPTION, null, null, null);
+        //FormWindow.showOptionDialog(MyFrame.this, message, JOptionPane.WARNING_MESSAGE);
     }
 
     private void confirmSMS(String firstName, String lastName) {
@@ -234,10 +232,10 @@ public class MyFrame extends JFrame{
         try {
             if ((firstName == null) && (lastName == null)) {                                            //Если фио пустые, то авторизовываем, иначе регистрируем
                 AuthAuthorization signIn = getBridge().authSignIn(smsCode);                        //отправляем только код из смс и авторизовываем пользователя
-                System.out.println(" Name: " + getName(signIn));                                        //Если получилось, получаем имя
+                System.out.println(" Name: " + getName(signIn));
             } else {
-                AuthAuthorization signUp = getBridge().authSignUp(smsCode, firstName, lastName);    //и регистрируем, отправив код из смс, имя и фамилию
-                System.out.println(" NewName: " + getName(signUp));                                      //выводим имя
+                AuthAuthorization signUp = getBridge().authSignUp(smsCode, firstName, lastName);    //регистрируем, отправив код из смс, имя и фамилию
+                System.out.println(" NewName: " + getName(signUp));
             }
             Thread.sleep(100);                  //ВНИМАНИЕ, почему-то иначе действует через раз, бывает сразу отображает контакты, бывает зависает окно
             toFormFriends();
@@ -255,7 +253,7 @@ public class MyFrame extends JFrame{
     }
     private void confirmSMSLocal() throws IOException, InterruptedException {
         String smsCode = new String(getFormConfirmSMS().getPasswordField().getPassword());
-        if (smsCode.equals("111111"))
+        if (smsCode.equals("11111"))
             toFormFriends();
         else {
             showMessage("Неверный код");

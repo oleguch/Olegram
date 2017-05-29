@@ -1,5 +1,3 @@
-import org.telegram.api.engine.RpcException;
-
 import javax.swing.*;
 import javax.swing.text.AbstractDocument;
 import javax.swing.text.AttributeSet;
@@ -28,7 +26,7 @@ public class FormConfirmSMS {
 
     public FormConfirmSMS() {
         passwordField.setHorizontalAlignment(0);
-        DocumentFilter documentFilter = new MyDocumentFilter();
+        DocumentFilter documentFilter = new MyDocumentFilterForCode();
         ((AbstractDocument) passwordField.getDocument()).setDocumentFilter(documentFilter);
     }
 
@@ -41,17 +39,18 @@ public class FormConfirmSMS {
         getPasswordField().addActionListener(actionListener);
     }
 
-    public class MyDocumentFilter extends DocumentFilter {
+    public class MyDocumentFilterForCode extends DocumentFilter {
+        int amountNumberOfCode = 5;
+        //int lengthPassword = getPasswordField().getPassword().length;
         public void insertString(DocumentFilter.FilterBypass fb, int offset,
                                  String text, AttributeSet attr) throws BadLocationException {
-            int lengthPassw = getPasswordField().getPassword().length;
             int lengthText = text.length();
             text = text.replaceAll("\\D", "");
-            if (lengthPassw >= 6)
+            int lengthPassword = getPasswordField().getPassword().length;
+            if (lengthPassword >= amountNumberOfCode)
                 text = "";
-            else if (lengthPassw + lengthText >= 6)
-                    //(text.length() > 6)
-                text = text.substring(0, 6-lengthPassw);
+            else if (lengthPassword + lengthText >= amountNumberOfCode)
+                text = text.substring(0, amountNumberOfCode-lengthPassword);
             fb.insertString(offset, text, attr);
         }
         public void remove(DocumentFilter.FilterBypass fb, int offset, int length) throws BadLocationException {
@@ -59,13 +58,13 @@ public class FormConfirmSMS {
         }
         public void replace(DocumentFilter.FilterBypass fb, int offset, int length,
                             String text, AttributeSet attr) throws BadLocationException {
-            int lengthPassw = getPasswordField().getPassword().length;
+            int lengthPassword = getPasswordField().getPassword().length;
             if (text.isEmpty())
-                remove(fb, 0, lengthPassw);
+                remove(fb, 0, lengthPassword);
             else {
                 text = text.replaceAll("\\D", "");
-                if (text.length()  + lengthPassw - length >= 6 )
-                    text = text.substring(0, 6-lengthPassw + length);
+                if (text.length()  + lengthPassword - length >= amountNumberOfCode )
+                    text = text.substring(0, amountNumberOfCode-lengthPassword + length);
                 fb.replace(offset, length,text,attr);
             }
         }

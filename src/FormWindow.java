@@ -23,7 +23,6 @@ public class FormWindow extends JPanel {
     }
 
     public FormWindow(MyFrame frame) {
-        //setContentPanel(frame.getFormPhone().getRootPanel());
         setContentPanel(frame.getContentPane());
         frame.setContentPane(this);
         frame.setUndecorated(true);
@@ -80,10 +79,10 @@ public class FormWindow extends JPanel {
     }
 
 
-//    public static int showOptionDialog (Window window,String message, int optionType, int messageType, Icon icon, Object[] options, Object initialValu) {
-//        JOptionPane optionPane = new JOptionPane(message, optionType, messageType, icon, options, initialValue);
-    public static int showOptionDialog (Window window, String message, int messageType) {
-        JOptionPane optionPane = new JOptionPane(message, messageType);
+    public static int showOptionDialog (Window window,String message, int optionType, int messageType, Icon icon, Object[] options, Object initialValue) {
+        JOptionPane optionPane = new JOptionPane(message, optionType, messageType, icon, options, initialValue);
+//    public static int showOptionDialog (Window window, String message, int messageType) {
+//        JOptionPane optionPane = new JOptionPane(message, messageType);
         JDialog dialog;
         if (window instanceof Frame)
             dialog = new JDialog((Frame) window);
