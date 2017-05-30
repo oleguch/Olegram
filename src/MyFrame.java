@@ -17,124 +17,87 @@ public class MyFrame extends JFrame{
     private FormConfirmSMS formConfirmSMS = new FormConfirmSMS();
     private FormPhone formPhone = new FormPhone();
     private FormNewUser formNewUser = new FormNewUser();
-    private FormFriends formFriends = new FormFriends();
-    private  FormWindow formWindow;
     private static final int ERROR_PHONE_NUMBER_INVALID = 1,
                             ERROR_CODE_INVALID = 2,
                             ERROR_FLOOD = 3;
-
+    private static Boolean useLocal = true;
     private static String phoneNumber;
     private static AuthCheckedPhone checkPhone;
     private static TelegramApiBridge bridge;
 
-    public static TelegramApiBridge getBridge() {
-        return bridge;
-    }
-    public static String getPhoneNumber() {
-        return phoneNumber;
-    }
-    public static AuthCheckedPhone getCheckPhone() {
-        return checkPhone;
-    }
-    static {
-        try {
-            bridge = new TelegramApiBridge("149.154.167.50:443", 95568, "e5649ac9f0c517643f3c8cad067ac7b0");
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    FormConfirmSMS getFormConfirmSMS() {
-        return formConfirmSMS;
-    }
-    FormPhone getFormPhone() {
-        return formPhone;
-    }
-    FormNewUser getFormNewUser() {
-        return formNewUser;
-    }
-    FormFriends getFormFriends() {
-        return formFriends;
-    }
-    FormConfirmSMS getConfirmSMS() {
-        return formConfirmSMS;
-    }
-    FormWindow getFormWindow() {
-        return formWindow;
-    }
-
     MyFrame() throws Exception {
+        bridge = new TelegramApiBridge("149.154.167.50:443", 95568, "e5649ac9f0c517643f3c8cad067ac7b0");
         setContentPane(formPhone.getRootPanel());
-        formWindow = new FormWindow(this);
-        formWindow.setContentPanel(formPhone.getRootPanel());
-        formPhone.getFieldPhoneFormatted().requestFocusInWindow();
+        formPhone.getFieldPhone().requestFocusInWindow();
         setTitle("Olegram");
         setSize(800,600);
         setMinimumSize(new Dimension(500,400));
-        setUndecorated(true);
-        setResizable(false);
-        setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
-        addWindowListener(new WindowAdapter() {
-            @Override
-            public void windowClosing(WindowEvent e) {
-                super.windowClosing(e);
-                System.exit(0);
-            }
-        });
+        setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
-        addActionToChangeForm(changeForm);
         addWindowListener(new WindowAdapter() {
             @Override
             public void windowOpened(WindowEvent e) {
                 super.windowOpened(e);
-                formPhone.getFieldPhoneFormatted().requestFocusInWindow();
+                formPhone.getFieldPhone().requestFocusInWindow();
+            }
+        });
+
+        formPhone.addActionListenerForChangeForm(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                try {
+                    if (useLocal)
+                        checkPhoneLocal();
+                    else
+                        checkPhone();
+                } catch (IOException e1) {
+                    e1.printStackTrace();
+                }
+            }
+        });
+        formConfirmSMS.addActionListenerForChangeForm(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (useLocal) {
+                    try {
+                        confirmSMSLocal();
+                    } catch (IOException | InterruptedException e1) {
+                        e1.printStackTrace();
+                    }
+                } else {
+                    if (!checkPhone.isRegistered()) {
+                        confirmSMS(formNewUser.getFieldRegName().getText(), formNewUser.getFieldRegSurname().getText());
+                    } else
+                        confirmSMS(null, null);
+                }
+            }
+        });
+        formNewUser.addActionListenerForChangeForm(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                try {
+                    checkNewUser();
+                } catch (IOException e1) {
+                    e1.printStackTrace();
+                }
             }
         });
     }
 
-    //                  Переключение окон (по кнопке Продолжить, по Enter в соответствующих формах)
-    private Action changeForm = new AbstractAction() {
-        public void actionPerformed(ActionEvent e) {
-            try {
-                if (formWindow.getContentPanel().equals(getFormPhone().getRootPanel()))
-                    checkPhone();
-                    //checkPhoneLocal();
-                else if (formWindow.getContentPanel().equals(getConfirmSMS().getRootPanel()))
-                    if (!getCheckPhone().isRegistered()) {
-                        confirmSMS(formNewUser.getRegName().getText(), formNewUser.getRegSurname().getText());
-                    } else
-                        confirmSMS(null, null);
-                    //    confirmSMSLocal();
-                else if (formWindow.getContentPanel().equals(getFormNewUser().getRootPanel()))
-                    checkNewUser();
-            } catch (IOException e1) {
-                e1.printStackTrace();
-            }
-        }
-    };
-
-
-    private void addActionToChangeForm(ActionListener listener) {
-        getFormPhone().addActionListenerForChangeForm(listener);  //Действия по смене формы при нажатии на Продолжить или при нажатии Enter в поле
-        getConfirmSMS().addActionListenerForChangeForm(listener);
-        getFormNewUser().addActionListenerForChangeForm(listener);
-    }
-
     private void toFormNewUser() throws IOException {
-        formWindow.setContentPanel(formNewUser.getRootPanel());
-        formNewUser.getRegName().requestFocusInWindow();
-        System.out.println("Номер не зарегестрирован");
+        nextForm(formNewUser.getRootPanel());
+        formNewUser.setFocusToName();
     }
 
     private void checkNewUser() throws IOException {
-        String firstName = formNewUser.getRegName().getText().trim();
-        String lastName = formNewUser.getRegSurname().getText().trim();
+        String firstName = formNewUser.getFieldRegName().getText().trim();
+        String lastName = formNewUser.getFieldRegSurname().getText().trim();
         if (firstName.length() == 0) {
             showMessage("Не заполнено поле Имя");
-            formNewUser.getRegName().requestFocus();
+            formNewUser.setFocusToName();
         } else if (lastName.length() == 0) {
             showMessage("Не заполнено поле Фамилия");
-            formNewUser.getRegSurname().requestFocus();
+            formNewUser.setFocusToSurname();
         } else {
             toFormConfirmSMS();
         }
@@ -142,45 +105,34 @@ public class MyFrame extends JFrame{
 
     //Отрисовка формы ввода кода СМС
     private void toFormConfirmSMS() {
-        getFormWindow().setContentPanel(getFormConfirmSMS().getRootPanel());
-        formConfirmSMS.getTextLabelSMS().setText("На номер " + getPhoneNumber() + "\nотправен код через СМС. " + "\nВведите его в следующем поле.");
-        formConfirmSMS.getPasswordField().requestFocus();
+        setContentPane(formConfirmSMS.getRootPanel());
+        formConfirmSMS.getTextLabelSMS().setText("На номер " + phoneNumber + "\nотправен код через СМС. " + "\nВведите его в следующем поле.");
+        formConfirmSMS.setFocusToCodeField();
     }
 
-    private void toFormFriends() throws IOException, InterruptedException {
-        getFormWindow().setContentPanel(getFormFriends().getRootPanel());
-        getFriendsList();
-        //getFriendsListLocal();
-    }
-
-    //Для работы с серверами Telegram
     private void getFriendsList() throws IOException {
-        ArrayList<UserContact> myFriends = getBridge().contactsGetContacts();
-        System.out.println("Список друзей:" + myFriends);
-        for (UserContact friend : myFriends) {
-            System.out.println("Имя: " + friend.getFirstName());
-            System.out.println("Фамилия: " + friend.getLastName());
-            System.out.println("Телефон: " + friend.getPhone() + "\n");
-            formFriends.getListModel().addElement(friend.getFirstName() + " " + friend.getLastName() + " (" + friend.getPhone() + ")");
+        JOptionPane.showMessageDialog(MyFrame.this, "Введен верный код", "Успешно", JOptionPane.INFORMATION_MESSAGE);
+        if (!useLocal) {
+            ArrayList<UserContact> myFriends = bridge.contactsGetContacts();
+            System.out.println("Список друзей:" + myFriends);
+            for (UserContact friend : myFriends) {
+                System.out.println("Имя: " + friend.getFirstName());
+                System.out.println("Фамилия: " + friend.getLastName());
+                System.out.println("Телефон: " + friend.getPhone() + "\n");
+            }
+            bridge.authLogOut();
         }
     }
 
-    //Для локальной проверки работы приложения
-    private void getFriendsListLocal() {
-        formFriends.getListModel().addElement("Вася Пупкин (+7(123)456-78-78)");
-        formFriends.getListModel().addElement("Катя Попова (+7(987)654-21-21)");
-    }
-
     private void checkPhone() throws IOException {
-        //phoneNumber = getFormPhone().getFieldPhoneFormatted().getText().replaceAll("\\D+","");
-        phoneNumber = (String) getFormPhone().getFieldPhoneFormatted().getValue();
+        phoneNumber = (String) formPhone.getFieldPhone().getValue();
         if (phoneNumber == null)
             showMessage("Введен пустой номер");
         else {
             String phoneOnlyNumber = phoneNumber.replaceAll("\\D+", "");
             try {
-                checkPhone = getBridge().authCheckPhone(phoneOnlyNumber);
-                getBridge().authSendCode(getPhoneNumber());
+                checkPhone = bridge.authCheckPhone(phoneOnlyNumber);
+                bridge.authSendCode(phoneOnlyNumber);
                 if (!checkPhone.isRegistered())
                     toFormNewUser();
                 else
@@ -188,14 +140,12 @@ public class MyFrame extends JFrame{
             } catch (RpcException e) {                                                       //Если возникла ошибка
                 switch (checkMessageError(e)) {
                     case ERROR_PHONE_NUMBER_INVALID:
-                        System.out.println("Введен неверный номер телефона");                             //Выводим сообщение
                         showMessage("Введен неверный номер телефона");
-                        getFormPhone().getFieldPhoneFormatted().requestFocus();
+                        formPhone.setFocusToFieldPhone();
                         break;
                     case ERROR_FLOOD:
-                        System.out.println("Много попыток входа");                             //Выводим сообщение
                         showMessage("Много попыток входа, ждите " + e.getMessage().substring(11) + " секунд");
-                        getFormPhone().getFieldPhoneFormatted().requestFocus();
+                        formPhone.setFocusToFieldPhone();
                         break;
                     default:
                         e.printStackTrace();
@@ -205,11 +155,10 @@ public class MyFrame extends JFrame{
     }
 
     private void checkPhoneLocal() throws IOException {
-        phoneNumber = (String) getFormPhone().getFieldPhoneFormatted().getValue();
+        phoneNumber = (String) formPhone.getFieldPhone().getValue();
         if (phoneNumber == null)
             showMessage("Введен пустой номер");
         else {
-//        phoneNumber = getFormPhone().getFieldPhoneFormatted().getText();
             String phoneOnlyNumber = phoneNumber.replaceAll("\\D+", "");
             if (phoneOnlyNumber.equals("71111111111"))
                 toFormNewUser();
@@ -221,30 +170,27 @@ public class MyFrame extends JFrame{
     }
 
     private void showMessage(String message) {
-        //JOptionPane.showMessageDialog(MyFrame.this, message, "Ошибка", JOptionPane.WARNING_MESSAGE);
-        FormWindow.showOptionDialog(MyFrame.this, message, JOptionPane.WARNING_MESSAGE, JOptionPane.DEFAULT_OPTION, null, null, null);
-        //FormWindow.showOptionDialog(MyFrame.this, message, JOptionPane.WARNING_MESSAGE);
+        JOptionPane.showMessageDialog(MyFrame.this, message, "Ошибка", JOptionPane.WARNING_MESSAGE);
     }
 
     private void confirmSMS(String firstName, String lastName) {
-        String smsCode = new String(getFormConfirmSMS().getPasswordField().getPassword());
+        String smsCode = new String(formConfirmSMS.getCodeField().getPassword());
         System.out.println("Введите код из СМС:");
         try {
             if ((firstName == null) && (lastName == null)) {                                            //Если фио пустые, то авторизовываем, иначе регистрируем
-                AuthAuthorization signIn = getBridge().authSignIn(smsCode);                        //отправляем только код из смс и авторизовываем пользователя
+                AuthAuthorization signIn = bridge.authSignIn(smsCode);                        //отправляем только код из смс и авторизовываем пользователя
                 System.out.println(" Name: " + getName(signIn));
             } else {
-                AuthAuthorization signUp = getBridge().authSignUp(smsCode, firstName, lastName);    //регистрируем, отправив код из смс, имя и фамилию
+                AuthAuthorization signUp = bridge.authSignUp(smsCode, firstName, lastName);    //регистрируем, отправив код из смс, имя и фамилию
                 System.out.println(" NewName: " + getName(signUp));
             }
             Thread.sleep(100);                  //ВНИМАНИЕ, почему-то иначе действует через раз, бывает сразу отображает контакты, бывает зависает окно
-            toFormFriends();
+            getFriendsList();
         } catch (RpcException e2) {                                                       //Если возникла ошибка
             if (checkMessageError(e2) == ERROR_CODE_INVALID) {
-                System.out.println("Введен неверный код");                             //Выводим сообщение
                 showMessage("Введен неверный код");
-                getFormConfirmSMS().getPasswordField().setText(null);
-                getFormConfirmSMS().getPasswordField().requestFocus();
+                formConfirmSMS.getCodeField().setText(null);
+                formConfirmSMS.getCodeField().requestFocus();
             } else
                 e2.printStackTrace();
         } catch (IOException | InterruptedException e1) {
@@ -252,13 +198,13 @@ public class MyFrame extends JFrame{
         }
     }
     private void confirmSMSLocal() throws IOException, InterruptedException {
-        String smsCode = new String(getFormConfirmSMS().getPasswordField().getPassword());
+        String smsCode = new String(formConfirmSMS.getCodeField().getPassword());
         if (smsCode.equals("11111"))
-            toFormFriends();
+            getFriendsList();
         else {
             showMessage("Неверный код");
-            getFormConfirmSMS().getPasswordField().setText("");
-            getFormConfirmSMS().getPasswordField().requestFocus();
+            formConfirmSMS.getCodeField().setText("");
+            formConfirmSMS.setFocusToCodeField();
         }
     }
 
@@ -275,6 +221,12 @@ public class MyFrame extends JFrame{
             return ERROR_CODE_INVALID;
         }
         return 0;
+    }
+
+    private void nextForm (JPanel panel) {
+        setContentPane(panel);
+        getContentPane().revalidate();
+        getContentPane().repaint();
     }
 }
 

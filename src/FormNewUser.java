@@ -6,8 +6,8 @@ import java.awt.event.ActionListener;
  */
 public class FormNewUser {
     private JPanel rootPanel;
-    private JTextField regName;
-    private JTextField regSurname;
+    private JTextField fieldRegName;
+    private JTextField fieldRegSurname;
     private JButton buttonReg;
     private JLabel titleLabel;
     private JLabel label;
@@ -18,25 +18,24 @@ public class FormNewUser {
         return rootPanel;
     }
 
-    public JTextField getRegName() {
-        return regName;
+    public JTextField getFieldRegName() {
+        return fieldRegName;
     }
 
-    public JTextField getRegSurname() {
-        return regSurname;
-    }
-
-    public JButton getButtonReg() {
-        return buttonReg;
-    }
-
-    public FormNewUser() {
-
+    public JTextField getFieldRegSurname() {
+        return fieldRegSurname;
     }
 
     public void addActionListenerForChangeForm(ActionListener actionListener) {
-        getButtonReg().addActionListener(actionListener);
-        getRegName().addActionListener(actionListener);
-        getRegSurname().addActionListener(actionListener);
+        buttonReg.addActionListener(actionListener);
+        fieldRegName.addActionListener(actionListener);
+        fieldRegSurname.addActionListener(actionListener);
+    }
+
+    public void setFocusToName() {
+        fieldRegName.requestFocusInWindow();
+    }
+    public void setFocusToSurname() {
+        fieldRegSurname.requestFocusInWindow();
     }
 }
