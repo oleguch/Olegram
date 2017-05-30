@@ -20,7 +20,7 @@ public class MyFrame extends JFrame{
     private static final int ERROR_PHONE_NUMBER_INVALID = 1,
                             ERROR_CODE_INVALID = 2,
                             ERROR_FLOOD = 3;
-    private static Boolean useLocal = true;
+    private static Boolean useLocal = false;
     private static String phoneNumber;
     private static AuthCheckedPhone checkPhone;
     private static TelegramApiBridge bridge;
@@ -66,7 +66,8 @@ public class MyFrame extends JFrame{
                     }
                 } else {
                     if (!checkPhone.isRegistered()) {
-                        confirmSMS(formNewUser.getFieldRegName().getText(), formNewUser.getFieldRegSurname().getText());
+                        Person person = formNewUser.getPerson();
+                        confirmSMS(person.getName(), person.getSurname());
                     } else
                         confirmSMS(null, null);
                 }
@@ -84,18 +85,12 @@ public class MyFrame extends JFrame{
         });
     }
 
-    private void toFormNewUser() throws IOException {
-        nextForm(formNewUser.getRootPanel());
-        formNewUser.setFocusToName();
-    }
-
     private void checkNewUser() throws IOException {
-        String firstName = formNewUser.getFieldRegName().getText().trim();
-        String lastName = formNewUser.getFieldRegSurname().getText().trim();
-        if (firstName.length() == 0) {
+        Person person = formNewUser.getPerson();
+        if (person.getName().isEmpty()) {
             showMessage("Не заполнено поле Имя");
             formNewUser.setFocusToName();
-        } else if (lastName.length() == 0) {
+        } else if (person.getSurname().isEmpty()) {
             showMessage("Не заполнено поле Фамилия");
             formNewUser.setFocusToSurname();
         } else {
@@ -103,25 +98,15 @@ public class MyFrame extends JFrame{
         }
     }
 
-    //Отрисовка формы ввода кода СМС
+    private void toFormNewUser() throws IOException {
+        nextForm(formNewUser.getRootPanel());
+        formNewUser.setFocusToName();
+    }
+
     private void toFormConfirmSMS() {
         setContentPane(formConfirmSMS.getRootPanel());
         formConfirmSMS.getTextLabelSMS().setText("На номер " + phoneNumber + "\nотправен код через СМС. " + "\nВведите его в следующем поле.");
         formConfirmSMS.setFocusToCodeField();
-    }
-
-    private void getFriendsList() throws IOException {
-        JOptionPane.showMessageDialog(MyFrame.this, "Введен верный код", "Успешно", JOptionPane.INFORMATION_MESSAGE);
-        if (!useLocal) {
-            ArrayList<UserContact> myFriends = bridge.contactsGetContacts();
-            System.out.println("Список друзей:" + myFriends);
-            for (UserContact friend : myFriends) {
-                System.out.println("Имя: " + friend.getFirstName());
-                System.out.println("Фамилия: " + friend.getLastName());
-                System.out.println("Телефон: " + friend.getPhone() + "\n");
-            }
-            bridge.authLogOut();
-        }
     }
 
     private void checkPhone() throws IOException {
@@ -169,10 +154,6 @@ public class MyFrame extends JFrame{
         }
     }
 
-    private void showMessage(String message) {
-        JOptionPane.showMessageDialog(MyFrame.this, message, "Ошибка", JOptionPane.WARNING_MESSAGE);
-    }
-
     private void confirmSMS(String firstName, String lastName) {
         String smsCode = new String(formConfirmSMS.getCodeField().getPassword());
         System.out.println("Введите код из СМС:");
@@ -208,6 +189,20 @@ public class MyFrame extends JFrame{
         }
     }
 
+    private void getFriendsList() throws IOException {
+        JOptionPane.showMessageDialog(MyFrame.this, "Введен верный код", "Успешно", JOptionPane.INFORMATION_MESSAGE);
+        if (!useLocal) {
+            ArrayList<UserContact> myFriends = bridge.contactsGetContacts();
+            System.out.println("Список друзей:" + myFriends);
+            for (UserContact friend : myFriends) {
+                System.out.println("Имя: " + friend.getFirstName());
+                System.out.println("Фамилия: " + friend.getLastName());
+                System.out.println("Телефон: " + friend.getPhone() + "\n");
+            }
+            bridge.authLogOut();
+        }
+    }
+
     private User getName(AuthAuthorization sign){
         return sign.getUser();
     }
@@ -227,6 +222,10 @@ public class MyFrame extends JFrame{
         setContentPane(panel);
         getContentPane().revalidate();
         getContentPane().repaint();
+    }
+
+    private void showMessage(String message) {
+        JOptionPane.showMessageDialog(MyFrame.this, message, "Ошибка", JOptionPane.WARNING_MESSAGE);
     }
 }
 

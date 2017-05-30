@@ -1,3 +1,5 @@
+import org.omg.CORBA.PERSIST_STORE;
+
 import javax.swing.*;
 import java.awt.event.ActionListener;
 
@@ -18,14 +20,6 @@ public class FormNewUser {
         return rootPanel;
     }
 
-    public JTextField getFieldRegName() {
-        return fieldRegName;
-    }
-
-    public JTextField getFieldRegSurname() {
-        return fieldRegSurname;
-    }
-
     public void addActionListenerForChangeForm(ActionListener actionListener) {
         buttonReg.addActionListener(actionListener);
         fieldRegName.addActionListener(actionListener);
@@ -37,5 +31,11 @@ public class FormNewUser {
     }
     public void setFocusToSurname() {
         fieldRegSurname.requestFocusInWindow();
+    }
+    public Person getPerson() {
+        Person person = new Person();
+        person.setName(fieldRegName.getText().trim());
+        person.setSurname(fieldRegSurname.getText().trim());
+        return person;
     }
 }
