@@ -19,18 +19,13 @@ public class FormPhone {
     }
 
     public FormPhone() throws ParseException {
-        fieldPhone.requestFocusInWindow();
+        fieldPhone.setValue("");                                            //без этого не работает getValue(), выдает null
+        fieldPhone.setHorizontalAlignment(JFormattedTextField.CENTER);      //выравнивание по центру
     }
 
     public void addActionListenerForChangeForm(ActionListener actionListener) {
         buttonPhone.addActionListener(actionListener);
         fieldPhone.addActionListener(actionListener);
-    }
-
-    private void createUIComponents() throws ParseException {
-        MaskFormatter maskFormatter = new MaskFormatter("+#(###)###-##-##");
-        maskFormatter.setPlaceholderCharacter('_');
-        fieldPhone = new JFormattedTextField(maskFormatter);
     }
 
     public void setFocusToFieldPhone() {
