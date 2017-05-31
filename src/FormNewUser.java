@@ -1,11 +1,6 @@
-import org.omg.CORBA.PERSIST_STORE;
-
 import javax.swing.*;
 import java.awt.event.ActionListener;
 
-/**
- * Created by olegu on 07.05.2017.
- */
 public class FormNewUser {
     private JPanel rootPanel;
     private JTextField fieldRegName;
@@ -20,6 +15,7 @@ public class FormNewUser {
         return rootPanel;
     }
 
+    //добавление слушателя на переключение форм
     public void addActionListenerForChangeForm(ActionListener actionListener) {
         buttonReg.addActionListener(actionListener);
         fieldRegName.addActionListener(actionListener);
@@ -32,6 +28,7 @@ public class FormNewUser {
     public void setFocusToSurname() {
         fieldRegSurname.requestFocusInWindow();
     }
+
     public Person getPerson() {
         Person person = new Person();
         person.setName(fieldRegName.getText().trim());

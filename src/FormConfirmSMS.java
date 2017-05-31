@@ -25,48 +25,52 @@ public class FormConfirmSMS {
     }
 
     public FormConfirmSMS() {
-        codeField.setHorizontalAlignment(JPasswordField.CENTER);
-        DocumentFilter documentFilter = new MyDocumentFilterForCode();
-        ((AbstractDocument) codeField.getDocument()).setDocumentFilter(documentFilter);
+        codeField.setHorizontalAlignment(JPasswordField.CENTER);                        //выравнивание по центру
+        DocumentFilter documentFilter = new MyDocumentFilterForCode();                  //фильтр кода смс
+        ((AbstractDocument) codeField.getDocument()).setDocumentFilter(documentFilter); //добавление фильтра к полю смс
     }
 
     public JPasswordField getCodeField() {
         return codeField;
     }
 
+    //добавление слушателя на переключение форм
     public void addActionListenerForChangeForm(ActionListener actionListener) {
         buttonSMS.addActionListener(actionListener);
         codeField.addActionListener(actionListener);
     }
 
+
+    //фильтр кода смс
     public class MyDocumentFilterForCode extends DocumentFilter {
-        int amountNumberOfCode = 5;
-        public void insertString(DocumentFilter.FilterBypass fb, int offset,
+        int amountNumberOfCode = 5;                                                     //количество цифр в коде
+        public void insertString(DocumentFilter.FilterBypass fb, int offset,            //действия при вставке
                                  String text, AttributeSet attr) throws BadLocationException {
-            text = text.replaceAll("\\D", "");
+            text = text.replaceAll("\\D", "");                          //избавляемся от нецифр
             int lengthCode = fb.getDocument().getLength();
             if (lengthCode >= amountNumberOfCode)
-                text = "";
-            else if (lengthCode + text.length() >= amountNumberOfCode)
-                text = text.substring(0, amountNumberOfCode-lengthCode);
-            fb.insertString(offset, text, attr);
+                text = "";                                                              //в случае если уже макс цифр в коде, то убираем строку
+            else if (lengthCode + text.length() >= amountNumberOfCode)                  //иначе смотрим, не станет ли больше при вставке
+                text = text.substring(0, amountNumberOfCode-lengthCode);                //если станет, то обрезаем вставляемую строку
+            fb.insertString(offset, text, attr);                                        //вставляем строку
         }
         public void remove(DocumentFilter.FilterBypass fb, int offset, int length) throws BadLocationException {
-            fb.remove(offset, length);
+            fb.remove(offset, length);                                                  //удаляем
         }
-        public void replace(DocumentFilter.FilterBypass fb, int offset, int length,
+        public void replace(DocumentFilter.FilterBypass fb, int offset, int length,     //действия при замене символов
                             String text, AttributeSet attr) throws BadLocationException {
             int lengthCode = fb.getDocument().getLength();
             if (text.isEmpty())
-                remove(fb, 0, lengthCode);
+                remove(fb, 0, lengthCode);                                          //если вставляем пустую строку, то удаляем всю (например при setValue(""))
             else {
                 text = text.replaceAll("\\D", "");
-                if (text.length()  + lengthCode - length >= amountNumberOfCode )
+                if (text.length()  + lengthCode - length >= amountNumberOfCode )            //смотрим, не станет ли больше макс при замене и вставке новой строки
                     text = text.substring(0, amountNumberOfCode-lengthCode + length);
                 fb.replace(offset, length,text,attr);
             }
         }
     }
+
     public void setFocusToCodeField() {
         codeField.requestFocusInWindow();
     }
