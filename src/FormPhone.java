@@ -1,3 +1,5 @@
+
+
 import javax.swing.*;
 import javax.swing.text.MaskFormatter;
 import java.awt.event.ActionListener;
@@ -14,14 +16,11 @@ public class FormPhone {
     public JPanel getRootPanel() {
         return rootPanel;
     }
-    public JFormattedTextField getFieldPhone() {
-        return fieldPhone;
-    }
 
     public FormPhone() throws ParseException {
-        fieldPhone.setValue("");                                            //без этого не работает getValue(), выдает null
         fieldPhone.setHorizontalAlignment(JFormattedTextField.CENTER);      //выравнивание по центру
     }
+
 
     public void addActionListenerForChangeForm(ActionListener actionListener) {
         buttonPhone.addActionListener(actionListener);
@@ -30,5 +29,17 @@ public class FormPhone {
 
     public void setFocusToFieldPhone() {
         fieldPhone.requestFocusInWindow();
+    }
+
+    private void createUIComponents() throws ParseException {
+        MaskFormatter maskFormatter = new MaskFormatter("+7(###)###-##-##");
+        maskFormatter.setPlaceholderCharacter('_');
+        fieldPhone = new JFormattedTextField(maskFormatter);
+
+    }
+
+    public String getPhoneNumber() throws ParseException {
+        fieldPhone.commitEdit();
+        return (String) fieldPhone.getValue();
     }
 }

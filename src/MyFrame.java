@@ -10,6 +10,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.io.IOException;
+import java.text.ParseException;
 import java.util.ArrayList;
 
 public class MyFrame extends JFrame{
@@ -32,7 +33,7 @@ public class MyFrame extends JFrame{
             @Override
             public void windowOpened(WindowEvent e) {           //установка фокуса
                 super.windowOpened(e);
-                formPhone.getFieldPhone().requestFocusInWindow();
+                formPhone.setFocusToFieldPhone();
             }
         });
 
@@ -93,15 +94,16 @@ public class MyFrame extends JFrame{
 
     //проверка ввода номера телефона
     private void checkPhone() {
-        phoneNumber = (String) formPhone.getFieldPhone().getValue();
         try {
+            phoneNumber = formPhone.getPhoneNumber();
+            System.out.println(phoneNumber);
             checkPhone = bridge.authCheckPhone(phoneNumber);
             bridge.authSendCode(phoneNumber);
             if (!checkPhone.isRegistered())     //если телефон не зарегистрирован, показать форму регистрации
                 toFormNewUser();
             else
                 toFormConfirmSMS();             //иначе - форма ввода кода смс
-        } catch (IOException e2) {
+        } catch (IOException | ParseException e2) {
             e2.printStackTrace();
             showMessage( e2.getClass().toString() + "\n" + " " + e2.getMessage());
         }
@@ -109,7 +111,7 @@ public class MyFrame extends JFrame{
 
     //проверка ввода кода смс
     private void confirmSMS(String firstName, String lastName) {
-        String smsCode = new String(formConfirmSMS.getCodeField().getPassword());
+        String smsCode = formConfirmSMS.getCode();
         try {
             if ((firstName == null) && (lastName == null)) {                                            //Если фио пустые, то авторизовываем, иначе регистрируем
                 AuthAuthorization signIn = bridge.authSignIn(smsCode);                        //отправляем только код из смс и авторизовываем пользователя

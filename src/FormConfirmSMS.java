@@ -30,10 +30,6 @@ public class FormConfirmSMS {
         ((AbstractDocument) codeField.getDocument()).setDocumentFilter(documentFilter); //добавление фильтра к полю смс
     }
 
-    public JPasswordField getCodeField() {
-        return codeField;
-    }
-
     //добавление слушателя на переключение форм
     public void addActionListenerForChangeForm(ActionListener actionListener) {
         buttonSMS.addActionListener(actionListener);
@@ -73,5 +69,9 @@ public class FormConfirmSMS {
 
     public void setFocusToCodeField() {
         codeField.requestFocusInWindow();
+    }
+
+    public String getCode() {
+        return new String(codeField.getPassword());
     }
 }
