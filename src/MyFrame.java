@@ -1,3 +1,4 @@
+import com.sun.xml.internal.ws.policy.privateutil.PolicyUtils;
 import org.javagram.TelegramApiBridge;
 import org.javagram.response.AuthAuthorization;
 import org.javagram.response.AuthCheckedPhone;
@@ -50,23 +51,21 @@ public class MyFrame extends JFrame{
                     Person person = formNewUser.getPerson();
                     confirmSMS(person.getName(), person.getSurname());
                 } else
-                    confirmSMS(null, null);
+                    confirmSMS();
             }
         });
         formNewUser.addActionListenerForChangeForm(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                try {
-                    checkNewUser();
-                } catch (IOException e1) {
-                    e1.printStackTrace();
-                }
+                checkFieldsFormNewUser();
             }
         });
     }
 
+
+
     //проверка ввода полей имени-фамилии нового пользователя
-    private void checkNewUser() throws IOException {
+    private void checkFieldsFormNewUser()  {
         Person person = formNewUser.getPerson();
         if (person.getName().isEmpty()) {
             showMessage("Не заполнено поле Имя");
@@ -80,7 +79,7 @@ public class MyFrame extends JFrame{
     }
 
     //на форму регистрации нового пльзователя
-    private void toFormNewUser() throws IOException {
+    private void toFormNewUser() {
         nextForm(formNewUser.getRootPanel());
         formNewUser.setFocusToName();
     }
@@ -110,14 +109,19 @@ public class MyFrame extends JFrame{
     }
 
     //проверка ввода кода смс
+
+    private void confirmSMS() {
+        confirmSMS(null, null);
+    }
+
     private void confirmSMS(String firstName, String lastName) {
         String smsCode = formConfirmSMS.getCode();
         try {
             if ((firstName == null) && (lastName == null)) {                                            //Если фио пустые, то авторизовываем, иначе регистрируем
-                AuthAuthorization signIn = bridge.authSignIn(smsCode);                        //отправляем только код из смс и авторизовываем пользователя
+                AuthAuthorization signIn = bridge.authSignIn(smsCode);                                  //отправляем только код из смс и авторизовываем пользователя
                 System.out.println(" Name: " + getName(signIn));
             } else {
-                AuthAuthorization signUp = bridge.authSignUp(smsCode, firstName, lastName);    //регистрируем, отправив код из смс, имя и фамилию
+                AuthAuthorization signUp = bridge.authSignUp(smsCode, firstName, lastName);             //регистрируем, отправив код из смс, имя и фамилию
                 System.out.println(" NewName: " + getName(signUp));
             }
             getFriendsList();               //показать список друзей
