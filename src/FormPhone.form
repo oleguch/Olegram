@@ -76,6 +76,7 @@
         </constraints>
         <properties>
           <font size="24"/>
+          <opaque value="false"/>
           <preferredSize width="300" height="40"/>
         </properties>
       </component>

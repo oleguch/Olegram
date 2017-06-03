@@ -21,7 +21,6 @@ public class FormPhone {
         fieldPhone.setHorizontalAlignment(JFormattedTextField.CENTER);      //выравнивание по центру
     }
 
-
     public void addActionListenerForChangeForm(ActionListener actionListener) {
         buttonPhone.addActionListener(actionListener);
         fieldPhone.addActionListener(actionListener);
@@ -35,6 +34,8 @@ public class FormPhone {
         MaskFormatter maskFormatter = new MaskFormatter("+7(###)###-##-##");
         maskFormatter.setPlaceholderCharacter('_');
         fieldPhone = new JFormattedTextField(maskFormatter);
+        fieldPhone.setBorder(BorderFactory.createEmptyBorder());
+        fieldPhone.setOpaque(false);
 
     }
 

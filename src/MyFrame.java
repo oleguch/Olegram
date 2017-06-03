@@ -1,4 +1,3 @@
-import com.sun.xml.internal.ws.policy.privateutil.PolicyUtils;
 import org.javagram.TelegramApiBridge;
 import org.javagram.response.AuthAuthorization;
 import org.javagram.response.AuthCheckedPhone;
@@ -21,6 +20,7 @@ public class MyFrame extends JFrame{
     private String phoneNumber;
     private AuthCheckedPhone checkPhone;
     private TelegramApiBridge bridge;
+    private AuthAuthorization authSing;
 
     MyFrame() throws Exception {
         bridge = new TelegramApiBridge("149.154.167.50:443", 95568, "e5649ac9f0c517643f3c8cad067ac7b0");
@@ -49,9 +49,9 @@ public class MyFrame extends JFrame{
             public void actionPerformed(ActionEvent e) {
                 if (!checkPhone.isRegistered()) {
                     Person person = formNewUser.getPerson();
-                    confirmSMS(person.getName(), person.getSurname());
+                    confirmByCodeFromSMS(person.getName(), person.getSurname());
                 } else
-                    confirmSMS();
+                    confirmByCodeFromSMS();
             }
         });
         formNewUser.addActionListenerForChangeForm(new ActionListener() {
@@ -68,10 +68,10 @@ public class MyFrame extends JFrame{
     private void checkFieldsFormNewUser()  {
         Person person = formNewUser.getPerson();
         if (person.getName().isEmpty()) {
-            showMessage("Не заполнено поле Имя");
+            showMessageError("Не заполнено поле Имя");
             formNewUser.setFocusToName();
         } else if (person.getSurname().isEmpty()) {
-            showMessage("Не заполнено поле Фамилия");
+            showMessageError("Не заполнено поле Фамилия");
             formNewUser.setFocusToSurname();
         } else {                    //если удачно, переходим в форму подтверждения номера через смс
             toFormConfirmSMS();
@@ -91,7 +91,7 @@ public class MyFrame extends JFrame{
         formConfirmSMS.setFocusToCodeField();
     }
 
-    //проверка ввода номера телефона
+    //проверка введенного номера телефона
     private void checkPhone() {
         try {
             phoneNumber = formPhone.getPhoneNumber();
@@ -104,36 +104,33 @@ public class MyFrame extends JFrame{
                 toFormConfirmSMS();             //иначе - форма ввода кода смс
         } catch (IOException | ParseException e2) {
             e2.printStackTrace();
-            showMessage( e2.getClass().toString() + "\n" + " " + e2.getMessage());
+            showMessageError( e2.getClass().toString() + "\n" + " " + e2.getMessage());
         }
     }
 
     //проверка ввода кода смс
 
-    private void confirmSMS() {
-        confirmSMS(null, null);
+    private void confirmByCodeFromSMS() {
+        confirmByCodeFromSMS(null, null);
     }
 
-    private void confirmSMS(String firstName, String lastName) {
+    private void confirmByCodeFromSMS(String firstName, String lastName) {
         String smsCode = formConfirmSMS.getCode();
         try {
-            if ((firstName == null) && (lastName == null)) {                                            //Если фио пустые, то авторизовываем, иначе регистрируем
-                AuthAuthorization signIn = bridge.authSignIn(smsCode);                                  //отправляем только код из смс и авторизовываем пользователя
-                System.out.println(" Name: " + getName(signIn));
-            } else {
-                AuthAuthorization signUp = bridge.authSignUp(smsCode, firstName, lastName);             //регистрируем, отправив код из смс, имя и фамилию
-                System.out.println(" NewName: " + getName(signUp));
-            }
+            if ((firstName == null) && (lastName == null))                                             //Если фио пустые, то авторизовываем, иначе регистрируем
+                authSing = bridge.authSignIn(smsCode);                                  //отправляем только код из смс и авторизовываем пользователя
+             else
+                authSing = bridge.authSignUp(smsCode, firstName, lastName);             //регистрируем, отправив код из смс, имя и фамилию
             getFriendsList();               //показать список друзей
         } catch (IOException e2) {          //при ошибке показать тип и сообщение
             e2.printStackTrace();
-            showMessage( e2.getClass().toString() + "\n" + " " + e2.getMessage());
+            showMessageError( e2.getClass().toString() + "\n" + " " + e2.getMessage());
         }
     }
 
     //список друзей
     private void getFriendsList() throws IOException {
-        JOptionPane.showMessageDialog(MyFrame.this, "Введен верный код", "Успешно", JOptionPane.INFORMATION_MESSAGE);
+        showMessageInfoGood("Добрый день, " + getNameUser());
         ArrayList<UserContact> myFriends = bridge.contactsGetContacts();
         System.out.println("Список друзей:" + myFriends);
         for (UserContact friend : myFriends) {
@@ -144,8 +141,8 @@ public class MyFrame extends JFrame{
         bridge.authLogOut();
     }
 
-    private User getName(AuthAuthorization sign){
-        return sign.getUser();
+    private User getNameUser(){
+        return authSing.getUser();
     }
 
     //переключение формы
@@ -156,8 +153,12 @@ public class MyFrame extends JFrame{
     }
 
     //показать сообщение об ошибке
-    private void showMessage(String message) {
+    private void showMessageError(String message) {
         JOptionPane.showMessageDialog(MyFrame.this, message, "Ошибка", JOptionPane.WARNING_MESSAGE);
+    }
+
+    private void showMessageInfoGood(String message) {
+        JOptionPane.showMessageDialog(MyFrame.this, message, "Успешно", JOptionPane.INFORMATION_MESSAGE);
     }
 }
 
