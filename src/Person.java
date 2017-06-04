@@ -1,6 +1,4 @@
-/**
- * Created by oleg on 30.05.2017.
- */
+
 public class Person {
     private String surname;
     private String name;

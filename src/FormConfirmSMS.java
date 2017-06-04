@@ -42,7 +42,7 @@ public class FormConfirmSMS {
         int amountNumberOfCode = 5;                                                     //количество цифр в коде
         public void insertString(DocumentFilter.FilterBypass fb, int offset,            //действия при вставке
                                  String text, AttributeSet attr) throws BadLocationException {
-            text = text.replaceAll("\\D", "");                          //избавляемся от нецифр
+            text = text.replaceAll("\\D", "");                          //оставляем только цифры
             int lengthCode = fb.getDocument().getLength();
             if (lengthCode >= amountNumberOfCode)
                 text = "";                                                              //в случае если уже макс цифр в коде, то убираем строку

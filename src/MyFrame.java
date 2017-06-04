@@ -62,8 +62,6 @@ public class MyFrame extends JFrame{
         });
     }
 
-
-
     //проверка ввода полей имени-фамилии нового пользователя
     private void checkFieldsFormNewUser()  {
         Person person = formNewUser.getPerson();
@@ -117,20 +115,20 @@ public class MyFrame extends JFrame{
     private void confirmByCodeFromSMS(String firstName, String lastName) {
         String smsCode = formConfirmSMS.getCode();
         try {
-            if ((firstName == null) && (lastName == null))                                             //Если фио пустые, то авторизовываем, иначе регистрируем
+            if ((firstName == null) && (lastName == null))                              //Если фио пустые, то авторизовываем, иначе регистрируем
                 authSing = bridge.authSignIn(smsCode);                                  //отправляем только код из смс и авторизовываем пользователя
              else
                 authSing = bridge.authSignUp(smsCode, firstName, lastName);             //регистрируем, отправив код из смс, имя и фамилию
-            getFriendsList();               //показать список друзей
-        } catch (IOException e2) {          //при ошибке показать тип и сообщение
+            showMessageInfoGood("Добрый день, " + getNameUser());                       //если усшпешно, показать уведомление об этом
+            getFriendsList();                                                           //показать список друзей в консоли
+        } catch (IOException e2) {                                                      //при ошибке показать тип и сообщение
             e2.printStackTrace();
             showMessageError( e2.getClass().toString() + "\n" + " " + e2.getMessage());
         }
     }
 
-    //список друзей
+    //список друзей в консоли
     private void getFriendsList() throws IOException {
-        showMessageInfoGood("Добрый день, " + getNameUser());
         ArrayList<UserContact> myFriends = bridge.contactsGetContacts();
         System.out.println("Список друзей:" + myFriends);
         for (UserContact friend : myFriends) {
@@ -139,7 +137,6 @@ public class MyFrame extends JFrame{
             System.out.println("Телефон: " + friend.getPhone() + "\n");
         }
         bridge.authLogOut();
-        System.exit(0);
     }
 
     private User getNameUser(){
