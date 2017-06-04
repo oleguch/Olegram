@@ -20,10 +20,6 @@ public class FormConfirmSMS {
     private JPasswordField codeField;
     private JLabel titleLabel;
 
-    public JTextArea getTextLabelSMS() {
-        return textLabelSMS;
-    }
-
     public FormConfirmSMS() {
         codeField.setHorizontalAlignment(JPasswordField.CENTER);                        //выравнивание по центру
         DocumentFilter documentFilter = new MyDocumentFilterForCode();                  //фильтр кода смс
@@ -34,6 +30,10 @@ public class FormConfirmSMS {
     public void addActionListenerForChangeForm(ActionListener actionListener) {
         buttonSMS.addActionListener(actionListener);
         codeField.addActionListener(actionListener);
+    }
+
+    public void setPhoneNumberToLabel(String phoneNumber) {
+        textLabelSMS.setText("На номер " + phoneNumber + "\nотправен код через СМС. " + "\nВведите его в следующем поле.");
     }
 
 

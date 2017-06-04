@@ -87,7 +87,7 @@ public class MyFrame extends JFrame{
     //на форму подтверждения кода смс
     private void toFormConfirmSMS() {
         setContentPane(formConfirmSMS.getRootPanel());
-        formConfirmSMS.getTextLabelSMS().setText("На номер " + phoneNumber + "\nотправен код через СМС. " + "\nВведите его в следующем поле.");
+        formConfirmSMS.setPhoneNumberToLabel(phoneNumber);
         formConfirmSMS.setFocusToCodeField();
     }
 
@@ -98,10 +98,10 @@ public class MyFrame extends JFrame{
             System.out.println(phoneNumber);
             checkPhone = bridge.authCheckPhone(phoneNumber);
             bridge.authSendCode(phoneNumber);
-            if (!checkPhone.isRegistered())     //если телефон не зарегистрирован, показать форму регистрации
-                toFormNewUser();
+            if (checkPhone.isRegistered())     //если телефон не зарегистрирован, показать форму ввода кода смс
+                toFormConfirmSMS();
             else
-                toFormConfirmSMS();             //иначе - форма ввода кода смс
+                toFormNewUser();                //иначе - форму регистрации
         } catch (IOException | ParseException e2) {
             e2.printStackTrace();
             showMessageError( e2.getClass().toString() + "\n" + " " + e2.getMessage());
@@ -139,6 +139,7 @@ public class MyFrame extends JFrame{
             System.out.println("Телефон: " + friend.getPhone() + "\n");
         }
         bridge.authLogOut();
+        System.exit(0);
     }
 
     private User getNameUser(){
