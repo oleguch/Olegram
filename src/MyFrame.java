@@ -47,11 +47,7 @@ public class MyFrame extends JFrame{
         formConfirmSMS.addActionListenerForChangeForm(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if (!checkPhone.isRegistered()) {
-                    Person person = formNewUser.getPerson();
-                    confirmByCodeFromSMS(person.getName(), person.getSurname());
-                } else
-                    confirmByCodeFromSMS();
+                confirmByCodeFromSMS();
             }
         });
         formNewUser.addActionListenerForChangeForm(new ActionListener() {
@@ -84,7 +80,7 @@ public class MyFrame extends JFrame{
 
     //на форму подтверждения кода смс
     private void toFormConfirmSMS() {
-        setContentPane(formConfirmSMS.getRootPanel());
+        nextForm(formConfirmSMS.getRootPanel());
         formConfirmSMS.setPhoneNumberToLabel(phoneNumber);
         formConfirmSMS.setFocusToCodeField();
     }
@@ -107,18 +103,15 @@ public class MyFrame extends JFrame{
     }
 
     //проверка ввода кода смс
-
     private void confirmByCodeFromSMS() {
-        confirmByCodeFromSMS(null, null);
-    }
-
-    private void confirmByCodeFromSMS(String firstName, String lastName) {
         String smsCode = formConfirmSMS.getCode();
         try {
-            if ((firstName == null) && (lastName == null))                              //Если фио пустые, то авторизовываем, иначе регистрируем
+            if (checkPhone.isRegistered())                              //Если пользователь зарегистрирован, то авторизовываем, иначе регистрируем
                 authSing = bridge.authSignIn(smsCode);                                  //отправляем только код из смс и авторизовываем пользователя
-             else
-                authSing = bridge.authSignUp(smsCode, firstName, lastName);             //регистрируем, отправив код из смс, имя и фамилию
+            else {
+                Person person = formNewUser.getPerson();
+                authSing = bridge.authSignUp(smsCode, person.getName(), person.getSurname());             //регистрируем, отправив код из смс, имя и фамилию
+            }
             showMessageInfoGood("Добрый день, " + getNameUser());                       //если усшпешно, показать уведомление об этом
             getFriendsList();                                                           //показать список друзей в консоли
         } catch (IOException e2) {                                                      //при ошибке показать тип и сообщение
