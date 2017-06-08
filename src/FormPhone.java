@@ -19,6 +19,7 @@ public class FormPhone {
 
     public FormPhone() throws ParseException {
         fieldPhone.setHorizontalAlignment(JFormattedTextField.CENTER);      //выравнивание по центру
+
     }
 
     public void addActionListenerForChangeForm(ActionListener actionListener) {
@@ -36,6 +37,7 @@ public class FormPhone {
         fieldPhone = new JFormattedTextField(maskFormatter);
         fieldPhone.setBorder(BorderFactory.createEmptyBorder());
         fieldPhone.setOpaque(false);
+        fieldPhone.setFocusLostBehavior(JFormattedTextField.COMMIT);
 
     }
 

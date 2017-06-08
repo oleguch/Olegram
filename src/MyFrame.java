@@ -21,6 +21,9 @@ public class MyFrame extends JFrame{
     private AuthCheckedPhone checkPhone;
     private TelegramApiBridge bridge;
     private AuthAuthorization authSing;
+    private static final int NAME_EMPTY=1,
+                            SURNAME_EMPTY = 2,
+                            FIELD_OK = 3;
 
     MyFrame() throws Exception {
         bridge = new TelegramApiBridge("149.154.167.50:443", 95568, "e5649ac9f0c517643f3c8cad067ac7b0");
@@ -41,7 +44,7 @@ public class MyFrame extends JFrame{
         formPhone.addActionListenerForChangeForm(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                checkPhone();
+                checkPhoneAndSendCode();
             }
         });
         formConfirmSMS.addActionListenerForChangeForm(new ActionListener() {
@@ -53,22 +56,33 @@ public class MyFrame extends JFrame{
         formNewUser.addActionListenerForChangeForm(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                checkFieldsFormNewUser();
+                switch (checkFieldsFormNewUser()) {
+                    case NAME_EMPTY:
+                        showMessageError("Не заполнено поле Имя");
+                        formNewUser.setFocusToName();
+                        break;
+                    case SURNAME_EMPTY:
+                        showMessageError("Не заполнено поле Фамилия");
+                        formNewUser.setFocusToSurname();
+                        break;
+                    case FIELD_OK:
+                        toFormConfirmSMS();
+                        break;
+                }
+
             }
         });
     }
 
     //проверка ввода полей имени-фамилии нового пользователя
-    private void checkFieldsFormNewUser()  {
+    private int checkFieldsFormNewUser()  {
         Person person = formNewUser.getPerson();
         if (person.getName().isEmpty()) {
-            showMessageError("Не заполнено поле Имя");
-            formNewUser.setFocusToName();
+            return NAME_EMPTY;
         } else if (person.getSurname().isEmpty()) {
-            showMessageError("Не заполнено поле Фамилия");
-            formNewUser.setFocusToSurname();
-        } else {                    //если удачно, переходим в форму подтверждения номера через смс
-            toFormConfirmSMS();
+            return SURNAME_EMPTY;
+        } else {
+            return FIELD_OK;
         }
     }
 
@@ -86,19 +100,21 @@ public class MyFrame extends JFrame{
     }
 
     //проверка введенного номера телефона
-    private void checkPhone() {
+    private void checkPhoneAndSendCode() {
         try {
             phoneNumber = formPhone.getPhoneNumber();
-            System.out.println(phoneNumber);
             checkPhone = bridge.authCheckPhone(phoneNumber);
             bridge.authSendCode(phoneNumber);
             if (checkPhone.isRegistered())     //если телефон не зарегистрирован, показать форму ввода кода смс
                 toFormConfirmSMS();
             else
                 toFormNewUser();                //иначе - форму регистрации
-        } catch (IOException | ParseException e2) {
+        } catch (IOException e2) {
             e2.printStackTrace();
             showMessageError( e2.getClass().toString() + "\n" + " " + e2.getMessage());
+        } catch (ParseException e) {
+            e.printStackTrace();
+            showMessageError("Ошибка парсинга\n" + e.getClass().toString() + "\n" + " " + e.getMessage());
         }
     }
 
