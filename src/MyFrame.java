@@ -156,7 +156,7 @@ public class MyFrame extends JFrame{
 //            System.out.println("Телефон: " + friend.getPhone() + "\n");
 //        }
         formUsersList.setListData(userList.toArray());
-        nextForm(formUsersList.getContentPane());               //не переключает сразу. Ждет TimeoutException
+        nextForm(formUsersList.getRootPanel());               //не переключает сразу. Ждет TimeoutException
     }
 
     private User getNameUser(){
