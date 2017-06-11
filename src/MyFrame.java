@@ -17,6 +17,7 @@ public class MyFrame extends JFrame{
     private FormConfirmSMS formConfirmSMS = new FormConfirmSMS();
     private FormPhone formPhone = new FormPhone();
     private FormNewUser formNewUser = new FormNewUser();
+    private FormUsersList formUsersList = new FormUsersList();
     private String phoneNumber;
     private AuthCheckedPhone checkPhone;
     private TelegramApiBridge bridge;
@@ -29,8 +30,8 @@ public class MyFrame extends JFrame{
         bridge = new TelegramApiBridge("149.154.167.50:443", 95568, "e5649ac9f0c517643f3c8cad067ac7b0");
         setContentPane(formPhone.getRootPanel());
         setTitle("Olegram");
-        setSize(800,600);
-        setMinimumSize(new Dimension(500,400));
+        setSize(800, 600);
+        setMinimumSize(new Dimension(500, 400));
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
         addWindowListener(new WindowAdapter() {
@@ -70,6 +71,14 @@ public class MyFrame extends JFrame{
                         break;
                 }
 
+            }
+        });
+        formUsersList.addActionListenerForCloseWindow(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                //bridge.authLogOut();      //ругается, думает, выдает TimeoutException
+                MyFrame.this.dispose();     //??
+                System.exit(0);
             }
         });
     }
@@ -114,7 +123,8 @@ public class MyFrame extends JFrame{
             showMessageError( e2.getClass().toString() + "\n" + " " + e2.getMessage());
         } catch (ParseException e) {
             e.printStackTrace();
-            showMessageError("Ошибка парсинга\n" + e.getClass().toString() + "\n" + " " + e.getMessage());
+            showMessageError("Номер введен не полностью");
+            formPhone.setFocusToFieldPhone();
         }
     }
 
@@ -128,8 +138,7 @@ public class MyFrame extends JFrame{
                 Person person = formNewUser.getPerson();
                 authSing = bridge.authSignUp(smsCode, person.getName(), person.getSurname());             //регистрируем, отправив код из смс, имя и фамилию
             }
-            showMessageInfoGood("Добрый день, " + getNameUser());                       //если усшпешно, показать уведомление об этом
-            getFriendsList();                                                           //показать список друзей в консоли
+            toFormUserList();                                                           //показать список друзей в консоли
         } catch (IOException e2) {                                                      //при ошибке показать тип и сообщение
             e2.printStackTrace();
             showMessageError( e2.getClass().toString() + "\n" + " " + e2.getMessage());
@@ -137,15 +146,17 @@ public class MyFrame extends JFrame{
     }
 
     //список друзей в консоли
-    private void getFriendsList() throws IOException {
-        ArrayList<UserContact> myFriends = bridge.contactsGetContacts();
-        System.out.println("Список друзей:" + myFriends);
-        for (UserContact friend : myFriends) {
-            System.out.println("Имя: " + friend.getFirstName());
-            System.out.println("Фамилия: " + friend.getLastName());
-            System.out.println("Телефон: " + friend.getPhone() + "\n");
-        }
-        bridge.authLogOut();
+    private void toFormUserList() throws IOException {
+
+        ArrayList<UserContact> userList = bridge.contactsGetContacts();
+//        System.out.println("Список друзей:" + myFriends);
+//        for (UserContact friend : myFriends) {
+//            System.out.println("Имя: " + friend.getFirstName());
+//            System.out.println("Фамилия: " + friend.getLastName());
+//            System.out.println("Телефон: " + friend.getPhone() + "\n");
+//        }
+        formUsersList.setListData(userList.toArray());
+        nextForm(formUsersList.getContentPane());               //не переключает сразу. Ждет TimeoutException
     }
 
     private User getNameUser(){
@@ -162,10 +173,6 @@ public class MyFrame extends JFrame{
     //показать сообщение об ошибке
     private void showMessageError(String message) {
         JOptionPane.showMessageDialog(MyFrame.this, message, "Ошибка", JOptionPane.WARNING_MESSAGE);
-    }
-
-    private void showMessageInfoGood(String message) {
-        JOptionPane.showMessageDialog(MyFrame.this, message, "Успешно", JOptionPane.INFORMATION_MESSAGE);
     }
 }
 
