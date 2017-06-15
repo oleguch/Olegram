@@ -37,8 +37,6 @@ public class FormPhone {
         fieldPhone = new JFormattedTextField(maskFormatter);
         fieldPhone.setBorder(BorderFactory.createEmptyBorder());
         fieldPhone.setOpaque(false);
-        fieldPhone.setFocusLostBehavior(JFormattedTextField.COMMIT);
-
     }
 
     public String getPhoneNumber() throws ParseException {

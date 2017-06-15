@@ -18,6 +18,7 @@ public class MyFrame extends JFrame{
     private FormPhone formPhone = new FormPhone();
     private FormNewUser formNewUser = new FormNewUser();
     private FormUsersList formUsersList = new FormUsersList();
+    private Decoration decoration;
     private String phoneNumber;
     private AuthCheckedPhone checkPhone;
     private TelegramApiBridge bridge;
@@ -29,10 +30,12 @@ public class MyFrame extends JFrame{
     MyFrame() throws Exception {
         bridge = new TelegramApiBridge("149.154.167.50:443", 95568, "e5649ac9f0c517643f3c8cad067ac7b0");
         setContentPane(formPhone.getRootPanel());
+        decoration = new Decoration(this);
+        decoration.setContentPanel(formPhone.getRootPanel());
+        setUndecorated(true);
         setTitle("Olegram");
         setSize(800, 600);
         setMinimumSize(new Dimension(500, 400));
-        setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
         addWindowListener(new WindowAdapter() {
             @Override
@@ -41,7 +44,20 @@ public class MyFrame extends JFrame{
                 formPhone.setFocusToFieldPhone();
             }
         });
+        decoration.addActionListenerForMinimize(e -> setExtendedState(JFrame.ICONIFIED));
 
+        //ЗАКРЫТИЕ ОКНА
+        setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+        addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosed(WindowEvent e) {
+                super.windowClosed(e);
+                System.exit(0);
+            }
+        });
+        decoration.addActionListenerForClose(e -> dispose());
+
+        //СМЕНА ФОРМ
         formPhone.addActionListenerForChangeForm(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -71,14 +87,6 @@ public class MyFrame extends JFrame{
                         break;
                 }
 
-            }
-        });
-        formUsersList.addActionListenerForCloseWindow(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent actionEvent) {
-                //bridge.authLogOut();      //ругается, думает, выдает TimeoutException
-                MyFrame.this.dispose();     //??
-                System.exit(0);
             }
         });
     }
@@ -145,9 +153,8 @@ public class MyFrame extends JFrame{
         }
     }
 
-    //список друзей в консоли
-    private void toFormUserList() throws IOException {
 
+    private void toFormUserList() throws IOException {
         ArrayList<UserContact> userList = bridge.contactsGetContacts();
 //        System.out.println("Список друзей:" + myFriends);
 //        for (UserContact friend : myFriends) {
@@ -156,7 +163,7 @@ public class MyFrame extends JFrame{
 //            System.out.println("Телефон: " + friend.getPhone() + "\n");
 //        }
         formUsersList.setListData(userList.toArray());
-        nextForm(formUsersList.getRootPanel());               //не переключает сразу. Ждет TimeoutException
+        nextForm(formUsersList.getRootPanel());
     }
 
     private User getNameUser(){
@@ -165,9 +172,7 @@ public class MyFrame extends JFrame{
 
     //переключение формы
     private void nextForm (JPanel panel) {
-        setContentPane(panel);
-        getContentPane().revalidate();
-        getContentPane().repaint();
+        decoration.setContentPanel(panel);
     }
 
     //показать сообщение об ошибке

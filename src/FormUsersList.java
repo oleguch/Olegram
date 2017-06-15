@@ -21,9 +21,4 @@ public class FormUsersList {
         list.setListData(arrayList);
 
     }
-
-    public void addActionListenerForCloseWindow(ActionListener actionListener) {
-        buttonCancel.addActionListener(actionListener);
-        buttonOK.addActionListener(actionListener);
-    }
 }
