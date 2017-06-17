@@ -51,8 +51,14 @@ public class MyFrame extends JFrame{
         addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosed(WindowEvent e) {
-                super.windowClosed(e);
-                System.exit(0);
+                try {
+                    super.windowClosed(e);
+                    if (authSing != null)
+                        bridge.authLogOut();                //логаут. Не работает (программа не завершает работу)
+                    System.exit(0);
+                } catch (IOException e1) {
+                    e1.printStackTrace();
+                }
             }
         });
         decoration.addActionListenerForClose(e -> dispose());
@@ -177,7 +183,10 @@ public class MyFrame extends JFrame{
 
     //показать сообщение об ошибке
     private void showMessageError(String message) {
-        JOptionPane.showMessageDialog(MyFrame.this, message, "Ошибка", JOptionPane.WARNING_MESSAGE);
+        //JOptionPane.showMessageDialog(MyFrame.this, message, "Ошибка", JOptionPane.WARNING_MESSAGE);
+        Decoration.showOptionDialog(MyFrame.this, message, JOptionPane.WARNING_MESSAGE, JOptionPane.DEFAULT_OPTION, null, null, null);
     }
+
+
 }
 
