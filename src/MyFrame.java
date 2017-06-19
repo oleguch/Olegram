@@ -51,14 +51,15 @@ public class MyFrame extends JFrame{
         addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosed(WindowEvent e) {
-                try {
+
                     super.windowClosed(e);
-                    if (authSing != null)
-                        bridge.authLogOut();                //логаут. Не работает (программа не завершает работу)
+                    try {
+                        if (authSing != null)
+                            bridge.authLogOut();                //логаут. Не работает (программа не завершает работу)
+                    } catch (IOException ex) {
+                        ex.printStackTrace();
+                    }
                     System.exit(0);
-                } catch (IOException e1) {
-                    e1.printStackTrace();
-                }
             }
         });
         decoration.addActionListenerForClose(e -> dispose());
