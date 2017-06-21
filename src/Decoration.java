@@ -1,6 +1,10 @@
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowEvent;
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
 
 /**
  * Created by oleg on 15.06.2017.
@@ -30,6 +34,23 @@ public class Decoration {
         componentResizer = new ComponentResizer(frame);
     }
 
+    public Decoration(JDialog dialog) {
+        setContentPanel(dialog.getContentPane());
+        dialog.setContentPane(rootPanel);
+        dialog.setUndecorated(true);
+        dialog.getRootPane().setWindowDecorationStyle(JRootPane.NONE);
+        titlePanel.setBackground(Color.red);                        //отдельный цвет для заголовка
+        componentMover = new ComponentMover(dialog, titlePanel);       //добавляем перемещение
+        componentMover.setChangeCursor(false);                      //убираем курсор перемещения
+        titlePanel.remove(minimizeButton);                          //убираем кнопку сворачивания
+        closeButton.addActionListener(new ActionListener() {            //закрытие
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                dialog.dispatchEvent(new WindowEvent(dialog, WindowEvent.WINDOW_CLOSING));
+            }
+        });
+    }
+
 
     public void addActionListenerForMinimize(ActionListener listener) {
         minimizeButton.addActionListener(listener);
@@ -38,4 +59,33 @@ public class Decoration {
     public void addActionListenerForClose(ActionListener listener) {
         closeButton.addActionListener(listener);
     }
+
+    public static int showOptionDialog (Window window,String message, int optionType, int messageType, Icon icon, Object[] options, Object initialValue) {
+        JOptionPane optionPane = new JOptionPane(message, optionType, messageType, icon, options, initialValue);
+//        public static int showOptionDialog (Window window, String message, int messageType) {
+//            JOptionPane optionPane = new JOptionPane(message, messageType);
+            JDialog dialog;
+            if (window instanceof Frame)
+                dialog = new JDialog((Frame) window);
+            else if (window instanceof Dialog)
+                dialog = new JDialog((Dialog) window);
+            else
+                dialog = new JDialog(window);
+            dialog.setModal(true);
+            dialog.setContentPane(optionPane);
+            new Decoration(dialog);
+            dialog.pack();
+            dialog.setLocationRelativeTo(window);                   //для центрирования по центру окна
+            optionPane.addPropertyChangeListener("value", new PropertyChangeListener() {
+                @Override
+                public void propertyChange(PropertyChangeEvent evt) {
+                    dialog.dispose();                           //без этого окно диалога по кнопкам не закроется?
+                }
+            });
+            dialog.setVisible(true);
+            Object value = optionPane.getValue();
+            if (value instanceof Integer)
+                return (int) value;
+            return JOptionPane.CLOSED_OPTION;
+        }
 }
