@@ -6,9 +6,7 @@ import java.awt.event.WindowEvent;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 
-/**
- * Created by oleg on 15.06.2017.
- */
+
 public class Decoration {
     private JPanel rootPanel;
     private JPanel titlePanel;
@@ -62,8 +60,6 @@ public class Decoration {
 
     public static int showOptionDialog (Window window,String message, int optionType, int messageType, Icon icon, Object[] options, Object initialValue) {
         JOptionPane optionPane = new JOptionPane(message, optionType, messageType, icon, options, initialValue);
-//        public static int showOptionDialog (Window window, String message, int messageType) {
-//            JOptionPane optionPane = new JOptionPane(message, messageType);
             JDialog dialog;
             if (window instanceof Frame)
                 dialog = new JDialog((Frame) window);
