@@ -32,16 +32,16 @@ public class MyFrame extends JFrame{
         setContentPane(formPhone.getRootPanel());
         decoration = new Decoration(this);
         decoration.setContentPanel(formPhone.getRootPanel());
+        //decoration.setContentPanel(formNewUser.getRootPanel());
         setUndecorated(true);
         setTitle("Olegram");
-        setSize(700, 500);
-        setMinimumSize(new Dimension(500, 400));
-
+        setSize(800, 600);
         addWindowListener(new WindowAdapter() {
             @Override
             public void windowOpened(WindowEvent e) {           //установка фокуса
                 super.windowOpened(e);
                 formPhone.setFocusToFieldPhone();
+
             }
         });
         decoration.addActionListenerForMinimize(e -> setExtendedState(JFrame.ICONIFIED));
@@ -101,9 +101,9 @@ public class MyFrame extends JFrame{
     //проверка ввода полей имени-фамилии нового пользователя
     private int checkFieldsFormNewUser()  {
         Person person = formNewUser.getPerson();
-        if (person.getName().isEmpty()) {
+        if (person.getName().isEmpty() || person.getName().equals("Имя")) {
             return NAME_EMPTY;
-        } else if (person.getSurname().isEmpty()) {
+        } else if (person.getSurname().isEmpty() || person.getSurname().equals("Фамилия")) {
             return SURNAME_EMPTY;
         } else {
             return FIELD_OK;

@@ -4,9 +4,6 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 
-/**
- * Created by oleg on 23.06.17.
- */
 public class Images {
     private Images() {
 
@@ -19,6 +16,33 @@ public class Images {
     private static BufferedImage buttonMinimize;
     private static BufferedImage buttonMinimizePressed;
     private static BufferedImage background;
+    private static BufferedImage logo;
+    private static BufferedImage iconPhone;
+    private static BufferedImage iconLock;
+    private static BufferedImage logoMini;
+
+    public static BufferedImage getIconLock() {
+        if (iconLock == null)
+            iconLock = getImage("img/icon-lock.png");
+        return iconLock;
+    }
+    public static BufferedImage getLogoMini() {
+        if (logoMini == null)
+            logoMini = getImage("img/logo-mini.png");
+        return logoMini;
+    }
+
+    public static BufferedImage getIconPhone() {
+        if (iconPhone == null)
+            iconPhone = getImage("img/icon-phone.png");
+        return iconPhone;
+    }
+
+    public static BufferedImage getLogo() {
+        if (logo == null)
+            logo = getImage("img/logo.png");
+        return logo;
+    }
 
     public static BufferedImage getBackground() {
         if (background == null)
@@ -97,10 +121,10 @@ public class Images {
         return bufferedImage;
     }
 
-    public static Rectangle getAreaToFill(Dimension area, Dimension image){
+    public static Rectangle getAreaToFill(Dimension area, Dimension image, boolean bool){
         double scaleX = area.getWidth() / image.getWidth();
         double scaleY = area.getHeight() / image.getHeight();
-        double scale = Math.max(scaleX, scaleY);
+        double scale = bool ? Math.max(scaleX, scaleY) : Math.min(scaleX, scaleY);
         int width = (int) Math.round(image.getWidth() * scale);
         int height = (int) Math.round(image.getHeight() * scale);
         int x = (area.width - width) / 2;

@@ -32,6 +32,7 @@ public class Decoration {
         componentMover.setChangeCursor(false);                      //убираем курсор перемещения (как-то раздражает он меня)
         componentResizer = new ComponentResizer(frame);
         componentResizer.setMaximumSize(new Dimension(905,596));
+        componentResizer.setMinimumSize(new Dimension(600,500));
         Images.decorateAsImageButton(closeButton, Images.getButtonClose(), Images.getButtonClosePressed(), null);
         Images.decorateAsImageButton(minimizeButton, Images.getButtonMinimize(), Images.getButtonMinimizePressed(), null);
     }
