@@ -1,6 +1,7 @@
 import javax.swing.*;
 import javax.swing.text.AbstractDocument;
 import javax.swing.text.DocumentFilter;
+import java.awt.*;
 import java.awt.event.ActionListener;
 
 public class FormConfirmSMS {
@@ -18,6 +19,7 @@ public class FormConfirmSMS {
         codeField.setHorizontalAlignment(JPasswordField.CENTER);                        //выравнивание по центру
         DocumentFilter documentFilter = new CodeDocumentFilter();                  //фильтр кода смс
         ((AbstractDocument) codeField.getDocument()).setDocumentFilter(documentFilter); //добавление фильтра к полю смс
+        Images.decorateAsImageButton(buttonSMS, Images.getButtonImage(), Images.getButtonImagePressed(), Color.BLACK);
     }
 
     //добавление слушателя на переключение форм
@@ -37,5 +39,10 @@ public class FormConfirmSMS {
 
     public String getCode() {
         return new String(codeField.getPassword());
+    }
+
+    private void createUIComponents() {
+        rootPanel = new ImagePanel(Images.getBackground());
+
     }
 }

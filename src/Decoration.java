@@ -26,10 +26,14 @@ public class Decoration {
 
     public Decoration(MyFrame frame) {
         setContentPanel(frame.getContentPane());
+        titlePanel.setBackground(new Color(231,231,231));
         frame.setContentPane(rootPanel);
         componentMover = new ComponentMover(frame, titlePanel);       //добавляем перемещение
         componentMover.setChangeCursor(false);                      //убираем курсор перемещения (как-то раздражает он меня)
         componentResizer = new ComponentResizer(frame);
+        componentResizer.setMaximumSize(new Dimension(905,596));
+        Images.decorateAsImageButton(closeButton, Images.getButtonClose(), Images.getButtonClosePressed(), null);
+        Images.decorateAsImageButton(minimizeButton, Images.getButtonMinimize(), Images.getButtonMinimizePressed(), null);
     }
 
     public Decoration(JDialog dialog) {
@@ -37,10 +41,11 @@ public class Decoration {
         dialog.setContentPane(rootPanel);
         dialog.setUndecorated(true);
         dialog.getRootPane().setWindowDecorationStyle(JRootPane.NONE);
-        titlePanel.setBackground(Color.red);                        //отдельный цвет для заголовка
+        //titlePanel.setBackground(Color.red);                        //отдельный цвет для заголовка
         componentMover = new ComponentMover(dialog, titlePanel);       //добавляем перемещение
         componentMover.setChangeCursor(false);                      //убираем курсор перемещения
         titlePanel.remove(minimizeButton);                          //убираем кнопку сворачивания
+        Images.decorateAsImageButton(closeButton, Images.getButtonClose(), Images.getButtonClosePressed(), null);
         closeButton.addActionListener(new ActionListener() {            //закрытие
             @Override
             public void actionPerformed(ActionEvent e) {

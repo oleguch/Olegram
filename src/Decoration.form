@@ -9,18 +9,24 @@
     <children>
       <grid id="ee24f" binding="titlePanel" layout-manager="FlowLayout" hgap="5" vgap="5" flow-align="2">
         <constraints border-constraint="North"/>
-        <properties/>
+        <properties>
+          <alignmentX value="0.0"/>
+          <alignmentY value="0.0"/>
+          <preferredSize width="51" height="25"/>
+        </properties>
         <border type="none"/>
         <children>
           <component id="f1552" class="javax.swing.JButton" binding="minimizeButton">
             <constraints/>
             <properties>
+              <preferredSize width="18" height="18"/>
               <text value="_"/>
             </properties>
           </component>
           <component id="f32cc" class="javax.swing.JButton" binding="closeButton">
             <constraints/>
             <properties>
+              <preferredSize width="18" height="18"/>
               <text value="X"/>
             </properties>
           </component>

@@ -34,7 +34,7 @@ public class MyFrame extends JFrame{
         decoration.setContentPanel(formPhone.getRootPanel());
         setUndecorated(true);
         setTitle("Olegram");
-        setSize(800, 600);
+        setSize(700, 500);
         setMinimumSize(new Dimension(500, 400));
 
         addWindowListener(new WindowAdapter() {
