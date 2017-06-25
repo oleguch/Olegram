@@ -19,24 +19,20 @@ public class FormNewUser {
     public FormNewUser() {
         label.setText("<html><p align='center'>Введите Ваши имя и фамилию<br>" +
                 "для завершения регистрации</p>");
-        label.setFont(new Font("Open Sans Light", Font.PLAIN, 18));
-        label.setForeground(Color.WHITE);
+        Fonts.setFontToComponent(label, Fonts.getFontLabel(),Color.WHITE);
         Images.decorateAsImageButton(buttonReg, Images.getButtonImage(), Images.getButtonImagePressed(), Color.WHITE);
-        buttonReg.setFont(new Font("Open Sans Light", Font.PLAIN, 25));
+        Fonts.setFontToComponent(buttonReg, Fonts.getFontButton(), Color.WHITE);
         fieldRegName.setBorder(BorderFactory.createMatteBorder(0,0,1,0,Color.WHITE));
         fieldRegSurname.setBorder(BorderFactory.createMatteBorder(0,0,1,0,Color.WHITE));
-        Font font = new Font("Open Sans Light", Font.PLAIN, 40);
-        fieldRegSurname.setFont(font);
-        fieldRegName.setFont(font);
+        //Font font = new Font("Open Sans Light", Font.PLAIN, 40);
+        Fonts.setFontToComponent(fieldRegName, Fonts.getFontForRegistrationField(), Color.LIGHT_GRAY);
+        Fonts.setFontToComponent(fieldRegSurname, Fonts.getFontForRegistrationField(), Color.LIGHT_GRAY);
         String hintName = "Имя";
         String hintSurname = "Фамилия";
         fieldRegSurname.setText(hintSurname);
         fieldRegName.setText(hintName);
-        fieldRegSurname.setForeground(Color.LIGHT_GRAY);
-        fieldRegName.setForeground(Color.LIGHT_GRAY);
         fieldRegName.setCaretColor(Color.WHITE);
         fieldRegSurname.setCaretColor(Color.WHITE);
-
         fieldRegName.addFocusListener(new FocusAdapter() {
             @Override
             public void focusGained(FocusEvent e) {
@@ -97,7 +93,5 @@ public class FormNewUser {
     private void createUIComponents() {
         rootPanel = new ImagePanel(Images.getBackground(), true);
         panelLogoMini = new ImagePanel(Images.getLogoMini(), false);
-
-
     }
 }

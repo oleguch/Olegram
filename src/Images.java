@@ -121,10 +121,10 @@ public class Images {
         return bufferedImage;
     }
 
-    public static Rectangle getAreaToFill(Dimension area, Dimension image, boolean bool){
+    public static Rectangle getAreaToFill(Dimension area, Dimension image, boolean notCrop){
         double scaleX = area.getWidth() / image.getWidth();
         double scaleY = area.getHeight() / image.getHeight();
-        double scale = bool ? Math.max(scaleX, scaleY) : Math.min(scaleX, scaleY);
+        double scale = notCrop ? Math.max(scaleX, scaleY) : Math.min(scaleX, scaleY);
         int width = (int) Math.round(image.getWidth() * scale);
         int height = (int) Math.round(image.getHeight() * scale);
         int x = (area.width - width) / 2;

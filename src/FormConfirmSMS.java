@@ -26,18 +26,16 @@ public class FormConfirmSMS {
         Images.decorateAsImageButton(buttonSMS, Images.getButtonImage(), Images.getButtonImagePressed(), Color.BLACK);
         Border border = BorderFactory.createMatteBorder(0,0,1,0, Color.WHITE);
         panelCode.setBorder(border);
-        numberLabel.setFont(new Font("Open Sans Light", Font.PLAIN, 35));
-        numberLabel.setForeground(Color.LIGHT_GRAY);
-        buttonSMS.setFont(new Font("Open Sans Light", Font.PLAIN, 25));
-        buttonSMS.setForeground(Color.WHITE);
+        Fonts.setFontToComponent(numberLabel, Fonts.getFontNumberLabel(), Color.LIGHT_GRAY);
+        Fonts.setFontToComponent(buttonSMS, Fonts.getFontButton(), Color.WHITE);
+        Fonts.setFontToComponent(labelText, Fonts.getFontLabel(), Color.WHITE);
         codeField.setBorder(BorderFactory.createEmptyBorder());
         codeField.setForeground(Color.WHITE);
+        codeField.setCaretColor(Color.WHITE);
         labelText.setText("<html><p align='center'>На данный номер телефона было отправлено<br>" +
                 "SMS-сообщение с кодом подтверждения.<br>" +
                 "Пожалуйста, введите код в поле ниже:");
-        labelText.setFont(new Font("Open Sans Regular", Font.PLAIN, 16));
-        labelText.setForeground(Color.WHITE);
-        codeField.setCaretColor(Color.WHITE);
+
     }
 
     //добавление слушателя на переключение форм
