@@ -36,7 +36,7 @@
       <grid id="89b86" binding="panelLogo" custom-create="true" layout-manager="BorderLayout" hgap="0" vgap="0">
         <constraints>
           <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
-          <gridbag weightx="0.0" weighty="0.0"/>
+          <gridbag top="20" left="0" bottom="0" right="0" weightx="0.0" weighty="0.0"/>
         </constraints>
         <properties>
           <maximumSize width="165" height="168"/>
@@ -50,10 +50,11 @@
       <grid id="834eb" binding="panelNumber" layout-manager="FlowLayout" hgap="5" vgap="5" flow-align="1">
         <constraints>
           <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
-          <gridbag weightx="0.0" weighty="0.0"/>
+          <gridbag top="0" left="0" bottom="10" right="0" weightx="0.0" weighty="0.0"/>
         </constraints>
         <properties>
           <opaque value="false"/>
+          <preferredSize width="350" height="50"/>
         </properties>
         <border type="empty">
           <size top="0" left="0" bottom="1" right="0"/>
@@ -81,7 +82,7 @@
             <properties>
               <font size="24"/>
               <opaque value="false"/>
-              <preferredSize width="300" height="40"/>
+              <preferredSize width="250" height="40"/>
             </properties>
           </component>
         </children>

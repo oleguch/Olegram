@@ -30,7 +30,7 @@ public class FormPhone {
         Fonts.setFontToComponent(labelPlus7, Fonts.getFontNumberLabel(), Color.WHITE);
         Fonts.setFontToComponent(fieldPhone, Fonts.getFontNumberLabel(),Color.WHITE);
         Fonts.setFontToComponent(titleLabel, Fonts.getFontLabel(), Color.WHITE);
-        Border border = BorderFactory.createMatteBorder(0,0,1,0, Color.WHITE);
+        Border border = BorderFactory.createMatteBorder(0,0,2,0, Color.WHITE);
         panelNumber.setBorder(border);
         titleLabel.setText("<html><p align='center'>Введите код страны и номер <br> вашего мобильного телефона");
         fieldPhone.setBorder(BorderFactory.createEmptyBorder());

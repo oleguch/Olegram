@@ -91,7 +91,7 @@ public class Images {
             return ImageIO.read(Images.class.getResource(path));
         } catch (IOException e) {
             e.printStackTrace();
-            return new BufferedImage(1,1,BufferedImage.TYPE_4BYTE_ABGR);
+            return new BufferedImage(1,1,BufferedImage.TYPE_4BYTE_ABGR);            //заглушка
         }
     }
 

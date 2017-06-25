@@ -32,6 +32,7 @@ public class MyFrame extends JFrame{
         setContentPane(formPhone.getRootPanel());
         decoration = new Decoration(this);
         decoration.setContentPanel(formPhone.getRootPanel());
+        //decoration.setContentPanel(formConfirmSMS.getRootPanel());
         //decoration.setContentPanel(formNewUser.getRootPanel());
         setUndecorated(true);
         setTitle("Olegram");

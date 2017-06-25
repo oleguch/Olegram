@@ -24,7 +24,7 @@ public class FormConfirmSMS {
         DocumentFilter documentFilter = new CodeDocumentFilter();                  //фильтр кода смс
         ((AbstractDocument) codeField.getDocument()).setDocumentFilter(documentFilter); //добавление фильтра к полю смс
         Images.decorateAsImageButton(buttonSMS, Images.getButtonImage(), Images.getButtonImagePressed(), Color.BLACK);
-        Border border = BorderFactory.createMatteBorder(0,0,1,0, Color.WHITE);
+        Border border = BorderFactory.createMatteBorder(0,0,2,0, Color.WHITE);
         panelCode.setBorder(border);
         Fonts.setFontToComponent(numberLabel, Fonts.getFontNumberLabel(), Color.LIGHT_GRAY);
         Fonts.setFontToComponent(buttonSMS, Fonts.getFontButton(), Color.WHITE);
