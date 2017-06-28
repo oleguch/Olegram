@@ -31,9 +31,9 @@ public class MyFrame extends JFrame{
         bridge = new TelegramApiBridge("149.154.167.50:443", 95568, "e5649ac9f0c517643f3c8cad067ac7b0");
         setContentPane(formPhone.getRootPanel());
         decoration = new Decoration(this);
-        decoration.setContentPanel(formPhone.getRootPanel());
+        //decoration.setContentPanel(formPhone.getRootPanel());
         //decoration.setContentPanel(formConfirmSMS.getRootPanel());
-        //decoration.setContentPanel(formNewUser.getRootPanel());
+        decoration.setContentPanel(formNewUser.getRootPanel());
         setUndecorated(true);
         setTitle("Olegram");
         setSize(800, 600);

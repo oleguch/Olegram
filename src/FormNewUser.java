@@ -3,6 +3,7 @@ import java.awt.*;
 import java.awt.event.ActionListener;
 import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
+import java.awt.event.FocusListener;
 
 public class FormNewUser {
     private JPanel rootPanel;
@@ -33,42 +34,41 @@ public class FormNewUser {
         fieldRegName.setText(hintName);
         fieldRegName.setCaretColor(Color.WHITE);
         fieldRegSurname.setCaretColor(Color.WHITE);
-        fieldRegName.addFocusListener(new FocusAdapter() {
+        fieldRegName.addFocusListener(new FocusListener() {
             @Override
             public void focusGained(FocusEvent e) {
-                fieldRegName.setForeground(Color.WHITE);
-                if (fieldRegName.getText().equals(hintName)) {
-                    fieldRegName.setText("");
-                }
+                hintTextFieldFocusGained((JTextField) e.getComponent(), hintName);
             }
 
             @Override
             public void focusLost(FocusEvent e) {
-                if (fieldRegName.getText().isEmpty()) {
-                    fieldRegName.setForeground(Color.LIGHT_GRAY);
-                    fieldRegName.setText(hintName);
-                }
+                hintTextFieldLostFocus((JTextField) e.getComponent(), hintName);
             }
         });
-        fieldRegSurname.addFocusListener(new FocusAdapter() {
+        fieldRegSurname.addFocusListener(new FocusListener() {
             @Override
             public void focusGained(FocusEvent e) {
-                fieldRegSurname.setForeground(Color.WHITE);
-                if (fieldRegSurname.getText().equals(hintSurname)) {
-                    fieldRegSurname.setText("");
-                }
+                hintTextFieldFocusGained((JTextField) e.getComponent(), hintSurname);
             }
 
             @Override
             public void focusLost(FocusEvent e) {
-                if (fieldRegSurname.getText().isEmpty()) {
-                    fieldRegSurname.setForeground(Color.LIGHT_GRAY);
-                    fieldRegSurname.setText(hintSurname);
-                }
+                hintTextFieldLostFocus((JTextField) e.getComponent(), hintSurname);
             }
         });
     }
 
+    private void hintTextFieldFocusGained(JTextField textField, String hint) {
+        textField.setForeground(Color.WHITE);
+        if (textField.getText().equals(hint))
+            textField.setText("");
+    }
+    private void hintTextFieldLostFocus(JTextField textField, String hint) {
+        if (textField.getText().isEmpty()) {
+            textField.setForeground(Color.LIGHT_GRAY);
+            textField.setText(hint);
+        }
+    }
     //добавление слушателя на переключение форм
     public void addActionListenerForChangeForm(ActionListener actionListener) {
         buttonReg.addActionListener(actionListener);

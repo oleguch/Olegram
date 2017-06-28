@@ -33,6 +33,7 @@
         <properties>
           <maximumSize width="200" height="50"/>
           <minimumSize width="200" height="50"/>
+          <name value="fieldSurnameName"/>
           <opaque value="false"/>
           <preferredSize width="200" height="50"/>
         </properties>
@@ -43,6 +44,7 @@
           <gridbag top="40" left="0" bottom="0" right="0" weightx="0.0" weighty="0.0"/>
         </constraints>
         <properties>
+          <focusPainted value="false"/>
           <preferredSize width="330" height="65"/>
           <text value="ЗАВЕРШИТЬ"/>
         </properties>

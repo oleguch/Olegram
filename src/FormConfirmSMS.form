@@ -86,6 +86,8 @@
           <gridbag top="0" left="0" bottom="10" right="0" weightx="0.0" weighty="0.0"/>
         </constraints>
         <properties>
+          <horizontalAlignment value="0"/>
+          <horizontalTextPosition value="0"/>
           <preferredSize width="400" height="70"/>
         </properties>
       </component>

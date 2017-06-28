@@ -17,6 +17,8 @@
         </constraints>
         <properties>
           <font size="20"/>
+          <horizontalAlignment value="0"/>
+          <horizontalTextPosition value="0"/>
           <preferredSize width="300" height="60"/>
         </properties>
       </component>
