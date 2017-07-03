@@ -1,15 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="01619a1b-5556-41c3-9fa4-a4c3fd8b8024" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/telegram_dao_proxy_v7_8.xml" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/TelegramApiBridge.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/TelegramApiBridge.jar" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/artifacts/Olegram.xml" afterPath="$PROJECT_DIR$/.idea/artifacts/Olegram.xml" />
+    <list default="true" id="01619a1b-5556-41c3-9fa4-a4c3fd8b8024" name="Default" comment="telegram-dao-proxy, переделал">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/Config.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Olegram.iml" afterPath="$PROJECT_DIR$/Olegram.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/FormConfirmSMS.java" afterPath="$PROJECT_DIR$/src/FormConfirmSMS.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/FormPhone.java" afterPath="$PROJECT_DIR$/src/FormPhone.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Main.java" afterPath="$PROJECT_DIR$/src/Main.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/MyFrame.java" afterPath="$PROJECT_DIR$/src/MyFrame.java" />
     </list>
     <list id="180bec09-c574-4d67-8261-bd82403d8192" name="Rejected commit: Default" comment="Выводж списка сконтактов с Именем, Фамилией и Телефоном" />
     <ignored path="$PROJECT_DIR$/out/" />
@@ -34,15 +30,15 @@
       <file leaf-file-name="MyFrame.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/MyFrame.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="280">
-              <caret line="30" column="39" lean-forward="false" selection-start-line="30" selection-start-column="39" selection-end-line="30" selection-end-column="39" />
+            <state relative-caret-position="137">
+              <caret line="178" column="63" lean-forward="false" selection-start-line="178" selection-start-column="63" selection-end-line="178" selection-end-column="63" />
               <folding>
-                <element signature="e#1634#1874#0" expanded="true" />
-                <element signature="e#1873#1874#0" expanded="true" />
-                <element signature="e#2070#2576#0" expanded="true" />
-                <element signature="e#2575#2576#0" expanded="true" />
-                <marker date="1498986554918" expanded="true" signature="1466:1521" ph="//..." />
-                <marker date="1498986554918" expanded="true" signature="4207:4307" ph="{...}" />
+                <element signature="e#1846#2086#0" expanded="true" />
+                <element signature="e#2085#2086#0" expanded="true" />
+                <element signature="e#2282#2800#0" expanded="true" />
+                <element signature="e#2799#2800#0" expanded="true" />
+                <marker date="1499107246732" expanded="true" signature="1678:1733" ph="//..." />
+                <marker date="1499107246732" expanded="true" signature="4431:4531" ph="{...}" />
               </folding>
             </state>
           </provider>
@@ -52,7 +48,19 @@
         <entry file="file://$PROJECT_DIR$/src/Main.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="220">
-              <caret line="11" column="1" lean-forward="false" selection-start-line="11" selection-start-column="1" selection-end-line="11" selection-end-column="1" />
+              <caret line="11" column="8" lean-forward="false" selection-start-line="11" selection-start-column="8" selection-end-line="11" selection-end-column="8" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Config.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Config.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="180">
+              <caret line="9" column="77" lean-forward="false" selection-start-line="9" selection-start-column="77" selection-end-line="9" selection-end-column="77" />
               <folding />
             </state>
           </provider>
@@ -109,23 +117,6 @@
         <entry file="file://$PROJECT_DIR$/src/FormConfirmSMS.form">
           <provider selected="true" editor-type-id="ui-designer">
             <state />
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="FormPhone.form" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/FormPhone.form">
-          <provider selected="true" editor-type-id="ui-designer">
-            <state />
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Images.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Images.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1680">
-              <caret line="88" column="56" lean-forward="false" selection-start-line="88" selection-start-column="56" selection-end-line="88" selection-end-column="56" />
-              <folding />
-            </state>
           </provider>
         </entry>
       </file>
@@ -205,7 +196,6 @@
         <option value="$PROJECT_DIR$/src/FormFriends.form" />
         <option value="$PROJECT_DIR$/src/FormWindow.form" />
         <option value="$PROJECT_DIR$/src/FormWindow.java" />
-        <option value="$PROJECT_DIR$/src/Main.java" />
         <option value="$PROJECT_DIR$/src/Person.java" />
         <option value="[Connection] CONSOLE - Connection" />
         <option value="$PROJECT_DIR$/src/MyDocumentFilterForCode.java" />
@@ -227,6 +217,8 @@
         <option value="$PROJECT_DIR$/src/HintTextFields.java" />
         <option value="$PROJECT_DIR$/src/FormNewUser.form" />
         <option value="$PROJECT_DIR$/src/FormNewUser.java" />
+        <option value="$PROJECT_DIR$/src/Config.java" />
+        <option value="$PROJECT_DIR$/src/Main.java" />
         <option value="$PROJECT_DIR$/src/MyFrame.java" />
       </list>
     </option>
@@ -920,7 +912,14 @@
       <option name="project" value="LOCAL" />
       <updated>1498658084270</updated>
     </task>
-    <option name="localTasksCounter" value="41" />
+    <task id="LOCAL-00041" summary="telegram-dao-proxy">
+      <created>1499105615374</created>
+      <option name="number" value="00041" />
+      <option name="presentableId" value="LOCAL-00041" />
+      <option name="project" value="LOCAL" />
+      <updated>1499105615374</updated>
+    </task>
+    <option name="localTasksCounter" value="42" />
     <servers />
   </component>
   <component name="TodoView">
@@ -1001,7 +1000,6 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
-    <MESSAGE value="перенес Main в MyFrame" />
     <MESSAGE value="добавил локальные методы вместо серверных (чтобы не обращался постоянно к телеграмму)" />
     <MESSAGE value="немного поправил формы" />
     <MESSAGE value="сделал getValue" />
@@ -1026,7 +1024,8 @@
     <MESSAGE value="перенес шрифты в отдельный класс" />
     <MESSAGE value="переделал focusListener" />
     <MESSAGE value="переделал focusListener, убрал в отдельный класс" />
-    <option name="LAST_COMMIT_MESSAGE" value="переделал focusListener, убрал в отдельный класс" />
+    <MESSAGE value="telegram-dao-proxy" />
+    <option name="LAST_COMMIT_MESSAGE" value="telegram-dao-proxy" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1042,20 +1041,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="jar://$PROJECT_DIR$/lib/TelegramApiBridge.jar!/org/telegram/api/engine/TelegramApi.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="183">
-          <caret line="384" column="0" lean-forward="false" selection-start-line="384" selection-start-column="0" selection-end-line="384" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$PROJECT_DIR$/lib/TelegramApiBridge.jar!/org/javagram/TelegramApiBridge.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="327">
-          <caret line="65" column="0" lean-forward="false" selection-start-line="65" selection-start-column="0" selection-end-line="65" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/ButtonExitMiniAction.java" />
     <entry file="jar://C:/Program Files/Java/jdk1.8.0_111/src.zip!/javax/swing/JComponent.java" />
     <entry file="jar://C:/Program Files/Java/jdk1.8.0_111/src.zip!/javax/swing/AbstractAction.java" />
@@ -1240,25 +1225,46 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/Config.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="180">
+          <caret line="9" column="77" lean-forward="false" selection-start-line="9" selection-start-column="77" selection-end-line="9" selection-end-column="77" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$PROJECT_DIR$/lib/telegram-dao-proxy-v7.8.jar!/org/javagram/response/AuthCheckedPhone.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="260">
+          <caret line="16" column="19" lean-forward="false" selection-start-line="16" selection-start-column="19" selection-end-line="16" selection-end-column="19" />
+          <folding>
+            <element signature="e#426#427#0" expanded="true" />
+            <element signature="e#466#467#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/Main.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="220">
-          <caret line="11" column="1" lean-forward="false" selection-start-line="11" selection-start-column="1" selection-end-line="11" selection-end-column="1" />
-          <folding />
+          <caret line="11" column="8" lean-forward="false" selection-start-line="11" selection-start-column="8" selection-end-line="11" selection-end-column="8" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/MyFrame.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="280">
-          <caret line="30" column="39" lean-forward="false" selection-start-line="30" selection-start-column="39" selection-end-line="30" selection-end-column="39" />
+        <state relative-caret-position="137">
+          <caret line="178" column="63" lean-forward="false" selection-start-line="178" selection-start-column="63" selection-end-line="178" selection-end-column="63" />
           <folding>
-            <element signature="e#1634#1874#0" expanded="true" />
-            <element signature="e#1873#1874#0" expanded="true" />
-            <element signature="e#2070#2576#0" expanded="true" />
-            <element signature="e#2575#2576#0" expanded="true" />
-            <marker date="1498986554918" expanded="true" signature="1466:1521" ph="//..." />
-            <marker date="1498986554918" expanded="true" signature="4207:4307" ph="{...}" />
+            <element signature="e#1846#2086#0" expanded="true" />
+            <element signature="e#2085#2086#0" expanded="true" />
+            <element signature="e#2282#2800#0" expanded="true" />
+            <element signature="e#2799#2800#0" expanded="true" />
+            <marker date="1499107246732" expanded="true" signature="1678:1733" ph="//..." />
+            <marker date="1499107246732" expanded="true" signature="4431:4531" ph="{...}" />
           </folding>
         </state>
       </provider>

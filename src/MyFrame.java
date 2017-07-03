@@ -1,4 +1,7 @@
 import org.javagram.TelegramApiBridge;
+import org.javagram.dao.ApiException;
+import org.javagram.dao.Contact;
+import org.javagram.dao.TelegramDAO;
 import org.javagram.response.AuthAuthorization;
 import org.javagram.response.AuthCheckedPhone;
 import org.javagram.response.object.User;
@@ -21,14 +24,16 @@ public class MyFrame extends JFrame{
     private Decoration decoration;
     private String phoneNumber;
     private AuthCheckedPhone checkPhone;
-    private TelegramApiBridge bridge;
+    //private TelegramApiBridge bridge;
     private AuthAuthorization authSing;
     private static final int NAME_EMPTY=1,
                             SURNAME_EMPTY = 2,
                             FIELD_OK = 3;
+    private TelegramDAO telegramDAO;
 
-    MyFrame() throws Exception {
-        bridge = new TelegramApiBridge("149.154.167.50:443", 95568, "e5649ac9f0c517643f3c8cad067ac7b0");
+    MyFrame(TelegramDAO telegramDAO) throws Exception {
+        this.telegramDAO = telegramDAO;
+        //bridge = new TelegramApiBridge("149.154.167.50:443", 95568, "e5649ac9f0c517643f3c8cad067ac7b0");
         setContentPane(formPhone.getRootPanel());
         decoration = new Decoration(this);
         decoration.setContentPanel(formPhone.getRootPanel());
@@ -54,12 +59,12 @@ public class MyFrame extends JFrame{
             public void windowClosed(WindowEvent e) {
 
                     super.windowClosed(e);
-                    try {
-                        if (authSing != null)
-                            bridge.authLogOut();                //логаут. Не работает (программа не завершает работу)
-                    } catch (IOException ex) {
-                        ex.printStackTrace();
-                    }
+//                    try {
+//                        if (authSing != null)
+//                            bridge.authLogOut();                //логаут. Не работает (программа не завершает работу)
+//                    } catch (IOException ex) {
+//                        ex.printStackTrace();
+//                    }
                     System.exit(0);
             }
         });
@@ -128,9 +133,11 @@ public class MyFrame extends JFrame{
     private void checkPhoneAndSendCode() {
         try {
             phoneNumber = formPhone.getPhoneNumber();
-            checkPhone = bridge.authCheckPhone(phoneNumber);
-            bridge.authSendCode(phoneNumber);
-            if (checkPhone.isRegistered())     //если телефон не зарегистрирован, показать форму ввода кода смс
+            telegramDAO.acceptNumber(phoneNumber);
+            //checkPhone = bridge.authCheckPhone(phoneNumber);
+            telegramDAO.sendCode();
+            //bridge.authSendCode(phoneNumber);
+            if (telegramDAO.canSignIn())//checkPhone.isRegistered())     //если телефон не зарегистрирован, показать форму ввода кода смс
                 toFormConfirmSMS();
             else
                 toFormNewUser();                //иначе - форму регистрации
@@ -141,6 +148,8 @@ public class MyFrame extends JFrame{
             e.printStackTrace();
             showMessageError("Номер введен не полностью");
             formPhone.setFocusToFieldPhone();
+        } catch (ApiException e) {
+            e.printStackTrace();    //чуть попозже разобраться
         }
     }
 
@@ -148,29 +157,38 @@ public class MyFrame extends JFrame{
     private void confirmByCodeFromSMS() {
         String smsCode = formConfirmSMS.getCode();
         try {
-            if (checkPhone.isRegistered())                              //Если пользователь зарегистрирован, то авторизовываем, иначе регистрируем
-                authSing = bridge.authSignIn(smsCode);                                  //отправляем только код из смс и авторизовываем пользователя
+            if (telegramDAO.canSignIn())//checkPhone.isRegistered())                              //Если пользователь зарегистрирован, то авторизовываем, иначе регистрируем
+                //authSing = bridge.authSignIn(smsCode);                                  //отправляем только код из смс и авторизовываем пользователя
+                telegramDAO.signIn(smsCode);
             else {
                 Person person = formNewUser.getPerson();
-                authSing = bridge.authSignUp(smsCode, person.getName(), person.getSurname());             //регистрируем, отправив код из смс, имя и фамилию
+                //authSing = bridge.authSignUp(smsCode, person.getName(), person.getSurname());             //регистрируем, отправив код из смс, имя и фамилию
+                telegramDAO.signUp(person.getName(), person.getSurname(), smsCode);
             }
             toFormUserList();                                                           //показать список друзей в консоли
         } catch (IOException e2) {                                                      //при ошибке показать тип и сообщение
             e2.printStackTrace();
             showMessageError( e2.getClass().toString() + "\n" + " " + e2.getMessage());
+        } catch (ApiException e) {
+            e.printStackTrace();
         }
     }
 
 
-    private void toFormUserList() throws IOException {
-        ArrayList<UserContact> userList = bridge.contactsGetContacts();
+    private void toFormUserList() throws IOException, ApiException {
+        ArrayList<Contact> userList = telegramDAO.getContacts();//bridge.contactsGetContacts();
 //        System.out.println("Список друзей:" + myFriends);
 //        for (UserContact friend : myFriends) {
 //            System.out.println("Имя: " + friend.getFirstName());
 //            System.out.println("Фамилия: " + friend.getLastName());
 //            System.out.println("Телефон: " + friend.getPhone() + "\n");
 //        }
-        formUsersList.setListData(userList.toArray());
+        String[] nameCont = new String[userList.size()];
+        for (int i=0; i< userList.size();i++) {
+            nameCont[i] = userList.get(i).getFirstName();
+        }
+        //formUsersList.setListData(userList.toArray());
+        formUsersList.setListData(nameCont);
         nextForm(formUsersList.getRootPanel());
     }
 
