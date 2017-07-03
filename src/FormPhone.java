@@ -26,7 +26,7 @@ public class FormPhone {
 
     public FormPhone() throws ParseException, IOException, FontFormatException {
         Images.decorateAsImageButton(buttonPhone, Images.getButtonImage(), Images.getButtonImagePressed(), Color.WHITE);
-        Fonts.setFontToComponent(buttonPhone, Fonts.getFontButton(), Color.WHITE);
+        buttonPhone.setFont(Fonts.getFontButton());
         Fonts.setFontToComponent(labelPlus7, Fonts.getFontNumberLabel(), Color.WHITE);
         Fonts.setFontToComponent(fieldPhone, Fonts.getFontNumberLabel(),Color.WHITE);
         Fonts.setFontToComponent(titleLabel, Fonts.getFontLabel(), Color.WHITE);

@@ -27,8 +27,8 @@ public class FormConfirmSMS {
         Border border = BorderFactory.createMatteBorder(0,0,2,0, Color.WHITE);
         panelCode.setBorder(border);
         Fonts.setFontToComponent(numberLabel, Fonts.getFontNumberLabel(), Color.LIGHT_GRAY);
-        Fonts.setFontToComponent(buttonSMS, Fonts.getFontButton(), Color.WHITE);
         Fonts.setFontToComponent(labelText, Fonts.getFontLabel(), Color.WHITE);
+        buttonSMS.setFont(Fonts.getFontButton());
         codeField.setBorder(BorderFactory.createEmptyBorder());
         codeField.setForeground(Color.WHITE);
         codeField.setCaretColor(Color.WHITE);
