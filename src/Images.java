@@ -6,7 +6,7 @@ import java.io.IOException;
 
 public class Images {
     private Images() {
-
+        System.out.println("гав");
     }
 
     private static BufferedImage buttonImage;

@@ -28,10 +28,6 @@ public class FormNewUser {
         //Font font = new Font("Open Sans Light", Font.PLAIN, 40);
         Fonts.setFontToComponent(fieldRegName, Fonts.getFontForRegistrationField(), Color.LIGHT_GRAY);
         Fonts.setFontToComponent(fieldRegSurname, Fonts.getFontForRegistrationField(), Color.LIGHT_GRAY);
-        String hintName = "Имя";
-        String hintSurname = "Фамилия";
-        fieldRegSurname.setText(hintSurname);
-        fieldRegName.setText(hintName);
         fieldRegName.setCaretColor(Color.WHITE);
         fieldRegSurname.setCaretColor(Color.WHITE);
     }
@@ -59,7 +55,7 @@ public class FormNewUser {
     private void createUIComponents() {
         rootPanel = new ImagePanel(Images.getBackground(), true);
         panelLogoMini = new ImagePanel(Images.getLogoMini(), false);
-        fieldRegSurname = new HintTextFields("Фамилия");
-        fieldRegName = new HintTextFields("Имя");
+        fieldRegName = new JFormattedTextField();
+        fieldRegSurname = new JFormattedTextField();
     }
 }

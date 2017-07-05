@@ -23,7 +23,7 @@ public class FormConfirmSMS {
         codeField.setHorizontalAlignment(JPasswordField.CENTER);                        //выравнивание по центру
         DocumentFilter documentFilter = new CodeDocumentFilter();                  //фильтр кода смс
         ((AbstractDocument) codeField.getDocument()).setDocumentFilter(documentFilter); //добавление фильтра к полю смс
-        Images.decorateAsImageButton(buttonSMS, Images.getButtonImage(), Images.getButtonImagePressed(), Color.BLACK);
+        Images.decorateAsImageButton(buttonSMS, Images.getButtonImage(), Images.getButtonImagePressed(), Color.WHITE);
         Border border = BorderFactory.createMatteBorder(0,0,2,0, Color.WHITE);
         panelCode.setBorder(border);
         Fonts.setFontToComponent(numberLabel, Fonts.getFontNumberLabel(), Color.LIGHT_GRAY);
