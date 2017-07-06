@@ -128,15 +128,13 @@ public class MyFrame extends JFrame{
                 toFormConfirmSMS();
             else
                 toFormNewUser();                //иначе - форму регистрации
-        } catch (IOException e2) {
+        } catch (IOException | ApiException e2) {
             e2.printStackTrace();
             showMessageError( e2.getClass().toString() + "\n" + " " + e2.getMessage());
         } catch (ParseException e) {
             e.printStackTrace();
             showMessageError("Номер введен не полностью");
             formPhone.setFocusToFieldPhone();
-        } catch (ApiException e) {
-            e.printStackTrace();    //чуть попозже разобраться
         }
     }
 
