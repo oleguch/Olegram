@@ -1,14 +1,17 @@
-import org.javagram.dao.ApiException;
-import org.javagram.dao.Contact;
-import org.javagram.dao.TelegramDAO;
+import org.javagram.dao.*;
+import org.javagram.dao.proxy.TelegramProxy;
+
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.io.IOException;
+import java.lang.reflect.Array;
+import java.security.spec.ECField;
 import java.text.ParseException;
 import java.util.ArrayList;
+import java.util.List;
 
 public class MyFrame extends JFrame{
     private FormConfirmSMS formConfirmSMS = new FormConfirmSMS();
@@ -43,19 +46,16 @@ public class MyFrame extends JFrame{
         decoration.addActionListenerForMinimize(e -> setExtendedState(JFrame.ICONIFIED));
 
         //ЗАКРЫТИЕ ОКНА
-        setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+        setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
         addWindowListener(new WindowAdapter() {
             @Override
-            public void windowClosed(WindowEvent e) {
-
-                super.windowClosed(e);
-                if (telegramDAO.isLoggedIn())
-                    try {
-                        telegramDAO.logOut();                   //если я правильно понял, он сам проверяет, залогирован ли пользователь. Но если не залоггирован, то выбрасывает исключение
-                    } catch (ApiException | IOException e1) {
-                        e1.printStackTrace();
-                    }
-                System.exit(0 );
+            public void windowClosing(WindowEvent windowEvent) {
+                try {
+                    telegramDAO.close();
+                    System.exit(0);
+                } catch (Exception e1) {
+                    e1.printStackTrace();
+                }
             }
         });
         decoration.addActionListenerForClose(e -> dispose());
@@ -96,9 +96,9 @@ public class MyFrame extends JFrame{
     //проверка ввода полей имени-фамилии нового пользователя
     private int checkFieldsFormNewUser()  {
         Person person = formNewUser.getPerson();
-        if (person.getName().isEmpty() || person.getName().equals("Имя")) {
+        if (person.getName().isEmpty()) {
             return NAME_EMPTY;
-        } else if (person.getSurname().isEmpty() || person.getSurname().equals("Фамилия")) {
+        } else if (person.getSurname().isEmpty()) {
             return SURNAME_EMPTY;
         } else {
             return FIELD_OK;
@@ -128,13 +128,16 @@ public class MyFrame extends JFrame{
                 toFormConfirmSMS();
             else
                 toFormNewUser();                //иначе - форму регистрации
-        } catch (IOException | ApiException e2) {
+        } catch (ApiException e2) {
             e2.printStackTrace();
-            showMessageError( e2.getClass().toString() + "\n" + " " + e2.getMessage());
+            if (e2.isPhoneNumberInvalid())
+                showMessageError("Номер телефона введен неверно");
         } catch (ParseException e) {
             e.printStackTrace();
             showMessageError("Номер введен не полностью");
             formPhone.setFocusToFieldPhone();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 
@@ -149,27 +152,33 @@ public class MyFrame extends JFrame{
                 telegramDAO.signUp(person.getName(), person.getSurname(), smsCode);         //регистрируем, отправив код из смс, имя и фамилию
             }
             toFormUserList();                                                           //показать список друзей в консоли
-        } catch (IOException | ApiException e2) {                                                      //при ошибке показать тип и сообщение
+        } catch (IOException e2) {                                                      //при ошибке показать тип и сообщение
             e2.printStackTrace();
             showMessageError( e2.getClass().toString() + "\n" + " " + e2.getMessage());
+        } catch (ApiException e3) {
+            if (e3.isCodeInvalid()) {
+                showMessageError("Код введен неверно");
+            } else if (e3.isCodeEmpty()) {
+                showMessageError("Введите код подтверждения");
+            } else if (e3.isCodeExpired()) {
+                showMessageError("Код устарел. ОТправляем новый код");
+                try {
+                    telegramDAO.sendCode();
+                } catch (Exception e) {             //не уверен, что правильно, в примере все разбито в разных местах, и эта ошибка вроде ловится через два try
+                    e.printStackTrace();
+                }
+            }
         }
     }
 
 
     private void toFormUserList() throws IOException, ApiException {
-        ArrayList<Contact> userList = telegramDAO.getContacts();//bridge.contactsGetContacts();
-//        System.out.println("Список друзей:" + myFriends);
-//        for (UserContact friend : myFriends) {
-//            System.out.println("Имя: " + friend.getFirstName());
-//            System.out.println("Фамилия: " + friend.getLastName());
-//            System.out.println("Телефон: " + friend.getPhone() + "\n");
-//        }
-        //formUsersList.setListData(userList.toArray());
-        String[] nameCont = new String[userList.size()];
-        for (int i=0; i< userList.size();i++) {
-            nameCont[i] = userList.get(i).getFirstName();
-        }
-        formUsersList.setListData(nameCont);
+        TelegramProxy telegramProxy = new TelegramProxy(telegramDAO);
+        List<org.javagram.dao.Person> list = telegramProxy.getPersons();
+        ArrayList<String> users = new ArrayList<>();
+        for (org.javagram.dao.Person person: list)
+            users.add(person.getFirstName() + " " + person.getLastName());
+        formUsersList.setListData(users.toArray());
         nextForm(formUsersList.getRootPanel());
     }
 
