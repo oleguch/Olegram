@@ -45,6 +45,7 @@
         </constraints>
         <properties>
           <focusPainted value="false"/>
+          <focusable value="false"/>
           <preferredSize width="330" height="65"/>
           <text value="ЗАВЕРШИТЬ"/>
         </properties>

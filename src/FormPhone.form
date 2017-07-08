@@ -30,6 +30,7 @@
         <properties>
           <borderPainted value="false"/>
           <contentAreaFilled value="false"/>
+          <focusable value="false"/>
           <opaque value="false"/>
           <preferredSize width="330" height="65"/>
           <text value="ПРОДОЛЖИТЬ"/>

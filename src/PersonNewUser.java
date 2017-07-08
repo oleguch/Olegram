@@ -1,5 +1,5 @@
 
-public class Person {
+public class PersonNewUser {
     private String surname;
     private String name;
 

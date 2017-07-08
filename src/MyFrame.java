@@ -2,13 +2,12 @@ import org.javagram.dao.*;
 import org.javagram.dao.proxy.TelegramProxy;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.io.IOException;
-import java.lang.reflect.Array;
-import java.security.spec.ECField;
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
@@ -95,7 +94,7 @@ public class MyFrame extends JFrame{
 
     //проверка ввода полей имени-фамилии нового пользователя
     private int checkFieldsFormNewUser()  {
-        Person person = formNewUser.getPerson();
+        PersonNewUser person = formNewUser.getPerson();
         if (person.getName().isEmpty()) {
             return NAME_EMPTY;
         } else if (person.getSurname().isEmpty()) {
@@ -144,11 +143,12 @@ public class MyFrame extends JFrame{
     //проверка ввода кода смс
     private void confirmByCodeFromSMS() {
         String smsCode = formConfirmSMS.getCode();
+        System.out.println(smsCode);
         try {
             if (telegramDAO.canSignIn())                              //Если пользователь зарегистрирован, то авторизовываем, иначе регистрируем
                 telegramDAO.signIn(smsCode);                                                        //отправляем только код из смс и авторизовываем пользователя
             else {
-                Person person = formNewUser.getPerson();
+                PersonNewUser person = formNewUser.getPerson();
                 telegramDAO.signUp(person.getName(), person.getSurname(), smsCode);         //регистрируем, отправив код из смс, имя и фамилию
             }
             toFormUserList();                                                           //показать список друзей в консоли
@@ -161,7 +161,7 @@ public class MyFrame extends JFrame{
             } else if (e3.isCodeEmpty()) {
                 showMessageError("Введите код подтверждения");
             } else if (e3.isCodeExpired()) {
-                showMessageError("Код устарел. ОТправляем новый код");
+                showMessageError("Код устарел. Отправляем новый код");
                 try {
                     telegramDAO.sendCode();
                 } catch (Exception e) {             //не уверен, что правильно, в примере все разбито в разных местах, и эта ошибка вроде ловится через два try
@@ -174,7 +174,7 @@ public class MyFrame extends JFrame{
 
     private void toFormUserList() throws IOException, ApiException {
         TelegramProxy telegramProxy = new TelegramProxy(telegramDAO);
-        List<org.javagram.dao.Person> list = telegramProxy.getPersons();
+        List<Person> list = telegramProxy.getPersons();
         ArrayList<String> users = new ArrayList<>();
         for (org.javagram.dao.Person person: list)
             users.add(person.getFirstName() + " " + person.getLastName());
@@ -189,7 +189,68 @@ public class MyFrame extends JFrame{
 
     //показать сообщение об ошибке
     private void showMessageError(String message) {
-        Decoration.showOptionDialog(MyFrame.this, message, JOptionPane.WARNING_MESSAGE, JOptionPane.DEFAULT_OPTION, null, null, null);
+        //Decoration.showOptionDialog(MyFrame.this, message, JOptionPane.WARNING_MESSAGE, JOptionPane.DEFAULT_OPTION, null, null, null);
+        Decoration.showOptionDialog(MyFrame.this, message, JOptionPane.WARNING_MESSAGE, JOptionPane.DEFAULT_OPTION, null, createDecoratedButtons(JOptionPane.DEFAULT_OPTION), createDecoratedButtons(JOptionPane.DEFAULT_OPTION)[0]);
+    }
+
+
+
+
+
+
+    public static JButton createDecoratedButton(int buttonType) {
+        JButton button = new JButton(getText(buttonType));
+        Dimension size = new Dimension(80,30);
+        button.setMinimumSize(size);
+        button.setPreferredSize(size);
+        button.setMaximumSize(size);
+        button.setSize(size);
+        Images.decorateAsImageButton(button, Images.getButtonImage(), Images.getButtonImagePressed(), Color.WHITE);
+        return button;
+    }
+
+
+
+    public static JButton[] createDecoratedButtons(int buttonsType) {
+        switch (buttonsType) {
+            case JOptionPane.DEFAULT_OPTION:
+                return new JButton[] {
+                        createDecoratedButton(JOptionPane.DEFAULT_OPTION)
+                };
+            case JOptionPane.OK_CANCEL_OPTION:
+                return new JButton[] {
+                        createDecoratedButton(JOptionPane.DEFAULT_OPTION),
+                        createDecoratedButton(JOptionPane.CANCEL_OPTION)
+                };
+            case JOptionPane.YES_NO_OPTION:
+                return new JButton[] {
+                        createDecoratedButton(JOptionPane.YES_OPTION),
+                        createDecoratedButton(JOptionPane.NO_OPTION)
+                };
+            case JOptionPane.YES_NO_CANCEL_OPTION:
+                return new JButton[] {
+                        createDecoratedButton(JOptionPane.YES_OPTION),
+                        createDecoratedButton(JOptionPane.NO_OPTION),
+                        createDecoratedButton(JOptionPane.CANCEL_OPTION)
+                };
+            default:
+                return null;
+        }
+    }
+
+    private static String getText(int buttonType) {
+        switch (buttonType) {
+            case JOptionPane.DEFAULT_OPTION:
+                return "Ok";
+            case JOptionPane.CANCEL_OPTION:
+                return "Отмена";
+            case JOptionPane.YES_OPTION:
+                return "Да";
+            case JOptionPane.NO_OPTION:
+                return "Нет";
+            default:
+                return null;
+        }
     }
 
 

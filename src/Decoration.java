@@ -5,6 +5,8 @@ import java.awt.event.ActionListener;
 import java.awt.event.WindowEvent;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
+import java.util.HashMap;
+import java.util.Map;
 
 
 public class Decoration {
@@ -66,28 +68,51 @@ public class Decoration {
 
     public static int showOptionDialog (Window window,String message, int optionType, int messageType, Icon icon, Object[] options, Object initialValue) {
         JOptionPane optionPane = new JOptionPane(message, optionType, messageType, icon, options, initialValue);
-            JDialog dialog;
-            if (window instanceof Frame)
-                dialog = new JDialog((Frame) window);
-            else if (window instanceof Dialog)
-                dialog = new JDialog((Dialog) window);
-            else
-                dialog = new JDialog(window);
-            dialog.setModal(true);
-            dialog.setContentPane(optionPane);
-            new Decoration(dialog);
-            dialog.pack();
-            dialog.setLocationRelativeTo(window);                   //для центрирования по центру окна
-            optionPane.addPropertyChangeListener("value", new PropertyChangeListener() {
-                @Override
-                public void propertyChange(PropertyChangeEvent evt) {
-                    dialog.dispose();                           //без этого окно диалога по кнопкам не закроется?
+        JDialog dialog;
+        if (window instanceof Frame)
+            dialog = new JDialog((Frame) window);
+        else if (window instanceof Dialog)
+            dialog = new JDialog((Dialog) window);
+        else
+            dialog = new JDialog(window);
+        dialog.setModal(true);
+        dialog.setContentPane(optionPane);
+        new Decoration(dialog);
+        dialog.pack();
+        dialog.setLocationRelativeTo(window);                   //для центрирования по центру окна
+        PropertyChangeListener propertyChangeListener = propertyChangeEvent -> dialog.setVisible(false);
+        optionPane.addPropertyChangeListener("value", propertyChangeListener);
+        Map<ActionListener, AbstractButton> listeners = new HashMap<>();
+        if(options != null) {
+            for (Object option : options) {
+                if(option instanceof AbstractButton) {
+                    AbstractButton abstractButton = (AbstractButton)option;
+                    ActionListener actionListener = actionEvent -> optionPane.setValue(option);
+                    abstractButton.addActionListener(actionListener);
+                    listeners.put(actionListener, abstractButton);
                 }
-            });
-            dialog.setVisible(true);
-            Object value = optionPane.getValue();
-            if (value instanceof Integer)
-                return (int) value;
-            return JOptionPane.CLOSED_OPTION;
+            }
         }
+        dialog.setVisible(true);
+        optionPane.removePropertyChangeListener("value", propertyChangeListener);
+        for(Map.Entry<ActionListener, AbstractButton> entry : listeners.entrySet())
+            entry.getValue().removeActionListener(entry.getKey());
+        Object value = optionPane.getValue();
+        if (value == null)
+            return JOptionPane.CLOSED_OPTION;
+
+        //If there is not an array of option buttons:
+        if (options == null) {
+            if (value instanceof Integer)
+                return ((Integer) value);
+            else
+                return JOptionPane.CLOSED_OPTION;
+        }
+        //If there is an array of option buttons:
+        for (int counter = 0, maxCounter = options.length; counter < maxCounter; counter++) {
+            if (options[counter].equals(value))
+                return counter;
+        }
+        return JOptionPane.CLOSED_OPTION;
+    }
 }
