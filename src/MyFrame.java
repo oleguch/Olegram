@@ -143,13 +143,12 @@ public class MyFrame extends JFrame{
     //проверка ввода кода смс
     private void confirmByCodeFromSMS() {
         String smsCode = formConfirmSMS.getCode();
-        System.out.println(smsCode);
         try {
             if (telegramDAO.canSignIn())                              //Если пользователь зарегистрирован, то авторизовываем, иначе регистрируем
                 telegramDAO.signIn(smsCode);                                                        //отправляем только код из смс и авторизовываем пользователя
             else {
                 PersonNewUser person = formNewUser.getPerson();
-                telegramDAO.signUp(person.getName(), person.getSurname(), smsCode);         //регистрируем, отправив код из смс, имя и фамилию
+                telegramDAO.signUp(smsCode, person.getName(), person.getSurname());         //регистрируем, отправив код из смс, имя и фамилию
             }
             toFormUserList();                                                           //показать список друзей в консоли
         } catch (IOException e2) {                                                      //при ошибке показать тип и сообщение
@@ -190,7 +189,8 @@ public class MyFrame extends JFrame{
     //показать сообщение об ошибке
     private void showMessageError(String message) {
         //Decoration.showOptionDialog(MyFrame.this, message, JOptionPane.WARNING_MESSAGE, JOptionPane.DEFAULT_OPTION, null, null, null);
-        Decoration.showOptionDialog(MyFrame.this, message, JOptionPane.WARNING_MESSAGE, JOptionPane.DEFAULT_OPTION, null, createDecoratedButtons(JOptionPane.DEFAULT_OPTION), createDecoratedButtons(JOptionPane.DEFAULT_OPTION)[0]);
+        JButton[] okButton = Helper.createDecoratedButtons(JOptionPane.DEFAULT_OPTION);
+        Decoration.showOptionDialog(MyFrame.this, message, JOptionPane.WARNING_MESSAGE, JOptionPane.DEFAULT_OPTION, null, okButton, okButton[0]);
     }
 
 
@@ -198,60 +198,7 @@ public class MyFrame extends JFrame{
 
 
 
-    public static JButton createDecoratedButton(int buttonType) {
-        JButton button = new JButton(getText(buttonType));
-        Dimension size = new Dimension(80,30);
-        button.setMinimumSize(size);
-        button.setPreferredSize(size);
-        button.setMaximumSize(size);
-        button.setSize(size);
-        Images.decorateAsImageButton(button, Images.getButtonImage(), Images.getButtonImagePressed(), Color.WHITE);
-        return button;
-    }
 
-
-
-    public static JButton[] createDecoratedButtons(int buttonsType) {
-        switch (buttonsType) {
-            case JOptionPane.DEFAULT_OPTION:
-                return new JButton[] {
-                        createDecoratedButton(JOptionPane.DEFAULT_OPTION)
-                };
-            case JOptionPane.OK_CANCEL_OPTION:
-                return new JButton[] {
-                        createDecoratedButton(JOptionPane.DEFAULT_OPTION),
-                        createDecoratedButton(JOptionPane.CANCEL_OPTION)
-                };
-            case JOptionPane.YES_NO_OPTION:
-                return new JButton[] {
-                        createDecoratedButton(JOptionPane.YES_OPTION),
-                        createDecoratedButton(JOptionPane.NO_OPTION)
-                };
-            case JOptionPane.YES_NO_CANCEL_OPTION:
-                return new JButton[] {
-                        createDecoratedButton(JOptionPane.YES_OPTION),
-                        createDecoratedButton(JOptionPane.NO_OPTION),
-                        createDecoratedButton(JOptionPane.CANCEL_OPTION)
-                };
-            default:
-                return null;
-        }
-    }
-
-    private static String getText(int buttonType) {
-        switch (buttonType) {
-            case JOptionPane.DEFAULT_OPTION:
-                return "Ok";
-            case JOptionPane.CANCEL_OPTION:
-                return "Отмена";
-            case JOptionPane.YES_OPTION:
-                return "Да";
-            case JOptionPane.NO_OPTION:
-                return "Нет";
-            default:
-                return null;
-        }
-    }
 
 
 }

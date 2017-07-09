@@ -2,6 +2,7 @@ import java.awt.*;
 
 public class Fonts {
     private static Font fontButton;
+    private static Font fontButtonDialog;
     private static Font fontLabel;
     private static Font fontNumberLabel;
     private static Font fontForRegistrationField;
@@ -10,6 +11,12 @@ public class Fonts {
         if (fontButton == null)
             fontButton = new Font("Open Sans Light", Font.PLAIN, 25);
         return fontButton;
+    }
+
+    public static Font getFontButtonDialog() {
+        if (fontButtonDialog == null)
+            fontButtonDialog = new Font("Open Sans Light", Font.PLAIN, 18);
+        return fontButtonDialog;
     }
 
     public static Font getFontLabel() {
