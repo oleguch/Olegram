@@ -62,4 +62,8 @@ public class FormConfirmSMS {
         panelLogoMini = new ImagePanel(Images.getLogoMini(), false);
         panelIconCode = new ImagePanel(Images.getIconLock(), true);
     }
+
+    public void clearCode() {
+        codeField.setText("");
+    }
 }
