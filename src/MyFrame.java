@@ -182,14 +182,6 @@ public class MyFrame extends JFrame{
         }
     }
 
-    private void showCodeExpired() throws IOException, ApiException {
-
-        sendAndRequestCode();
-    }
-    private void sendAndRequestCode() throws IOException, ApiException {
-        telegramDAO.sendCode();
-    }
-
     private void catchException(Exception e) {
         if (e instanceof IOException) {
             showMessageError("Потеряно соединение с сервером");
@@ -236,13 +228,6 @@ public class MyFrame extends JFrame{
         JButton[] okButton = Helper.createDecoratedButtons(JOptionPane.DEFAULT_OPTION);
         Decoration.showOptionDialog(MyFrame.this, message, JOptionPane.WARNING_MESSAGE, JOptionPane.DEFAULT_OPTION, null, okButton, okButton[0]);
     }
-
-
-
-
-
-
-
 
 
 }
