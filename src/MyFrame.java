@@ -23,6 +23,7 @@ public class MyFrame extends JFrame{
                             SURNAME_EMPTY = 2,
                             FIELD_OK = 3;
     private TelegramDAO telegramDAO;
+    private TelegramProxy telegramProxy;
 
     MyFrame(TelegramDAO telegramDAO) throws Exception {
         this.telegramDAO = telegramDAO;
@@ -208,13 +209,14 @@ public class MyFrame extends JFrame{
 
 
     private void toFormUserList() throws IOException, ApiException {
-        TelegramProxy telegramProxy = new TelegramProxy(telegramDAO);
-        List<Person> list = telegramProxy.getPersons();
-        ArrayList<String> users = new ArrayList<>();
-        for (org.javagram.dao.Person person: list)
-            users.add(person.getFirstName() + " " + person.getLastName());
-         formUsersList.setListData(users.toArray());
-        nextForm(formUsersList.getRootPanel());
+//        TelegramProxy telegramProxy = new TelegramProxy(telegramDAO);
+//        List<Person> list = telegramProxy.getPersons();
+//        ArrayList<String> users = new ArrayList<>();
+//        for (org.javagram.dao.Person person: list)
+//            users.add(person.getFirstName() + " " + person.getLastName());
+//         formUsersList.setListData(users.toArray());
+        nextForm(formUsersList);
+        createTelegramProxy();
     }
 
     //переключение формы
@@ -227,6 +229,45 @@ public class MyFrame extends JFrame{
         //Decoration.showOptionDialog(MyFrame.this, message, JOptionPane.WARNING_MESSAGE, JOptionPane.DEFAULT_OPTION, null, null, null);
         JButton[] okButton = Helper.createDecoratedButtons(JOptionPane.DEFAULT_OPTION);
         Decoration.showOptionDialog(MyFrame.this, message, JOptionPane.WARNING_MESSAGE, JOptionPane.DEFAULT_OPTION, null, okButton, okButton[0]);
+    }
+
+
+    private void createTelegramProxy() throws ApiException {
+        telegramProxy = new TelegramProxy(telegramDAO);
+        updateTelegramProxy();
+    }
+
+    private void destroyTelegramProxy() {
+        telegramProxy = null;
+        updateTelegramProxy();
+    }
+
+    private void updateTelegramProxy() {
+        //messagesFrozen++;
+        try {
+            formUsersList.setTelegramProxy(telegramProxy);
+            formUsersList.setSelectedValue(null);
+            //createMessagesForm();
+            //displayDialog(null);
+            //displayMe(telegramProxy != null ? telegramProxy.getMe() : null);
+        } finally {
+            //messagesFrozen--;
+        }
+        formUsersList.revalidate();
+        formUsersList.repaint();
+        //mainForm.revalidate();
+        //mainForm.repaint();
+    }
+
+    private void updateContacts() {
+        //messagesFrozen++;
+        try {
+            Person person = formUsersList.getSelectedValue();
+            formUsersList.setTelegramProxy(telegramProxy);
+            formUsersList.setSelectedValue(person);
+        } finally {
+            //messagesFrozen--;
+        }
     }
 
 
