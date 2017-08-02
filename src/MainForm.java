@@ -17,7 +17,7 @@ public class MainForm extends JPanel {
     private JTextArea messageTextArea;
     private JButton sendMessageButton;
     private JScrollPane messageTextScrollPane;
-    private JButton gearButton;
+    private JButton settingsButton;
     private JTextField searchTextField;
     private JPanel searchIconPanel;
     private JPanel buddyPanel;
@@ -36,7 +36,7 @@ public class MainForm extends JPanel {
 
         GuiHelper.decorateScrollPane(messageTextScrollPane);
 
-        GuiHelper.decorateAsImageButton(gearButton, Images.getGearIcon());
+        GuiHelper.decorateAsImageButton(settingsButton, Images.getSettingsIcon());
         GuiHelper.decorateAsImageButton(buddyEditButton, Images.getPencilIcon());
         GuiHelper.decorateAsImageButton(sendMessageButton, Images.getSendMessageImage());
 
@@ -52,17 +52,18 @@ public class MainForm extends JPanel {
             @Override
             protected void paintComponent(Graphics g) {
                 super.paintComponent(g);
-                g.setColor(new Color(0x82B7E8));
+                g.setColor(new Color(0x00b3e6));
                 g.fillRect(0, 0, this.getWidth(), this.getHeight());
 
-                int leftMostPoint = gearButton.getX();
-                int rightMostPoint = 12;
+                int leftMostPoint = settingsButton.getX();
+                int rightMostPoint = 25;
 
                 if (meText != null) {
 
                     int inset = 25;
-                    Font font = Fonts.getNameFont().deriveFont(Font.ITALIC, 30);
-                    Color color = Color.white;
+                    Font font = Fonts.getNameFont().deriveFont(Font.PLAIN, 20);
+                    //Color color = Color.white;
+                    Color color = new Color(0x71d3ee);
                     String text = meText;
 
                     leftMostPoint = GuiHelper.drawText(g, text, color, font, rightMostPoint, 0, leftMostPoint - rightMostPoint, this.getHeight(), inset, true);
@@ -75,13 +76,14 @@ public class MainForm extends JPanel {
                     leftMostPoint = GuiHelper.drawImage(g, image, rightMostPoint, 0, leftMostPoint - rightMostPoint, this.getHeight(), inset, true);
                 }
 
-                rightMostPoint = GuiHelper.drawImage(g, Images.getPencilIcon(), rightMostPoint, 0, leftMostPoint - rightMostPoint, this.getHeight(), 3, false);
-                rightMostPoint = GuiHelper.drawImage(g,  Images.getPencilIcon(), rightMostPoint, 0, leftMostPoint - rightMostPoint, this.getHeight(), 5, false);
+                //rightMostPoint = GuiHelper.drawImage(g, Images.getPencilIcon(), rightMostPoint, 0, leftMostPoint - rightMostPoint, this.getHeight(), 3, false);
+                rightMostPoint = GuiHelper.drawImage(g, Images.getLogoMicro(), rightMostPoint, (this.getHeight()/2-24/2), leftMostPoint - rightMostPoint, 24/*this.getHeight()*/, 3, false);
+                //rightMostPoint = GuiHelper.drawImage(g,  Images.getPencilIcon(), rightMostPoint, 0, leftMostPoint - rightMostPoint, this.getHeight(), 5, false);
             }
         };
 
         //Альтернтивное решение
-        //gearButton = new ImageButton(Images.getGearIcon());
+        //settingsButton = new ImageButton(Images.getSettingsIcon());
         //sendMessageButton = new ImageButton(Images.getSendMessageImage());
         //buddyEditButton = new ImageButton(Images.getPencilIcon());
 
@@ -103,8 +105,8 @@ public class MainForm extends JPanel {
                 if (buddyText != null) {
 
                     int inset = 10;
-                    Font font = Fonts.getNameFont().deriveFont(Font.ITALIC, 18);
-                    Color color = Color.cyan;
+                    Font font = Fonts.getNameFont().deriveFont(Font.PLAIN, 18);
+                    Color color = new Color(0x949494);
                     String text = buddyText;
 
                     rightMostPoint = GuiHelper.drawText(graphics, text, color, font, rightMostPoint, 0, leftMostPoint - rightMostPoint, this.getHeight(), inset, false);
@@ -145,11 +147,11 @@ public class MainForm extends JPanel {
     }
 
     public void removeGearEventListener(ActionListener listener) {
-        this.gearButton.removeActionListener(listener);
+        this.settingsButton.removeActionListener(listener);
     }
 
     public void addGearEventListener(ActionListener listener) {
-        this.gearButton.addActionListener(listener);
+        this.settingsButton.addActionListener(listener);
     }
 
     public void removeBuddyEditEventListener(ActionListener listener) {

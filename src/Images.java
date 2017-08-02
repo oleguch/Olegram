@@ -20,7 +20,8 @@ public class Images {
     private static BufferedImage iconPhone;
     private static BufferedImage iconLock;
     private static BufferedImage logoMini;
-    private static BufferedImage gearIcon;
+    private static BufferedImage logoMicro;
+    private static BufferedImage settingsIcon;
     private static BufferedImage pencilIcon;
     private static BufferedImage sendMessageIcon;
     private static BufferedImage searchIcon;
@@ -36,6 +37,12 @@ public class Images {
         if (logoMini == null)
             logoMini = getImage("img/logo-mini.png");
         return logoMini;
+    }
+
+    public static BufferedImage getLogoMicro() {
+        if (logoMicro == null)
+            logoMicro = getImage("img/logo-micro.png");
+        return logoMicro;
     }
 
     public static BufferedImage getIconPhone() {
@@ -92,10 +99,10 @@ public class Images {
         return buttonMinimizePressed;
     }
 
-    public static BufferedImage getGearIcon() {
-        if (gearIcon == null)
-            gearIcon = getImage("img/icon-settings.png");
-        return gearIcon;
+    public static BufferedImage getSettingsIcon() {
+        if (settingsIcon == null)
+            settingsIcon = getImage("img/icon-settings.png");
+        return settingsIcon;
     }
 
     public static BufferedImage getPencilIcon() {
@@ -169,7 +176,7 @@ public class Images {
 
     public synchronized static BufferedImage getSmallUserImage() {
         if (smallUserImage == null)
-            smallUserImage = getImage("img/User-icon.png");
+            smallUserImage = getImage("img/images_user.jpg");
         return smallUserImage;
     }
 

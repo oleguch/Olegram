@@ -24,11 +24,11 @@ public class FormContact extends JPanel implements ListCellRenderer <Person> {
 
     protected void paintComponent(Graphics graphics) {
         super.paintComponent(graphics);
-        graphics.setColor(Color.lightGray);
+        graphics.setColor(new Color(0xe6e6e6));
         graphics.drawRect(0, 0, this.getWidth() - 1, this.getHeight() - 1);
         if(hasFocus) {
-            graphics.setColor(Color.blue);
-            graphics.fillRect(0/*this.getWidth() - focusMarkerWidth*/, 0, focusMarkerWidth, this.getHeight());
+            graphics.setColor(new Color(0x00b3e6));
+            graphics.fillRect(this.getWidth() - focusMarkerWidth, 0, this.getWidth(), this.getHeight());
         }
     }
 
@@ -41,17 +41,20 @@ public class FormContact extends JPanel implements ListCellRenderer <Person> {
     public Component getListCellRendererComponent(JList<? extends Person> jList, Person person, int index, boolean selected, boolean hasFocus) {
         Dialog dialog = telegramProxy.getDialog(person);
         this.nameLabel.setText(person.getFirstName() + " " + person.getLastName());
-
+        Fonts.setFontToComponent(this.nameLabel, Fonts.getFontLabel(), new Color(0x414141));
         if(dialog != null){
             this.lastMessageLabel.setText(dialog.getLastMessage().getText());
         } else {
             this.lastMessageLabel.setText("");
         }
 
-        if(selected)
+        if(selected) {
             setBackground(Color.white);
-        else {
-            setBackground(Color.lightGray);
+            photoPanel.setBackground(Color.white);
+        } else {
+            Color colorSelected = new Color(0xe6e6e6);
+            setBackground(colorSelected);
+            photoPanel.setBackground(colorSelected);
         }
 
         this.hasFocus = hasFocus;

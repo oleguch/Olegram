@@ -47,6 +47,7 @@ public class Fonts {
     public static Font getNameFont() {
         if (nameFont == null)
             nameFont = loadFont("OpenSansRegular.ttf");
+            //nameFont = getFontLabel();
         return nameFont;
     }
 

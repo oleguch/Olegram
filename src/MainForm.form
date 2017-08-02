@@ -13,19 +13,21 @@
       <grid id="68149" binding="titlePanel" custom-create="true" layout-manager="FlowLayout" hgap="5" vgap="5" flow-align="2">
         <constraints border-constraint="North"/>
         <properties>
-          <maximumSize width="2147483647" height="70"/>
-          <minimumSize width="0" height="70"/>
-          <preferredSize width="0" height="70"/>
+          <alignmentY value="1.0"/>
+          <maximumSize width="2147483647" height="50"/>
+          <minimumSize width="0" height="50"/>
+          <preferredSize width="0" height="50"/>
         </properties>
         <border type="none"/>
         <children>
-          <component id="1d958" class="javax.swing.JButton" binding="gearButton">
+          <component id="1d958" class="javax.swing.JButton" binding="settingsButton">
             <constraints/>
             <properties>
-              <maximumSize width="60" height="60"/>
-              <minimumSize width="60" height="60"/>
+              <maximumSize width="21" height="21"/>
+              <minimumSize width="21" height="21"/>
               <opaque value="false"/>
-              <preferredSize width="60" height="60"/>
+              <preferredSize width="21" height="21"/>
+              <verticalAlignment value="0"/>
             </properties>
           </component>
         </children>
@@ -44,19 +46,20 @@
                 <constraints border-constraint="North"/>
                 <properties>
                   <background color="-1"/>
-                  <maximumSize width="30" height="30"/>
-                  <minimumSize width="30" height="30"/>
-                  <preferredSize width="30" height="30"/>
+                  <maximumSize width="30" height="50"/>
+                  <minimumSize width="30" height="50"/>
+                  <preferredSize width="30" height="50"/>
                 </properties>
                 <border type="none"/>
                 <children>
                   <component id="c114b" class="javax.swing.JButton" binding="buddyEditButton">
                     <constraints/>
                     <properties>
-                      <maximumSize width="30" height="30"/>
-                      <minimumSize width="30" height="30"/>
+                      <alignmentX value="1.0"/>
+                      <maximumSize width="18" height="18"/>
+                      <minimumSize width="18" height="18"/>
                       <opaque value="false"/>
-                      <preferredSize width="30" height="30"/>
+                      <preferredSize width="18" height="18"/>
                       <text value="Button"/>
                     </properties>
                   </component>
@@ -122,6 +125,7 @@
                 <constraints border-constraint="North"/>
                 <properties>
                   <background color="-1"/>
+                  <preferredSize width="44" height="50"/>
                 </properties>
                 <border type="none"/>
                 <children>

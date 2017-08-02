@@ -66,12 +66,12 @@ public class MessagesForm extends JPanel {
             String fontColor;
             if(message.getReceiver() instanceof Me) {
                 alignment = FlowLayout.LEFT;
-                color = Color.blue;
+                color = new Color(0x01a7d9);
                 fontColor = "white";
             } else if(message.getSender() instanceof Me) {
                 alignment = FlowLayout.RIGHT;
-                color = Color.cyan;
-                fontColor = "black";
+                color = new Color(0x4a44a8);
+                fontColor = "white";
             } else {
                 alignment = FlowLayout.CENTER;
                 color = Color.red;
