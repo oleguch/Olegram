@@ -1,4 +1,5 @@
 import java.awt.*;
+import java.io.InputStream;
 
 public class Fonts {
     private static Font fontButton;
@@ -6,6 +7,7 @@ public class Fonts {
     private static Font fontLabel;
     private static Font fontNumberLabel;
     private static Font fontForRegistrationField;
+    private static Font nameFont;
 
     public static Font getFontButton() {
         if (fontButton == null)
@@ -40,5 +42,20 @@ public class Fonts {
     public static void setFontToComponent(Component component, Font font, Color color) {
         component.setFont(font);
         component.setForeground(color);
+    }
+
+    public static Font getNameFont() {
+        if (nameFont == null)
+            nameFont = loadFont("OpenSansRegular.ttf");
+        return nameFont;
+    }
+
+    private static Font loadFont(String name) {
+        try(InputStream inputStream = Fonts.class.getResourceAsStream("font/" + name)) {
+            return Font.createFont(Font.TRUETYPE_FONT, inputStream);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new Font("serif", Font.PLAIN, 24);
+        }
     }
 }

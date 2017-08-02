@@ -20,6 +20,12 @@ public class Images {
     private static BufferedImage iconPhone;
     private static BufferedImage iconLock;
     private static BufferedImage logoMini;
+    private static BufferedImage gearIcon;
+    private static BufferedImage pencilIcon;
+    private static BufferedImage sendMessageIcon;
+    private static BufferedImage searchIcon;
+    private static BufferedImage smallUserImage;
+    private static BufferedImage largeUserImage;
 
     public static BufferedImage getIconLock() {
         if (iconLock == null)
@@ -86,6 +92,30 @@ public class Images {
         return buttonMinimizePressed;
     }
 
+    public static BufferedImage getGearIcon() {
+        if (gearIcon == null)
+            gearIcon = getImage("img/icon-settings.png");
+        return gearIcon;
+    }
+
+    public static BufferedImage getPencilIcon() {
+        if (pencilIcon == null)
+            pencilIcon = getImage("img/icon-edit.png");
+        return pencilIcon;
+    }
+
+    public static BufferedImage getSendMessageImage() {
+        if (sendMessageIcon == null)
+            sendMessageIcon = getImage("img/button-send.png");
+        return sendMessageIcon;
+    }
+
+    public static BufferedImage getSearchIcon() {
+        if (searchIcon == null)
+            searchIcon = getImage("img/icon-search.png");
+        return searchIcon;
+    }
+
     private static BufferedImage getImage(String path) {
         try {
             return ImageIO.read(Images.class.getResource(path));
@@ -130,5 +160,22 @@ public class Images {
         int x = (area.width - width) / 2;
         int y = (area.height - height) / 2;
         return new Rectangle(x,y,width,height);
+    }
+
+
+    public static BufferedImage getUserImage(boolean small) {
+        return small ? getSmallUserImage() : getLargeUserImage();
+    }
+
+    public synchronized static BufferedImage getSmallUserImage() {
+        if (smallUserImage == null)
+            smallUserImage = getImage("img/User-icon.png");
+        return smallUserImage;
+    }
+
+    public synchronized static BufferedImage getLargeUserImage() {
+        if (largeUserImage == null)
+            largeUserImage = getImage("img/User-icon.png");
+        return largeUserImage;
     }
 }
