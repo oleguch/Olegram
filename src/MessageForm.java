@@ -11,7 +11,7 @@ public class MessageForm extends JPanel {
     private Color color;
 
     private final int MARGIN = 5;
-    private final int RADIUS = 25;
+    private final int RADIUS = 10;
 
     public MessageForm(String text, String date, int width, Color color, String fontColor) {
 
@@ -33,7 +33,7 @@ public class MessageForm extends JPanel {
         textPane.setMargin(new Insets(MARGIN, MARGIN, MARGIN, MARGIN));
 
         Helper.clearBoth(textPane);
-
+        dateLabel.setForeground(new Color(0x8d8d8f));
         dateLabel.setText(date);
         this.color = color;
     }

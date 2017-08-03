@@ -8,6 +8,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 
@@ -78,6 +80,20 @@ public class MessagesForm extends JPanel {
                 fontColor = "green";
             }
             panel.setLayout(new FlowLayout(alignment));
+
+//
+//            Date currentDate = new Date();
+//            String messageDate;
+//            System.out.println(currentDate.getTime());
+//            int msecInDay = 60*60*24*1000;
+//            System.out.println(msecInDay);
+//            if (currentDate.getTime() - message.getDate().getTime() < msecInDay)
+//                System.out.println("Today");
+//            else if (currentDate.getTime() - message.getDate().getTime() < 2*msecInDay)
+//                System.out.println("Yesterday");
+//            else
+//                System.out.println("Other");
+
             panel.add(new MessageForm(message.getText(), dateFormat.format(message.getDate()), width, color, fontColor));
             scrollPanel.add(panel);
         }

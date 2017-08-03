@@ -5,9 +5,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 
-/**
- * Created by oleg on 09.07.17.
- */
+
 public class Helper {
     public static JButton createDecoratedButton(int buttonType) {
         JButton button = new JButton(getTextButton(buttonType));

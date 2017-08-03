@@ -22,8 +22,11 @@ public class Images {
     private static BufferedImage logoMini;
     private static BufferedImage logoMicro;
     private static BufferedImage settingsIcon;
+    private static BufferedImage settingsIconPress;
     private static BufferedImage pencilIcon;
+    private static BufferedImage pencilIconPress;
     private static BufferedImage sendMessageIcon;
+    private static BufferedImage sendMessageIconPress;
     private static BufferedImage searchIcon;
     private static BufferedImage smallUserImage;
     private static BufferedImage largeUserImage;
@@ -105,16 +108,34 @@ public class Images {
         return settingsIcon;
     }
 
+    public static BufferedImage getSettingsIconPress() {
+        if (settingsIconPress == null)
+            settingsIconPress = getImage("img/icon-settings-press.png");
+        return settingsIconPress;
+    }
+
     public static BufferedImage getPencilIcon() {
         if (pencilIcon == null)
             pencilIcon = getImage("img/icon-edit.png");
         return pencilIcon;
     }
 
+    public static BufferedImage getPencilIconPress() {
+        if (pencilIconPress == null)
+            pencilIconPress = getImage("img/icon-edit-press.png");
+        return pencilIconPress;
+    }
+
     public static BufferedImage getSendMessageImage() {
         if (sendMessageIcon == null)
             sendMessageIcon = getImage("img/button-send.png");
         return sendMessageIcon;
+    }
+
+    public static BufferedImage getSendMessageImagePress() {
+        if (sendMessageIconPress == null)
+            sendMessageIconPress = getImage("img/button-send-press.png");
+        return sendMessageIconPress;
     }
 
     public static BufferedImage getSearchIcon() {

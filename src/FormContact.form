@@ -13,9 +13,9 @@
           <gridbag weightx="0.0" weighty="0.0"/>
         </constraints>
         <properties>
-          <maximumSize width="66" height="66"/>
-          <minimumSize width="8" height="66"/>
-          <preferredSize width="66" height="66"/>
+          <maximumSize width="66" height="42"/>
+          <minimumSize width="8" height="42"/>
+          <preferredSize width="66" height="42"/>
         </properties>
         <border type="none"/>
         <children/>

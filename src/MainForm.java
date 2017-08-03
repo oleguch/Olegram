@@ -36,10 +36,13 @@ public class MainForm extends JPanel {
 
         GuiHelper.decorateScrollPane(messageTextScrollPane);
 
-        GuiHelper.decorateAsImageButton(settingsButton, Images.getSettingsIcon());
-        GuiHelper.decorateAsImageButton(buddyEditButton, Images.getPencilIcon());
-        GuiHelper.decorateAsImageButton(sendMessageButton, Images.getSendMessageImage());
+//        GuiHelper.decorateAsImageButton(settingsButton, Images.getSettingsIcon());
+//        GuiHelper.decorateAsImageButton(buddyEditButton, Images.getPencilIcon());
+//        GuiHelper.decorateAsImageButton(sendMessageButton, Images.getSendMessageImage());
 
+        Images.decorateAsImageButton(settingsButton, Images.getSettingsIcon(), Images.getSettingsIconPress(), null);
+        Images.decorateAsImageButton(buddyEditButton, Images.getPencilIcon(), Images.getPencilIconPress(), null);
+        Images.decorateAsImageButton(sendMessageButton, Images.getSendMessageImage(), Images.getSendMessageImagePress(), null);
         Helper.clearBorder(messageTextArea);
         Helper.clearBorder(searchTextField);
     }

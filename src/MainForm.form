@@ -83,8 +83,8 @@
               <scrollpane id="1c0f7" binding="messageTextScrollPane">
                 <constraints border-constraint="Center"/>
                 <properties>
-                  <minimumSize width="17" height="80"/>
-                  <preferredSize width="17" height="80"/>
+                  <minimumSize width="17" height="45"/>
+                  <preferredSize width="17" height="45"/>
                 </properties>
                 <border type="none"/>
                 <children>
@@ -97,10 +97,10 @@
               <component id="792e" class="javax.swing.JButton" binding="sendMessageButton">
                 <constraints border-constraint="East"/>
                 <properties>
-                  <maximumSize width="80" height="80"/>
-                  <minimumSize width="80" height="80"/>
+                  <maximumSize width="62" height="45"/>
+                  <minimumSize width="62" height="45"/>
                   <opaque value="false"/>
-                  <preferredSize width="80" height="80"/>
+                  <preferredSize width="62" height="45"/>
                 </properties>
               </component>
             </children>

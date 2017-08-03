@@ -41,7 +41,8 @@ public class FormContact extends JPanel implements ListCellRenderer <Person> {
     public Component getListCellRendererComponent(JList<? extends Person> jList, Person person, int index, boolean selected, boolean hasFocus) {
         Dialog dialog = telegramProxy.getDialog(person);
         this.nameLabel.setText(person.getFirstName() + " " + person.getLastName());
-        Fonts.setFontToComponent(this.nameLabel, Fonts.getFontLabel(), new Color(0x414141));
+        Fonts.setFontToComponent(this.nameLabel, Fonts.getUserNameFont(), new Color(0x434343));
+        lastMessageLabel.setForeground(new Color(0x6c6c6c));
         if(dialog != null){
             this.lastMessageLabel.setText(dialog.getLastMessage().getText());
         } else {
@@ -51,10 +52,12 @@ public class FormContact extends JPanel implements ListCellRenderer <Person> {
         if(selected) {
             setBackground(Color.white);
             photoPanel.setBackground(Color.white);
+            lastMessageLabel.setBackground(Color.white);
         } else {
             Color colorSelected = new Color(0xe6e6e6);
             setBackground(colorSelected);
             photoPanel.setBackground(colorSelected);
+            lastMessageLabel.setBackground(colorSelected);
         }
 
         this.hasFocus = hasFocus;

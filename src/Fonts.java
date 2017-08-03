@@ -8,6 +8,7 @@ public class Fonts {
     private static Font fontNumberLabel;
     private static Font fontForRegistrationField;
     private static Font nameFont;
+    private static Font userNameFont;
 
     public static Font getFontButton() {
         if (fontButton == null)
@@ -33,11 +34,20 @@ public class Fonts {
         return fontNumberLabel;
     }
 
+    public static Font getUserNameFont() {
+        if (userNameFont == null)
+            userNameFont = new Font("Open Sans SemiBold", Font.PLAIN, 16);
+        return userNameFont;
+    }
+
+
     public static Font getFontForRegistrationField() {
         if (fontForRegistrationField == null)
             fontForRegistrationField = new Font("Open Sans Light", Font.PLAIN, 40);
         return fontForRegistrationField;
     }
+
+
 
     public static void setFontToComponent(Component component, Font font, Color color) {
         component.setFont(font);
