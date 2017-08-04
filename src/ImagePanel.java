@@ -7,24 +7,10 @@ public class ImagePanel extends JPanel{
 
     private Image image;
     private boolean bool;
-    private boolean keepRatio;
-    private Insets insets;
-
-
-    public ImagePanel(Image image, boolean opaque, boolean keepRatio, Insets insets) {
-        this.image = image;
-        setOpaque(opaque);
-        this.keepRatio = keepRatio;
-        this.insets = insets;
-    }
 
     public ImagePanel(Image image, boolean bool) {
         this.image = image;
         this.bool = bool;
-    }
-
-    public ImagePanel(Image image, boolean opaque, boolean keepRatio, int inset) {
-        this(image, opaque, keepRatio, new Insets(inset, inset, inset, inset));
     }
 
     @Override
@@ -37,12 +23,5 @@ public class ImagePanel extends JPanel{
     @Override
     protected void paintBorder(Graphics graphics) {
         super.paintBorder(graphics);
-    }
-
-    public void setImage(Image image) {
-        if(image != this.image) {
-            this.image = image;
-            repaint();
-        }
     }
 }

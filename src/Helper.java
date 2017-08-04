@@ -1,9 +1,5 @@
-import org.javagram.dao.Person;
-import org.javagram.dao.proxy.TelegramProxy;
-
 import javax.swing.*;
 import java.awt.*;
-import java.awt.image.BufferedImage;
 
 
 public class Helper {
@@ -59,42 +55,5 @@ public class Helper {
             default:
                 return null;
         }
-    }
-
-    public static void clearBorder(JComponent component) {
-        component.setBorder(BorderFactory.createEmptyBorder());
-    }
-
-    public static void clearBoth(JComponent textPane) {
-        clearBackground(textPane);
-        clearBorder(textPane);
-    }
-    public static void clearBackground(JComponent component) {
-        component.setOpaque(false);
-        component.setBackground(new Color(0, 0, 0, 0));//Для Nimbus
-
-    }
-
-    public static BufferedImage getPhoto(TelegramProxy telegramProxy, Person person, boolean small) {
-        BufferedImage image;
-
-        try {
-            image = telegramProxy.getPhoto(person, small);
-        } catch (Exception e) {
-            e.printStackTrace();
-            image = null;
-        }
-
-        if(image == null)
-            image = Images.getUserImage(small);
-        return image;
-    }
-
-
-    public static BufferedImage getPhoto(TelegramProxy telegramProxy, Person person, boolean small, boolean circle) {
-        BufferedImage photo = getPhoto(telegramProxy, person, small);
-        if(circle)
-            photo = GuiHelper.makeCircle(photo);
-        return photo;
     }
 }

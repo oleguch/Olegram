@@ -20,16 +20,6 @@ public class Images {
     private static BufferedImage iconPhone;
     private static BufferedImage iconLock;
     private static BufferedImage logoMini;
-    private static BufferedImage logoMicro;
-    private static BufferedImage settingsIcon;
-    private static BufferedImage settingsIconPress;
-    private static BufferedImage pencilIcon;
-    private static BufferedImage pencilIconPress;
-    private static BufferedImage sendMessageIcon;
-    private static BufferedImage sendMessageIconPress;
-    private static BufferedImage searchIcon;
-    private static BufferedImage smallUserImage;
-    private static BufferedImage largeUserImage;
 
     public static BufferedImage getIconLock() {
         if (iconLock == null)
@@ -40,12 +30,6 @@ public class Images {
         if (logoMini == null)
             logoMini = getImage("img/logo-mini.png");
         return logoMini;
-    }
-
-    public static BufferedImage getLogoMicro() {
-        if (logoMicro == null)
-            logoMicro = getImage("img/logo-micro.png");
-        return logoMicro;
     }
 
     public static BufferedImage getIconPhone() {
@@ -102,48 +86,6 @@ public class Images {
         return buttonMinimizePressed;
     }
 
-    public static BufferedImage getSettingsIcon() {
-        if (settingsIcon == null)
-            settingsIcon = getImage("img/icon-settings.png");
-        return settingsIcon;
-    }
-
-    public static BufferedImage getSettingsIconPress() {
-        if (settingsIconPress == null)
-            settingsIconPress = getImage("img/icon-settings-press.png");
-        return settingsIconPress;
-    }
-
-    public static BufferedImage getPencilIcon() {
-        if (pencilIcon == null)
-            pencilIcon = getImage("img/icon-edit.png");
-        return pencilIcon;
-    }
-
-    public static BufferedImage getPencilIconPress() {
-        if (pencilIconPress == null)
-            pencilIconPress = getImage("img/icon-edit-press.png");
-        return pencilIconPress;
-    }
-
-    public static BufferedImage getSendMessageImage() {
-        if (sendMessageIcon == null)
-            sendMessageIcon = getImage("img/button-send.png");
-        return sendMessageIcon;
-    }
-
-    public static BufferedImage getSendMessageImagePress() {
-        if (sendMessageIconPress == null)
-            sendMessageIconPress = getImage("img/button-send-press.png");
-        return sendMessageIconPress;
-    }
-
-    public static BufferedImage getSearchIcon() {
-        if (searchIcon == null)
-            searchIcon = getImage("img/icon-search.png");
-        return searchIcon;
-    }
-
     private static BufferedImage getImage(String path) {
         try {
             return ImageIO.read(Images.class.getResource(path));
@@ -188,22 +130,5 @@ public class Images {
         int x = (area.width - width) / 2;
         int y = (area.height - height) / 2;
         return new Rectangle(x,y,width,height);
-    }
-
-
-    public static BufferedImage getUserImage(boolean small) {
-        return small ? getSmallUserImage() : getLargeUserImage();
-    }
-
-    public synchronized static BufferedImage getSmallUserImage() {
-        if (smallUserImage == null)
-            smallUserImage = getImage("img/images_user.jpg");
-        return smallUserImage;
-    }
-
-    public synchronized static BufferedImage getLargeUserImage() {
-        if (largeUserImage == null)
-            largeUserImage = getImage("img/User-icon.png");
-        return largeUserImage;
     }
 }
