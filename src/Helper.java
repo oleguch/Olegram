@@ -1,5 +1,9 @@
+import org.javagram.dao.Person;
+import org.javagram.dao.proxy.TelegramProxy;
+
 import javax.swing.*;
 import java.awt.*;
+import java.awt.image.BufferedImage;
 
 
 public class Helper {
@@ -55,5 +59,46 @@ public class Helper {
             default:
                 return null;
         }
+    }
+
+    public static void decorateScrollPane(JScrollPane scrollPane) {
+        int width = 3;
+
+        JScrollBar verticalScrollBar =  scrollPane.getVerticalScrollBar();
+        verticalScrollBar.setUI(new MyScrollbarUI());
+        verticalScrollBar.setPreferredSize(new Dimension(width, Integer.MAX_VALUE));
+
+        JScrollBar horizontalScrollBar =  scrollPane.getHorizontalScrollBar();
+        horizontalScrollBar.setUI(new MyScrollbarUI());
+        horizontalScrollBar.setPreferredSize(new Dimension(Integer.MAX_VALUE, width));
+
+        for (String corner : new String[] {ScrollPaneConstants.LOWER_RIGHT_CORNER, ScrollPaneConstants.LOWER_LEFT_CORNER,
+                ScrollPaneConstants.UPPER_LEFT_CORNER, ScrollPaneConstants.UPPER_RIGHT_CORNER}) {
+            JPanel panel = new JPanel();
+            panel.setBackground(Color.white);
+            scrollPane.setCorner(corner, panel);
+        }
+    }
+
+    public static BufferedImage getPhoto(TelegramProxy telegramProxy, Person person, boolean small) {
+        BufferedImage image;
+
+        try {
+            image = telegramProxy.getPhoto(person, small);
+        } catch (Exception e) {
+            e.printStackTrace();
+            image = null;
+        }
+
+        if(image == null)
+            image = Images.getUserImage(small);
+        return image;
+    }
+
+    public static BufferedImage getPhoto(TelegramProxy telegramProxy, Person person, boolean small, boolean circle) {
+        BufferedImage photo = getPhoto(telegramProxy, person, small);
+        if(circle)
+            photo = GuiHelper.makeCircle(photo);
+        return photo;
     }
 }

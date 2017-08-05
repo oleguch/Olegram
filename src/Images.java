@@ -20,6 +20,8 @@ public class Images {
     private static BufferedImage iconPhone;
     private static BufferedImage iconLock;
     private static BufferedImage logoMini;
+    private static BufferedImage smallUserImage;
+    private static BufferedImage largeUserImage;
 
     public static BufferedImage getIconLock() {
         if (iconLock == null)
@@ -130,5 +132,25 @@ public class Images {
         int x = (area.width - width) / 2;
         int y = (area.height - height) / 2;
         return new Rectangle(x,y,width,height);
+    }
+    public static BufferedImage getUserImage(boolean small) {
+        return small ? getSmallUserImage() : getLargeUserImage();
+    }
+
+    private static BufferedImage loadImage(String name) {
+        return GuiHelper.loadImage("img/" + name, Images.class);
+    }
+
+
+    public synchronized static BufferedImage getSmallUserImage() {
+        if (smallUserImage == null)
+            smallUserImage = loadImage("images(2).jpg");
+        return smallUserImage;
+    }
+
+    public synchronized static BufferedImage getLargeUserImage() {
+        if (largeUserImage == null)
+            largeUserImage = loadImage("User-icon.png");
+        return largeUserImage;
     }
 }

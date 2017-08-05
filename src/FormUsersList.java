@@ -3,6 +3,7 @@ import org.javagram.dao.proxy.TelegramProxy;
 
 import javax.swing.*;
 import javax.swing.event.ListSelectionListener;
+import java.awt.*;
 import java.awt.event.ActionListener;
 
 public class FormUsersList extends JPanel {
@@ -11,6 +12,10 @@ public class FormUsersList extends JPanel {
     private JPanel rootPanel;
 
     private TelegramProxy telegramProxy;
+
+    {
+        Helper.decorateScrollPane(scrollPane);
+    }
 
     private void createUIComponents() {
         rootPanel = this;
@@ -22,7 +27,6 @@ public class FormUsersList extends JPanel {
 
     public void setTelegramProxy(TelegramProxy telegramProxy) {
         this.telegramProxy = telegramProxy;
-
         if(telegramProxy != null) {
             java.util.List<Person> dialogs = telegramProxy.getPersons();
             list.setCellRenderer(new FormContact(telegramProxy));

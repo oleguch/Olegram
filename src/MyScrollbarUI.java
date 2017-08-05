@@ -2,12 +2,11 @@ import javax.swing.*;
 import javax.swing.plaf.basic.BasicScrollBarUI;
 import java.awt.*;
 
-public class MyScrollbarUI extends BasicScrollBarUI {
-
+public class MyScrollbarUI extends BasicScrollBarUI{
     @Override
     protected void paintThumb(Graphics g, JComponent c, Rectangle thumbBounds) {
         // super.paintThumb(g, c, thumbBounds);
-        g.setColor(new Color(0x00b3e6));
+        g.setColor(new Color(0x82B7E8));
         g.fillRect(thumbBounds.x, thumbBounds.y, thumbBounds.width, thumbBounds.height);
     }
 

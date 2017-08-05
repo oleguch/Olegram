@@ -2,15 +2,13 @@ import org.javagram.dao.*;
 import org.javagram.dao.proxy.TelegramProxy;
 
 import javax.swing.*;
-import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.io.IOException;
 import java.text.ParseException;
-import java.util.ArrayList;
-import java.util.List;
+
 
 public class MyFrame extends JFrame{
     private FormConfirmSMS formConfirmSMS = new FormConfirmSMS();
@@ -209,12 +207,6 @@ public class MyFrame extends JFrame{
 
 
     private void toFormUserList() throws IOException, ApiException {
-//        TelegramProxy telegramProxy = new TelegramProxy(telegramDAO);
-//        List<Person> list = telegramProxy.getPersons();
-//        ArrayList<String> users = new ArrayList<>();
-//        for (org.javagram.dao.Person person: list)
-//            users.add(person.getFirstName() + " " + person.getLastName());
-//         formUsersList.setListData(users.toArray());
         nextForm(formUsersList);
         createTelegramProxy();
     }
