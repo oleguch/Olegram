@@ -13,28 +13,34 @@ public class PhotoPanel extends ImagePanel {
         this.online = online;
     }
 
-    private final double onlineSignSize = 0.3;
-
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
+        g.setColor(Colors.getColorBorderUserList());            //Граница сверху-снизу
+        g.drawLine(0,0,this.getWidth() - 1, 0);
+        g.drawLine(0, this.getHeight() - 1, this.getWidth() - 1,this.getHeight() - 1);
+        double onlineSignSize = 0.2;
 
+        //int dSmall = 10;
+        //int dx = 2;
+//        int rightBorder = 3;
+//        int dBig = dSmall + 2*dx;
+        int dx = (int)(this.getWidth() * onlineSignSize);
+        int dy = (int)(this.getHeight() * onlineSignSize);
+        int x = this.getWidth() - dx;
+        int y = this.getHeight() - dy;
+//        int xBig = this.getWidth() - dBig - rightBorder;
+//        int yBig = this.getHeight() - dBig;
+//        int xSmall = this.getWidth() - dBig - rightBorder + dx;
+//        int ySmall = this.getHeight() - dBig + dx;
+        dx -= 3;
         if(online) {
-
-            int dx = (int)(this.getWidth() * onlineSignSize);
-            int dy = (int)(this.getHeight() * onlineSignSize);
-
-            int x = this.getWidth() - dx;
-            int y = this.getHeight() - dy;
-
-            dx -= 2;
-            dy -= 2;
-
-            g.setColor(new Color(0x00B000));
-            g.fillRoundRect(x, y, dx, dy, dx, dy);
-
-            g.setColor(new Color(0x0000B0));
-            g.drawRoundRect(x, y, dx, dy, dx, dy);
+            g.setColor(Colors.getColorOnlineStatusBorder());
+          //  g.fillOval(xBig,yBig,dBig, dBig);
+            g.fillOval(x,y,dx+4, dx+4);
+            g.setColor(Colors.getColorOnlineStatus());
+           // g.fillOval(xSmall, ySmall, dSmall, dSmall);
+            g.fillOval(x+2, y+2,dx,dx);
         }
     }
 

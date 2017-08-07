@@ -24,7 +24,7 @@ public class FormContact extends JPanel implements ListCellRenderer <Person> {
 
     protected void paintComponent(Graphics graphics) {
         super.paintComponent(graphics);
-        graphics.setColor(Colors.getColorBorderUserList());
+        graphics.setColor(Colors.getColorBorderUserList());         //Граница формы контакта
         graphics.drawRect(0, 0, this.getWidth() - 1, this.getHeight() - 1);
         if(hasFocus) {
             graphics.setColor(Colors.getLightBlueColor());
