@@ -1,5 +1,6 @@
 import javax.imageio.ImageIO;
 import java.awt.*;
+import java.awt.font.LineMetrics;
 import java.awt.geom.Ellipse2D;
 import java.awt.image.BufferedImage;
 import java.net.URL;
@@ -63,5 +64,38 @@ public class GuiHelper {
             e.printStackTrace();
             return new BufferedImage(1, 1, BufferedImage.TYPE_4BYTE_ABGR);
         }
+    }
+
+    public static int drawText(Graphics g, String text, Color color, Font font, int x, int y, int width, int height, int inset, boolean right) {
+
+        String line = text;
+
+        x += inset;
+        int maxWidth = width - inset * 2;
+        FontMetrics fontMetrics = g.getFontMetrics(font);
+
+        while (fontMetrics.stringWidth(line) > maxWidth) {
+            if (line.length() > 3)
+                line = line.substring(0, line.length() - 4) + "...";
+            else if(right)
+                return x + maxWidth - inset;
+            else
+                return x + inset;
+        }
+
+        LineMetrics lineMetrics = fontMetrics.getLineMetrics(line, g);
+        y += (int) Math.round((height - lineMetrics.getHeight()) / 2.0 + fontMetrics.getAscent());
+
+        if(right)
+            x += maxWidth - fontMetrics.stringWidth(line);
+
+        g.setColor(color);
+        g.setFont(font);
+        g.drawString(line, x, y);
+
+        if(right)
+            return x - inset;
+        else
+            return x + fontMetrics.stringWidth(line) + inset;
     }
 }

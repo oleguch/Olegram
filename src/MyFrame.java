@@ -15,8 +15,14 @@ public class MyFrame extends JFrame{
     private FormPhone formPhone = new FormPhone();
     private FormNewUser formNewUser = new FormNewUser();
     private FormUsersList formUsersList = new FormUsersList();
+    private MainForm mainForm = new MainForm();
     private Decoration decoration;
     private String phoneNumber;
+
+
+
+
+
     private static final int NAME_EMPTY=1,
                             SURNAME_EMPTY = 2,
                             FIELD_OK = 3;
@@ -33,6 +39,14 @@ public class MyFrame extends JFrame{
         setUndecorated(true);
         setTitle("Olegram");
         setSize(800, 600);
+
+
+
+
+        mainForm.setContactsPanel(formUsersList);
+
+
+
         addWindowListener(new WindowAdapter() {
             @Override
             public void windowOpened(WindowEvent e) {           //установка фокуса
@@ -171,15 +185,28 @@ public class MyFrame extends JFrame{
                 }
                 if (e3.isCodeExpired()) {
                     showMessageError("Код устарел. Отправляю новый");
-                    telegramDAO.sendCode();
-                    formConfirmSMS.clearCode();
-                    formConfirmSMS.setFocusToCodeField();
+                    sendAndRequestCode();
                 }
             }
         }  catch (Exception e) {
             catchException(e);
         }
     }
+
+    private void sendAndRequestCode() throws IOException, ApiException {
+        sendCode();
+        showCodeRequest();
+    }
+
+    private void showCodeRequest() {
+        formConfirmSMS.clearCode();
+        formConfirmSMS.setFocusToCodeField();
+    }
+
+    private void sendCode() throws IOException, ApiException {
+        telegramDAO.sendCode();
+    }
+
 
     private void catchException(Exception e) {
         if (e instanceof IOException) {
@@ -207,7 +234,8 @@ public class MyFrame extends JFrame{
 
 
     private void toFormUserList() throws IOException, ApiException {
-        nextForm(formUsersList);
+        //nextForm(formUsersList);
+        nextForm(mainForm);
         createTelegramProxy();
     }
 
@@ -241,7 +269,7 @@ public class MyFrame extends JFrame{
             formUsersList.setSelectedValue(null);
             //createMessagesForm();
             //displayDialog(null);
-            //displayMe(telegramProxy != null ? telegramProxy.getMe() : null);
+            displayMe(telegramProxy != null ? telegramProxy.getMe() : null);
         } finally {
             //messagesFrozen--;
         }
@@ -249,6 +277,16 @@ public class MyFrame extends JFrame{
         formUsersList.repaint();
         //mainForm.revalidate();
         //mainForm.repaint();
+    }
+
+    private void displayMe(Me me) {
+        if (me == null) {
+            mainForm.setMeText(null);
+            mainForm.setMePhoto(null);
+        } else {
+            mainForm.setMeText(me.getFirstName() + " " + me.getLastName());
+            mainForm.setMePhoto(Helper.getPhoto(telegramProxy, me, true, true));
+        }
     }
 
     private void updateContacts() {

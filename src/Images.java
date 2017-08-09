@@ -5,6 +5,8 @@ import java.awt.image.BufferedImage;
 import java.io.IOException;
 
 public class Images {
+
+
     private Images() {
         System.out.println("гав");
     }
@@ -22,6 +24,13 @@ public class Images {
     private static BufferedImage logoMini;
     private static BufferedImage smallUserImage;
     private static BufferedImage largeUserImage;
+    private static BufferedImage sendMessageIconPress;
+    private static BufferedImage sendMessageIcon;
+    private static BufferedImage pencilIcon;
+    private static BufferedImage pencilIconPress;
+    private static BufferedImage settingsIcon;
+    private static BufferedImage settingsIconPress;
+    private static BufferedImage logoMicro;
 
     public static BufferedImage getIconLock() {
         if (iconLock == null)
@@ -152,5 +161,47 @@ public class Images {
         if (largeUserImage == null)
             largeUserImage = loadImage("User-icon.png");
         return largeUserImage;
+    }
+
+    public static BufferedImage getSettingsIcon() {
+        if (settingsIcon == null)
+            settingsIcon = getImage("img/icon-settings.png");
+        return settingsIcon;
+    }
+
+    public static BufferedImage getSettingsIconPress() {
+        if (settingsIconPress == null)
+            settingsIconPress = getImage("img/icon-settings-press.png");
+        return settingsIconPress;
+    }
+
+    public static BufferedImage getPencilIcon() {
+        if (pencilIcon == null)
+            pencilIcon = getImage("img/icon-edit.png");
+        return pencilIcon;
+    }
+
+    public static BufferedImage getPencilIconPress() {
+        if (pencilIconPress == null)
+            pencilIconPress = getImage("img/icon-edit-press.png");
+        return pencilIconPress;
+    }
+
+    public static BufferedImage getSendMessageImage() {
+        if (sendMessageIcon == null)
+            sendMessageIcon = getImage("img/button-send.png");
+        return sendMessageIcon;
+    }
+
+    public static BufferedImage getSendMessageImagePress() {
+        if (sendMessageIconPress == null)
+            sendMessageIconPress = getImage("img/button-send-press.png");
+        return sendMessageIconPress;
+    }
+
+    public static BufferedImage getLogoMicro() {
+        if (logoMicro == null)
+            logoMicro= getImage("img/logo-micro.png");
+        return logoMicro;
     }
 }

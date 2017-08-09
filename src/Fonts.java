@@ -8,6 +8,8 @@ public class Fonts {
     private static Font fontForRegistrationField;
     private static Font fontUserNameList;
     private static Font fontLastMessage;
+    private static Font userNameTitleFont;
+    private static Font buddyTitleFont;
 
     public static Font getFontButton() {
         if (fontButton == null)
@@ -51,10 +53,24 @@ public class Fonts {
         return fontUserNameList;
     }
 
+    public static Font getUserNameTitleFont() {
+        if (userNameTitleFont == null)
+            userNameTitleFont = new Font("Open Sans Regular", Font.PLAIN, 18);
+        return userNameTitleFont;
+    }
+
+    public static Font getBuddyTitleFont() {
+        if (buddyTitleFont == null)
+            buddyTitleFont = new Font("Open Sans Regular", Font.PLAIN, 18);
+        return buddyTitleFont;
+    }
+
 
 
     public static void setFontToComponent(Component component, Font font, Color color) {
         component.setFont(font);
         component.setForeground(color);
     }
+
+
 }
