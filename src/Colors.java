@@ -17,5 +17,11 @@ public class Colors {
     public static Color getColorOnlineStatusBorder(){
         return new Color(0xeef0fc);
     }
+    public static Color getColorUserNameTitle() {
+        return new Color(0x71d3ee);
+    }
+    public static Color getColorBuddyNameFont(){
+        return new Color(0x949494);
+    }
 }
 

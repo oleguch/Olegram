@@ -2,6 +2,8 @@ import org.javagram.dao.*;
 import org.javagram.dao.proxy.TelegramProxy;
 
 import javax.swing.*;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
@@ -45,7 +47,14 @@ public class MyFrame extends JFrame{
 
         mainForm.setContactsPanel(formUsersList);
 
-
+        formUsersList.addListSelectionListener(new ListSelectionListener() {
+            @Override
+            public void valueChanged(ListSelectionEvent e) {
+                if (telegramProxy != null) {
+                    displayBuddy(formUsersList.getSelectedValue());
+                }
+            }
+        });
 
         addWindowListener(new WindowAdapter() {
             @Override
@@ -275,8 +284,8 @@ public class MyFrame extends JFrame{
         }
         formUsersList.revalidate();
         formUsersList.repaint();
-        //mainForm.revalidate();
-        //mainForm.repaint();
+        mainForm.revalidate();
+        mainForm.repaint();
     }
 
     private void displayMe(Me me) {
@@ -289,14 +298,15 @@ public class MyFrame extends JFrame{
         }
     }
 
-    private void updateContacts() {
-        //messagesFrozen++;
-        try {
-            Person person = formUsersList.getSelectedValue();
-            formUsersList.setTelegramProxy(telegramProxy);
-            formUsersList.setSelectedValue(person);
-        } finally {
-            //messagesFrozen--;
+    private void displayBuddy(Person person) {
+        if (person == null) {
+            mainForm.setBuddyText(null);
+            mainForm.setBuddyPhoto(null);
+            mainForm.setBuddyEditEnabled(false);
+        } else {
+            mainForm.setBuddyText(person.getFirstName() + " " + person.getLastName());
+            mainForm.setBuddyPhoto(Helper.getPhoto(telegramProxy, person, true, true));
+            mainForm.setBuddyEditEnabled(person instanceof Contact);
         }
     }
 

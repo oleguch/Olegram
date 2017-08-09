@@ -36,10 +36,6 @@ public class MainForm extends JPanel {
 
 //        GuiHelper.decorateScrollPane(messageTextScrollPane);
 
-//        GuiHelper.decorateAsImageButton(settingsButton, Images.getSettingsIcon());
-//        GuiHelper.decorateAsImageButton(buddyEditButton, Images.getPencilIcon());
-//        GuiHelper.decorateAsImageButton(sendMessageButton, Images.getSendMessageImage());
-
         Images.decorateAsImageButton(settingsButton, Images.getSettingsIcon(), Images.getSettingsIconPress(), null);
         Images.decorateAsImageButton(buddyEditButton, Images.getPencilIcon(), Images.getPencilIconPress(), null);
         Images.decorateAsImageButton(sendMessageButton, Images.getSendMessageImage(), Images.getSendMessageImagePress(), null);
@@ -57,37 +53,29 @@ public class MainForm extends JPanel {
             @Override
             protected void paintComponent(Graphics g) {
                 super.paintComponent(g);
-                g.setColor(new Color(0x00b3e6));
+                g.setColor(Colors.getLightBlueColor());
                 g.fillRect(0, 0, this.getWidth(), this.getHeight());
-
                 int leftMostPoint = settingsButton.getX();
-                int rightMostPoint = 25;
+                int rightMostPoint = 25;            //граница?, но почему справа, если это влияет на отступ логотипа слева?
                 //Установка текста фио пользователя
                 if (meText != null) {
-                    int inset = 25;
+                    int inset = 25;             //отступ справа-слева?
                     Font font = Fonts.getUserNameTitleFont();
                     //Color color = Color.white;
-                    Color color = new Color(0x71d3ee);
+                    Color color = Colors.getColorUserNameTitle();
                     String text = meText;
 
                     leftMostPoint = GuiHelper.drawText(g, text, color, font, rightMostPoint, 0, leftMostPoint - rightMostPoint, this.getHeight(), inset, true);
                 }
 
                 if (mePhoto != null) {
-                    int inset = 2;
+                    int inset = 10;
                     BufferedImage image = mePhoto;
 
                     leftMostPoint = GuiHelper.drawImage(g, image, rightMostPoint, 0, leftMostPoint - rightMostPoint, this.getHeight(), inset, true);
                 }
 
-                int marginY = (titlePanel.getHeight() - settingsButton.getHeight()) / 2;
-                System.out.println("titlePanel.height = " + titlePanel.getHeight() + ", button.height = " + settingsButton.getHeight());
-                System.out.println(marginY);
-                settingsButton.setMargin(new Insets(marginY, 5, 0, 5));
-
-                //rightMostPoint = GuiHelper.drawImage(g, Images.getPencilIcon(), rightMostPoint, 0, leftMostPoint - rightMostPoint, this.getHeight(), 3, false);
                 rightMostPoint = GuiHelper.drawImage(g, Images.getLogoMicro(), rightMostPoint, (this.getHeight()/2-24/2), leftMostPoint - rightMostPoint, 24/*this.getHeight()*/, 3, false);
-                //rightMostPoint = GuiHelper.drawImage(g,  Images.getPencilIcon(), rightMostPoint, 0, leftMostPoint - rightMostPoint, this.getHeight(), 5, false);
             }
         };
 
@@ -116,7 +104,7 @@ public class MainForm extends JPanel {
 
                     int inset = 10;
                     Font font = Fonts.getBuddyTitleFont();
-                    Color color = new Color(0x949494);
+                    Color color = Colors.getColorBuddyNameFont();
                     String text = buddyText;
 
                     rightMostPoint = GuiHelper.drawText(graphics, text, color, font, rightMostPoint, 0, leftMostPoint - rightMostPoint, this.getHeight(), inset, false);
@@ -139,62 +127,6 @@ public class MainForm extends JPanel {
         this.contactsPanel.add(contactsPanel);
     }
 
-    public Component getMessagesPanel() {
-        return this.messagesPanel.getComponent(0);
-    }
-
-    public void setMessagesPanel(Component messagesPanel) {
-        this.messagesPanel.removeAll();
-        this.messagesPanel.add(messagesPanel);
-    }
-
-    public void addSendMessageListener(ActionListener listener) {
-        this.sendMessageButton.addActionListener(listener);
-    }
-
-    public void removeSendMessageListener(ActionListener listener) {
-        this.sendMessageButton.removeActionListener(listener);
-    }
-
-    public void removeGearEventListener(ActionListener listener) {
-        this.settingsButton.removeActionListener(listener);
-    }
-
-    public void addGearEventListener(ActionListener listener) {
-        this.settingsButton.addActionListener(listener);
-    }
-
-    public void removeBuddyEditEventListener(ActionListener listener) {
-        this.buddyEditButton.removeActionListener(listener);
-    }
-
-    public void addBuddyEditEventListener(ActionListener listener) {
-        this.buddyEditButton.addActionListener(listener);
-    }
-
-    public void removeSearchEventListener(ActionListener listener) {
-        this.searchTextField.removeActionListener(listener);
-    }
-
-    public void addSearchEventListener(ActionListener listener) {
-        this.searchTextField.addActionListener(listener);
-    }
-
-    public String getSearchText() {
-        return this.searchTextField.getText();
-    }
-
-    public String getMessageText() {
-        return this.messageTextArea.getText();
-    }
-
-    public void setMessageText(String text) {
-        this.messageTextArea.setText(text);
-    }
-
-    public String getMeText() {
-        return meText;
-    }
 
     public void setMeText(String meText) {
         if(!Objects.equals(this.meText, meText)) {
@@ -203,17 +135,9 @@ public class MainForm extends JPanel {
         }
     }
 
-    public BufferedImage getMePhoto() {
-        return mePhoto;
-    }
-
     public void setMePhoto(BufferedImage mePhoto) {
         this.mePhoto = mePhoto;
         repaint();
-    }
-
-    public String getBuddyText() {
-        return buddyText;
     }
 
     public void setBuddyText(String buddyText) {
@@ -223,17 +147,9 @@ public class MainForm extends JPanel {
         }
     }
 
-    public BufferedImage getBuddyPhoto() {
-        return buddyPhoto;
-    }
-
     public void setBuddyPhoto(BufferedImage buddyPhoto) {
         this.buddyPhoto = buddyPhoto;
         repaint();
-    }
-
-    public boolean isBuddyEditEnabled() {
-        return buddyEditButton.isEnabled();
     }
 
     public void setBuddyEditEnabled(boolean enabled) {

@@ -66,14 +66,16 @@ public class GuiHelper {
         }
     }
 
-    public static int drawText(Graphics g, String text, Color color, Font font, int x, int y, int width, int height, int inset, boolean right) {
 
+    //возвращает
+    public static int drawText(Graphics g, String text, Color color, Font font, int x, int y, int width, int height, int inset, boolean right) {
         String line = text;
 
         x += inset;
         int maxWidth = width - inset * 2;
         FontMetrics fontMetrics = g.getFontMetrics(font);
 
+        //обрезка строки
         while (fontMetrics.stringWidth(line) > maxWidth) {
             if (line.length() > 3)
                 line = line.substring(0, line.length() - 4) + "...";
@@ -86,9 +88,9 @@ public class GuiHelper {
         LineMetrics lineMetrics = fontMetrics.getLineMetrics(line, g);
         y += (int) Math.round((height - lineMetrics.getHeight()) / 2.0 + fontMetrics.getAscent());
 
-        if(right)
+        if(right) {
             x += maxWidth - fontMetrics.stringWidth(line);
-
+        }
         g.setColor(color);
         g.setFont(font);
         g.drawString(line, x, y);
