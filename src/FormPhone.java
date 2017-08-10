@@ -58,4 +58,8 @@ public class FormPhone {
         fieldPhone.commitEdit();
         return "+7" + fieldPhone.getValue();
     }
+
+    public void clearNumber() {
+        fieldPhone.setText("");
+    }
 }

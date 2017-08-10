@@ -100,4 +100,10 @@ public class GuiHelper {
         else
             return x + fontMetrics.stringWidth(line) + inset;
     }
+
+    public static Color makeTransparent(Color color, float transparency) {
+        if(transparency < 0.0f || transparency > 1.0f)
+            throw new IllegalArgumentException();
+        return new Color(color.getRed(),color.getGreen(), color.getBlue(), (int)Math.round(color.getAlpha() * transparency));
+    }
 }

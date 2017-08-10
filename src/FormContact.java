@@ -4,6 +4,7 @@ import org.javagram.dao.proxy.TelegramProxy;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.image.*;
 
 public class FormContact extends JPanel implements ListCellRenderer <Person> {
     private JButton button;
@@ -60,7 +61,6 @@ public class FormContact extends JPanel implements ListCellRenderer <Person> {
         }
 
         this.hasFocus = hasFocus;
-
         ((PhotoPanel)photoPanel).setImage(Helper.getPhoto(telegramProxy, person, true, true));
         ((PhotoPanel)photoPanel).setOnline(telegramProxy.isOnline(person));
 
@@ -71,4 +71,5 @@ public class FormContact extends JPanel implements ListCellRenderer <Person> {
         rootPanel = this;
         photoPanel = new PhotoPanel(null, true, false, 0, false);
     }
+
 }

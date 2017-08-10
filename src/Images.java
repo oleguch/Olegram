@@ -31,6 +31,7 @@ public class Images {
     private static BufferedImage settingsIcon;
     private static BufferedImage settingsIconPress;
     private static BufferedImage logoMicro;
+    private static BufferedImage iconBack;
 
     public static BufferedImage getIconLock() {
         if (iconLock == null)
@@ -96,6 +97,13 @@ public class Images {
             buttonMinimizePressed = getImage("img/icon-hide-press.png");
         return buttonMinimizePressed;
     }
+
+    public static BufferedImage getIconBack() {
+        if (iconBack == null)
+            iconBack= getImage("img/icon-back.png");
+        return iconBack;
+    }
+
 
     private static BufferedImage getImage(String path) {
         try {

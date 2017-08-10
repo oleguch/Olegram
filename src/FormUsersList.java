@@ -15,6 +15,7 @@ public class FormUsersList extends JPanel {
 
     {
         Helper.decorateScrollPane(scrollPane);
+        list.setBackground(Colors.getColorUnselected());
     }
 
     private void createUIComponents() {

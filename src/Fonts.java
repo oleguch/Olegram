@@ -10,6 +10,9 @@ public class Fonts {
     private static Font fontLastMessage;
     private static Font userNameTitleFont;
     private static Font buddyTitleFont;
+    private static Font textFieldFontOverlay;
+    private static Font overlayTitleFont;
+    private static Font logoutOverlayFont;
 
     public static Font getFontButton() {
         if (fontButton == null)
@@ -63,6 +66,24 @@ public class Fonts {
         if (buddyTitleFont == null)
             buddyTitleFont = new Font("Open Sans Regular", Font.PLAIN, 18);
         return buddyTitleFont;
+    }
+
+    public static Font getTextFieldFontOverlay() {
+        if (textFieldFontOverlay == null)
+            textFieldFontOverlay = new Font("Open Sans Regular", Font.PLAIN, 30);
+        return textFieldFontOverlay;
+    }
+
+    public static Font getOverlayTitleFont() {
+        if (overlayTitleFont == null)
+            overlayTitleFont = new Font("Open Sans Light", Font.PLAIN, 45);
+        return overlayTitleFont;
+    }
+
+    public static Font getLogoutOverlayFont() {
+        if (logoutOverlayFont== null)
+            logoutOverlayFont = new Font("Open Sans Regular", Font.PLAIN, 20);
+        return logoutOverlayFont;
     }
 
 

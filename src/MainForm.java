@@ -43,6 +43,7 @@ public class MainForm extends JPanel {
 //        Helper.clearBorder(messageTextArea);
 //        Helper.clearBorder(searchTextField);
 
+        titlePanel.setBackground(Colors.getLightBlueColor());
 
     }
 
@@ -53,8 +54,9 @@ public class MainForm extends JPanel {
             @Override
             protected void paintComponent(Graphics g) {
                 super.paintComponent(g);
-                g.setColor(Colors.getLightBlueColor());
-                g.fillRect(0, 0, this.getWidth(), this.getHeight());
+
+//                g.setColor(Colors.getLightBlueColor());
+//                g.fillRect(0, 0, this.getWidth(), this.getHeight());
                 int leftMostPoint = settingsButton.getX();
                 int rightMostPoint = 25;            //граница?, но почему справа, если это влияет на отступ логотипа слева?
                 //Установка текста фио пользователя
@@ -154,5 +156,9 @@ public class MainForm extends JPanel {
 
     public void setBuddyEditEnabled(boolean enabled) {
         buddyEditButton.setEnabled(enabled);
+    }
+
+    public void addSettingEventListener(ActionListener listener) {
+        this.settingsButton.addActionListener(listener);
     }
 }

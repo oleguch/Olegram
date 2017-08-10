@@ -4,6 +4,7 @@ import org.javagram.dao.proxy.TelegramProxy;
 import javax.swing.*;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
@@ -20,6 +21,8 @@ public class MyFrame extends JFrame{
     private MainForm mainForm = new MainForm();
     private Decoration decoration;
     private String phoneNumber;
+    private ProfileForm profileForm = new ProfileForm();
+    private OverlayDialog overlayDialog = new OverlayDialog();
 
 
 
@@ -35,7 +38,9 @@ public class MyFrame extends JFrame{
         this.telegramDAO = telegramDAO;
         setContentPane(formPhone.getRootPanel());
         decoration = new Decoration(this);
-        decoration.setContentPanel(formPhone.getRootPanel());
+        //decoration.setContentPanel(formPhone.getRootPanel());
+        decoration.setContentPanel(overlayDialog);
+        nextForm(formPhone.getRootPanel());
         //decoration.setContentPanel(formConfirmSMS.getRootPanel());
         //decoration.setContentPanel(formNewUser.getRootPanel());
         setUndecorated(true);
@@ -111,6 +116,28 @@ public class MyFrame extends JFrame{
                         toFormConfirmSMS();
                         break;
                 }
+            }
+        });
+        mainForm.addSettingEventListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                System.out.println("Button pressed");
+                Me me = telegramProxy.getMe();
+                ContactInfo contactInfo = Helper.toContactInfo(me, telegramProxy, false, false);
+                profileForm.setContactInfo(contactInfo);
+                changeOverlayPanel(profileForm);
+            }
+        });
+        profileForm.addActionListenerForLogout(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                switchToBegin();
+            }
+        });
+        profileForm.addActionListenerForClose(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                changeOverlayPanel(null);
             }
         });
     }
@@ -250,7 +277,8 @@ public class MyFrame extends JFrame{
 
     //переключение формы
     private void nextForm (JPanel panel) {
-        decoration.setContentPanel(panel);
+        //decoration.setContentPanel(panel);
+        overlayDialog.setContentPanel(panel);
     }
 
     //показать сообщение об ошибке
@@ -310,6 +338,23 @@ public class MyFrame extends JFrame{
         }
     }
 
+    private void changeOverlayPanel(Container overlayPanel) {
+        overlayDialog.setOverlayPanel(overlayPanel);
+    }
+
+
+    private void switchToBegin() {
+        try {
+            destroyTelegramProxy();
+            changeOverlayPanel(null);
+            formPhone.clearNumber();
+            formPhone.setFocusToFieldPhone();
+            nextForm(formPhone.getRootPanel());
+            telegramDAO.logOut();
+        } catch (Exception e) {
+            catchException(e);
+        }
+    }
 
 }
 
