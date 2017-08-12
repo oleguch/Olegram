@@ -3,20 +3,86 @@
   <component name="ChangeListManager">
     <list id="180bec09-c574-4d67-8261-bd82403d8192" name="Rejected commit: Default" comment="Выводж списка сконтактов с Именем, Фамилией и Телефоном" />
     <list default="true" id="01619a1b-5556-41c3-9fa4-a4c3fd8b8024" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/MyBufferedOverlayDialog.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/OverlayDialog.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/img/images(2).jpg" afterPath="$PROJECT_DIR$/res/img/images(2).jpg" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/res/font/OpenSansLight.ttf" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/res/font/OpenSansRegular.ttf" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/res/font/OpenSansSemiBold.ttf" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/res/img/User-icon.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/res/img/background.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/res/img/button-background-press.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/res/img/button-background-press3.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/res/img/button-background.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/res/img/button-send-press.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/res/img/button-send.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/res/img/icon-back.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/res/img/icon-close-press.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/res/img/icon-close.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/res/img/icon-edit-press.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/res/img/icon-edit.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/res/img/icon-hide-press.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/res/img/icon-hide.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/res/img/icon-lock.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/res/img/icon-phone.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/res/img/icon-plus.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/res/img/icon-search.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/res/img/icon-settings-press.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/res/img/icon-settings.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/res/img/icon-trash.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/res/img/images(2).jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/res/img/javagram-logo-micro.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/res/img/javagram-logo-mini.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/res/img/javagram-logo.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/res/img/logo-micro.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/res/img/logo-mini.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/res/img/logo.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/res/img/mask-blue-mini.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/res/img/mask-dark-gray-big.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/res/img/mask-gray-online.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/res/img/mask-gray.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/res/img/mask-white-mini.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/res/img/mask-white-online.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/res/img/mask-white.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/res/img/message-in-bottom.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/res/img/message-in-left.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/res/img/message-in-top.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/res/img/message-out-bottom.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/res/img/message-out-right.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/res/img/message-out-top.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/res/img/Копия (1) images(2).jpg" afterPath="" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/CodeDocumentFilter.java" afterPath="$PROJECT_DIR$/src/additionally/CodeDocumentFilter.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/Colors.java" afterPath="$PROJECT_DIR$/src/additionally/Colors.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/ComponentMover.java" afterPath="$PROJECT_DIR$/src/additionally/ComponentMover.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/ComponentResizer.java" afterPath="$PROJECT_DIR$/src/additionally/ComponentResizer.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/ContactInfo.java" afterPath="$PROJECT_DIR$/src/gui/additionally/ContactInfo.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/Decoration.form" afterPath="$PROJECT_DIR$/src/gui/guiForms/Decoration.form" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/Decoration.java" afterPath="$PROJECT_DIR$/src/gui/guiForms/Decoration.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/Fonts.java" afterPath="$PROJECT_DIR$/src/additionally/Fonts.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/FormConfirmSMS.form" afterPath="$PROJECT_DIR$/src/gui/guiForms/FormConfirmSMS.form" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/FormConfirmSMS.java" afterPath="$PROJECT_DIR$/src/gui/guiForms/FormConfirmSMS.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/FormContact.form" afterPath="$PROJECT_DIR$/src/gui/guiForms/FormContact.form" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/FormContact.java" afterPath="$PROJECT_DIR$/src/gui/guiForms/FormContact.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/FormNewUser.form" afterPath="$PROJECT_DIR$/src/gui/guiForms/FormNewUser.form" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/FormNewUser.java" afterPath="$PROJECT_DIR$/src/gui/guiForms/FormNewUser.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/FormPhone.form" afterPath="$PROJECT_DIR$/src/gui/guiForms/FormPhone.form" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/FormPhone.java" afterPath="$PROJECT_DIR$/src/gui/guiForms/FormPhone.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/FormUsersList.form" afterPath="$PROJECT_DIR$/src/gui/guiForms/FormUsersList.form" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/FormUsersList.java" afterPath="$PROJECT_DIR$/src/gui/guiForms/FormUsersList.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/GuiHelper.java" afterPath="$PROJECT_DIR$/src/gui/GuiHelper.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/Helper.java" afterPath="$PROJECT_DIR$/src/additionally/Helper.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/ImagePanel.java" afterPath="$PROJECT_DIR$/src/gui/additionally/ImagePanel.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/Images.java" afterPath="$PROJECT_DIR$/src/additionally/Images.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/MainForm.form" afterPath="$PROJECT_DIR$/src/gui/guiForms/MainForm.form" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/MainForm.java" afterPath="$PROJECT_DIR$/src/gui/guiForms/MainForm.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/MyBufferedOverlayDialog.java" afterPath="$PROJECT_DIR$/src/gui/additionally/MyBufferedOverlayDialog.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/MyFrame.java" afterPath="$PROJECT_DIR$/src/gui/MyFrame.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/MyScrollbarUI.java" afterPath="$PROJECT_DIR$/src/gui/additionally/MyScrollbarUI.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/OverlayBackground.java" afterPath="$PROJECT_DIR$/src/gui/overlays/OverlayBackground.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/OverlayDialog.java" afterPath="$PROJECT_DIR$/src/gui/overlays/OverlayDialog.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/PersonNewUser.java" afterPath="$PROJECT_DIR$/src/gui/additionally/PersonNewUser.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/PhotoPanel.java" afterPath="$PROJECT_DIR$/src/gui/additionally/PhotoPanel.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/ProfileForm.form" afterPath="$PROJECT_DIR$/src/gui/overlays/ProfileForm.form" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/ProfileForm.java" afterPath="$PROJECT_DIR$/src/gui/overlays/ProfileForm.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Fonts.java" afterPath="$PROJECT_DIR$/src/Fonts.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/FormContact.form" afterPath="$PROJECT_DIR$/src/FormContact.form" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/FormContact.java" afterPath="$PROJECT_DIR$/src/FormContact.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/FormPhone.java" afterPath="$PROJECT_DIR$/src/FormPhone.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/FormUsersList.java" afterPath="$PROJECT_DIR$/src/FormUsersList.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/GuiHelper.java" afterPath="$PROJECT_DIR$/src/GuiHelper.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Helper.java" afterPath="$PROJECT_DIR$/src/Helper.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Images.java" afterPath="$PROJECT_DIR$/src/Images.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/MainForm.java" afterPath="$PROJECT_DIR$/src/MainForm.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/MyFrame.java" afterPath="$PROJECT_DIR$/src/MyFrame.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Main.java" afterPath="$PROJECT_DIR$/src/Main.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="D:\Write\Java\Javagram\.idea\shelf/" />
@@ -36,11 +102,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="ProfileForm.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/ProfileForm.java">
+      <file leaf-file-name="ProfileForm.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/gui/overlays/ProfileForm.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="419">
-              <caret line="41" column="5" lean-forward="true" selection-start-line="41" selection-start-column="5" selection-end-line="41" selection-end-column="5" />
+            <state relative-caret-position="2231">
+              <caret line="97" column="29" lean-forward="false" selection-start-line="97" selection-start-column="29" selection-end-line="97" selection-end-column="29" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -48,55 +114,104 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ProfileForm.form" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/ProfileForm.form">
-          <provider selected="true" editor-type-id="ui-designer">
-            <state />
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="FormConfirmSMS.form" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/FormConfirmSMS.form">
-          <provider selected="true" editor-type-id="ui-designer">
-            <state />
+      <file leaf-file-name="FormConfirmSMS.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/gui/guiForms/FormConfirmSMS.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="92">
+              <caret line="14" column="13" lean-forward="false" selection-start-line="14" selection-start-column="13" selection-end-line="14" selection-end-column="13" />
+              <folding />
+            </state>
           </provider>
         </entry>
       </file>
       <file leaf-file-name="MyFrame.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/MyFrame.java">
+        <entry file="file://$PROJECT_DIR$/src/gui/MyFrame.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="278">
-              <caret line="350" column="45" lean-forward="true" selection-start-line="350" selection-start-column="45" selection-end-line="350" selection-end-column="45" />
+            <state relative-caret-position="326">
+              <caret line="395" column="39" lean-forward="true" selection-start-line="395" selection-start-column="39" selection-end-line="395" selection-end-column="39" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#4906#4907#0" expanded="true" />
-                <element signature="e#4953#4954#0" expanded="true" />
-                <element signature="e#5123#5124#0" expanded="true" />
-                <element signature="e#5179#5180#0" expanded="true" />
+                <element signature="e#2506#2746#0" expanded="true" />
+                <element signature="e#2745#2746#0" expanded="true" />
+                <element signature="e#2945#3266#0" expanded="true" />
+                <element signature="e#3265#3266#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Fonts.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Fonts.java">
+      <file leaf-file-name="MessageForm.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/gui/additionally/MessageForm.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="258">
-              <caret line="78" column="73" lean-forward="false" selection-start-line="78" selection-start-column="73" selection-end-line="78" selection-end-column="73" />
+            <state relative-caret-position="322">
+              <caret line="17" column="0" lean-forward="true" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
       <file leaf-file-name="FormPhone.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/FormPhone.java">
+        <entry file="file://$PROJECT_DIR$/src/gui/guiForms/FormPhone.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="225">
-              <caret line="34" column="28" lean-forward="true" selection-start-line="34" selection-start-column="28" selection-end-line="34" selection-end-column="52" />
+            <state relative-caret-position="897">
+              <caret line="53" column="27" lean-forward="false" selection-start-line="53" selection-start-column="27" selection-end-line="53" selection-end-column="27" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="MessagesForm.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/gui/guiForms/MessagesForm.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1817">
+              <caret line="84" column="29" lean-forward="false" selection-start-line="84" selection-start-column="29" selection-end-line="84" selection-end-column="29" />
               <folding>
-                <element signature="e#2336#2337#0" expanded="true" />
-                <element signature="e#2374#2375#0" expanded="true" />
+                <element signature="imports" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="OverlayDialog.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/gui/overlays/OverlayDialog.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="207">
+              <caret line="9" column="38" lean-forward="false" selection-start-line="9" selection-start-column="38" selection-end-line="9" selection-end-column="38" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Images.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/additionally/Images.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="2576">
+              <caret line="114" column="0" lean-forward="false" selection-start-line="114" selection-start-column="0" selection-end-line="114" selection-end-column="0" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Class.java" pinned="false" current-in-tab="false">
+        <entry file="jar:///usr/java/jdk1.8.0_144/src.zip!/java/lang/Class.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="49956">
+              <caret line="2259" column="24" lean-forward="false" selection-start-line="2259" selection-start-column="24" selection-end-line="2259" selection-end-column="24" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ImageIO.java" pinned="false" current-in-tab="false">
+        <entry file="jar:///usr/java/jdk1.8.0_144/src.zip!/javax/imageio/ImageIO.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="29693">
+              <caret line="1387" column="0" lean-forward="false" selection-start-line="1387" selection-start-column="0" selection-end-line="1387" selection-end-column="0" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -112,8 +227,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>na</find>
-      <find>fieldS</find>
       <find>SMS</find>
       <find>pass</find>
       <find>che</find>
@@ -142,7 +255,15 @@
       <find>logou</find>
       <find>check</find>
       <find>clos</find>
+      <find>crea</find>
+      <find>messagesFr</find>
     </findStrings>
+    <replaceStrings>
+      <replace />
+    </replaceStrings>
+    <dirStrings>
+      <dir>$PROJECT_DIR$</dir>
+    </dirStrings>
   </component>
   <component name="Git.Settings">
     <option name="UPDATE_TYPE" value="MERGE" />
@@ -157,19 +278,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/ButtonExitMiniAction.java" />
-        <option value="$PROJECT_DIR$/src/olegram/FormNewUser.form" />
-        <option value="$PROJECT_DIR$/src/olegram/FormPhone.form" />
-        <option value="$PROJECT_DIR$/src/olegram/FormConfirmSMS.form" />
-        <option value="$PROJECT_DIR$/src/olegram/FormWindow.form" />
-        <option value="$PROJECT_DIR$/src/FormFriends.java" />
-        <option value="$PROJECT_DIR$/src/ComponentMover.java" />
-        <option value="$PROJECT_DIR$/src/FormFriends.form" />
-        <option value="$PROJECT_DIR$/src/FormWindow.form" />
-        <option value="$PROJECT_DIR$/src/FormWindow.java" />
-        <option value="$PROJECT_DIR$/src/Person.java" />
-        <option value="[Connection] CONSOLE - Connection" />
-        <option value="$PROJECT_DIR$/src/MyDocumentFilterForCode.java" />
         <option value="$PROJECT_DIR$/src/CodeDocumentFilter.java" />
         <option value="$PROJECT_DIR$/src/Decoration.form" />
         <option value="$PROJECT_DIR$/src/Decoration.java" />
@@ -184,7 +292,6 @@
         <option value="$PROJECT_DIR$/src/MyScrollbarUI.java" />
         <option value="$PROJECT_DIR$/src/ImagePanel.java" />
         <option value="$PROJECT_DIR$/src/PhotoPanel.java" />
-        <option value="$PROJECT_DIR$/src/Main.java" />
         <option value="$PROJECT_DIR$/src/MyLayeredPane.java" />
         <option value="$PROJECT_DIR$/src/MainForm.form" />
         <option value="$PROJECT_DIR$/src/Colors.java" />
@@ -192,20 +299,36 @@
         <option value="$PROJECT_DIR$/src/GuiHelper.java" />
         <option value="$PROJECT_DIR$/src/ContactInfo.java" />
         <option value="$PROJECT_DIR$/src/FormUsersList.java" />
-        <option value="$PROJECT_DIR$/src/Helper.java" />
         <option value="$PROJECT_DIR$/src/MyBufferedOverlayDialog.java" />
-        <option value="$PROJECT_DIR$/src/MainForm.java" />
         <option value="$PROJECT_DIR$/src/OverlayDialog.java" />
         <option value="$PROJECT_DIR$/src/FormContact.form" />
         <option value="$PROJECT_DIR$/src/Images.java" />
-        <option value="$PROJECT_DIR$/src/FormContact.java" />
         <option value="$PROJECT_DIR$/src/FormPhone.form" />
         <option value="$PROJECT_DIR$/src/BlueButton.java" />
         <option value="$PROJECT_DIR$/src/FormPhone.java" />
-        <option value="$PROJECT_DIR$/src/MyFrame.java" />
         <option value="$PROJECT_DIR$/src/Fonts.java" />
         <option value="$PROJECT_DIR$/src/ProfileForm.form" />
         <option value="$PROJECT_DIR$/src/ProfileForm.java" />
+        <option value="$PROJECT_DIR$/src/Main.java" />
+        <option value="$PROJECT_DIR$/src/Helper.java" />
+        <option value="$PROJECT_DIR$/src/MessagesForm.java" />
+        <option value="$PROJECT_DIR$/src/FormContact.java" />
+        <option value="$PROJECT_DIR$/src/MainForm.java" />
+        <option value="$PROJECT_DIR$/src/MyFrame.java" />
+        <option value="$PROJECT_DIR$/src/gui/GuiHelper.java" />
+        <option value="$PROJECT_DIR$/src/gui/additionally/MessageForm.java" />
+        <option value="$PROJECT_DIR$/src/additionally/Helper.java" />
+        <option value="$PROJECT_DIR$/src/gui/overlays/ProfileForm.java" />
+        <option value="$PROJECT_DIR$/src/additionally/ComponentResizer.java" />
+        <option value="$PROJECT_DIR$/src/gui/guiForms/Decoration.java" />
+        <option value="$PROJECT_DIR$/src/gui/guiForms/FormConfirmSMS.java" />
+        <option value="$PROJECT_DIR$/src/gui/guiForms/FormContact.java" />
+        <option value="$PROJECT_DIR$/src/gui/guiForms/FormNewUser.java" />
+        <option value="$PROJECT_DIR$/src/gui/guiForms/FormPhone.java" />
+        <option value="$PROJECT_DIR$/src/gui/guiForms/MessagesForm.java" />
+        <option value="$PROJECT_DIR$/src/gui/overlays/OverlayDialog.java" />
+        <option value="$PROJECT_DIR$/src/additionally/Images.java" />
+        <option value="$PROJECT_DIR$/src/gui/MyFrame.java" />
       </list>
     </option>
   </component>
@@ -272,9 +395,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
-      <pane id="AndroidView" />
-      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -285,36 +405,33 @@
             <path>
               <item name="Olegram beta" type="b2602c69:ProjectViewProjectNode" />
               <item name="Olegram" type="462c0819:PsiDirectoryNode" />
+              <item name="res" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Olegram beta" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Olegram" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="Olegram beta" type="b2602c69:ProjectViewProjectNode" />
               <item name="Olegram" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="FormConfirmSMS" type="e9f4de52:FormNode" />
+              <item name="gui" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="Olegram beta" type="b2602c69:ProjectViewProjectNode" />
               <item name="Olegram" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="FormNewUser" type="e9f4de52:FormNode" />
-            </path>
-            <path>
-              <item name="Olegram beta" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Olegram" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="FormPhone" type="e9f4de52:FormNode" />
-            </path>
-            <path>
-              <item name="Olegram beta" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Olegram" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="ProfileForm" type="e9f4de52:FormNode" />
+              <item name="gui" type="462c0819:PsiDirectoryNode" />
+              <item name="additionally" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
+      <pane id="Scratches" />
+      <pane id="AndroidView" />
+      <pane id="Scope" />
       <pane id="PackagesPane" />
     </panes>
   </component>
@@ -338,20 +455,23 @@
     </excluded-roots>
   </component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/resources/img" />
-      <recent name="$PROJECT_DIR$/src" />
-      <recent name="$PROJECT_DIR$/src/" />
-    </key>
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="AdvancePackage" />
       <recent name="" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="E:\Java\Project\SkillBox\Module03\Olegram\lib" />
     </key>
     <key name="CreateClassDialog.RecentsKey">
       <recent name="" />
       <recent name="ru.olegram" />
     </key>
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="E:\Java\Project\SkillBox\Module03\Olegram\lib" />
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/gui/overlays" />
+      <recent name="$PROJECT_DIR$/src/gui/guiForms" />
+      <recent name="$PROJECT_DIR$/resources/img" />
+      <recent name="$PROJECT_DIR$/src" />
+      <recent name="$PROJECT_DIR$/src/" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -602,13 +722,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1482675930488</updated>
-    </task>
-    <task id="LOCAL-00003" summary=":">
-      <created>1485544868036</created>
-      <option name="number" value="00003" />
-      <option name="presentableId" value="LOCAL-00003" />
-      <option name="project" value="LOCAL" />
-      <updated>1485544868036</updated>
     </task>
     <task id="LOCAL-00004" summary="Выводж списка сконтактов с Именем, Фамилией и Телефоном">
       <created>1486838271178</created>
@@ -946,7 +1059,14 @@
       <option name="project" value="LOCAL" />
       <updated>1502297628506</updated>
     </task>
-    <option name="localTasksCounter" value="52" />
+    <task id="LOCAL-00052" summary="Добавил оверлей профиля, поколдовал с его интерфейсом">
+      <created>1502383023338</created>
+      <option name="number" value="00052" />
+      <option name="presentableId" value="LOCAL-00052" />
+      <option name="project" value="LOCAL" />
+      <updated>1502383023338</updated>
+    </task>
+    <option name="localTasksCounter" value="53" />
     <servers />
   </component>
   <component name="TodoView">
@@ -975,7 +1095,7 @@
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32855567" sideWeight="0.4978678" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.18963675" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.20032051" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2497332" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -1060,7 +1180,6 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
-    <MESSAGE value="29.05.2017 чуть приукрасил" />
     <MESSAGE value="почти полностью удалил формы и код, оставил только три формы&#10;поменял Action на смену формы, разбив на отдельные методы, убрал геттеры где не надо, добавил установку фокуса в каждую форму отдельным методом" />
     <MESSAGE value="добавил класс Person" />
     <MESSAGE value="удалил выводы ошибок, удалил маску телефона" />
@@ -1085,14 +1204,15 @@
     <MESSAGE value="подправил классы, переделал онлайн статус, добавил границы сверху-снизу" />
     <MESSAGE value="добавил главное окно, оставил только список контактов и заголовок" />
     <MESSAGE value="постарался убрать неиспользуемое" />
-    <option name="LAST_COMMIT_MESSAGE" value="постарался убрать неиспользуемое" />
+    <MESSAGE value="Добавил оверлей профиля, поколдовал с его интерфейсом" />
+    <option name="LAST_COMMIT_MESSAGE" value="Добавил оверлей профиля, поколдовал с его интерфейсом" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints-dialog>
         <breakpoints-dialog />
       </breakpoints-dialog>
-      <option name="time" value="35" />
+      <option name="time" value="36" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -1101,20 +1221,7 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="db://[Connection] TABLE - public.osamylov_goods" />
-    <entry file="db://[Connection] SESSION BROWSER - Connection" />
-    <entry file="file://$PROJECT_DIR$/src/CodeDocumentFilter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="100">
-          <caret line="7" column="13" lean-forward="false" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="db://[Connection] CONSOLE - Connection" />
-    <entry file="db://[Connection] CONSOLE - Connection" />
-    <entry file="db://[Connection] CONSOLE - Connection" />
-    <entry file="db://[Connection] TABLE - public.osamylov_var_good" />
-    <entry file="file://$PROJECT_DIR$/src/Decoration.form">
+    <entry file="file://$PROJECT_DIR$/src/gui/guiForms/Decoration.form">
       <provider selected="true" editor-type-id="ui-designer">
         <state />
       </provider>
@@ -1144,14 +1251,6 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/HintTextFields.java" />
-    <entry file="file://$PROJECT_DIR$/src/FormConfirmSMS.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="380">
-          <caret line="27" column="36" lean-forward="false" selection-start-line="27" selection-start-column="36" selection-end-line="27" selection-end-column="36" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Config.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="207">
@@ -1160,7 +1259,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/FormUsersList.form">
+    <entry file="file://$PROJECT_DIR$/src/gui/guiForms/FormUsersList.form">
       <provider selected="true" editor-type-id="ui-designer">
         <state />
       </provider>
@@ -1179,76 +1278,13 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/PersonNewUser.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="23">
-          <caret line="1" column="13" lean-forward="false" selection-start-line="1" selection-start-column="13" selection-end-line="1" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/MyScrollbarUI.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="207">
-          <caret line="11" column="0" lean-forward="false" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/MyLayeredPane.java" />
-    <entry file="file://$PROJECT_DIR$/src/MainForm.form">
+    <entry file="file://$PROJECT_DIR$/src/gui/guiForms/MainForm.form">
       <provider selected="true" editor-type-id="ui-designer">
         <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Colors.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="322">
-          <caret line="24" column="5" lean-forward="false" selection-start-line="24" selection-start-column="5" selection-end-line="24" selection-end-column="5" />
-          <folding>
-            <element signature="e#179#180#0" expanded="false" />
-            <element signature="e#221#222#0" expanded="false" />
-            <element signature="e#637#638#0" expanded="false" />
-            <element signature="e#679#680#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/PhotoPanel.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="414">
-          <caret line="18" column="86" lean-forward="false" selection-start-line="18" selection-start-column="86" selection-end-line="18" selection-end-column="86" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Main.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="184">
-          <caret line="10" column="10" lean-forward="false" selection-start-line="10" selection-start-column="10" selection-end-line="10" selection-end-column="10" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Decoration.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="201">
-          <caret line="50" column="41" lean-forward="false" selection-start-line="50" selection-start-column="37" selection-end-line="50" selection-end-column="41" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/ContactInfo.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-421">
-          <caret line="9" column="32" lean-forward="false" selection-start-line="9" selection-start-column="32" selection-end-line="9" selection-end-column="32" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/OverlayBackground.java">
+    <entry file="file://$PROJECT_DIR$/src/gui/overlays/OverlayBackground.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="276">
           <caret line="14" column="33" lean-forward="false" selection-start-line="14" selection-start-column="33" selection-end-line="14" selection-end-column="33" />
@@ -1256,83 +1292,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/ComponentResizer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-5037">
-          <caret line="10" column="13" lean-forward="false" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/MainForm.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2967">
-          <caret line="135" column="22" lean-forward="false" selection-start-line="135" selection-start-column="22" selection-end-line="135" selection-end-column="22" />
-          <folding>
-            <element signature="imports" expanded="false" />
-            <element signature="e#5589#5590#0" expanded="false" />
-            <element signature="e#5652#5653#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/MyBufferedOverlayDialog.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1288">
-          <caret line="60" column="0" lean-forward="false" selection-start-line="60" selection-start-column="0" selection-end-line="60" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/OverlayDialog.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="414">
-          <caret line="21" column="0" lean-forward="false" selection-start-line="21" selection-start-column="0" selection-end-line="21" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/GuiHelper.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="212">
-          <caret line="48" column="32" lean-forward="false" selection-start-line="48" selection-start-column="32" selection-end-line="48" selection-end-column="32" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Helper.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="281">
-          <caret line="101" column="35" lean-forward="false" selection-start-line="101" selection-start-column="35" selection-end-line="101" selection-end-column="35" />
-          <folding>
-            <marker date="1502313905819" expanded="true" signature="2369:2375" ph="{...}" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/ImagePanel.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="874">
-          <caret line="45" column="16" lean-forward="false" selection-start-line="45" selection-start-column="16" selection-end-line="45" selection-end-column="16" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Images.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="644">
-          <caret line="34" column="0" lean-forward="false" selection-start-line="34" selection-start-column="0" selection-end-line="34" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/FormUsersList.java">
+    <entry file="file://$PROJECT_DIR$/src/gui/guiForms/FormUsersList.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="253">
           <caret line="17" column="12" lean-forward="false" selection-start-line="17" selection-start-column="12" selection-end-line="17" selection-end-column="12" />
@@ -1340,28 +1300,13 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/BlueButton.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="184">
-          <caret line="8" column="24" lean-forward="false" selection-start-line="8" selection-start-column="24" selection-end-line="8" selection-end-column="24" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/FormContact.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1350">
-          <caret line="74" column="0" lean-forward="false" selection-start-line="74" selection-start-column="0" selection-end-line="74" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/FormContact.form">
+    <entry file="file://$PROJECT_DIR$/src/BlueButton.java" />
+    <entry file="file://$PROJECT_DIR$/src/gui/guiForms/FormContact.form">
       <provider selected="true" editor-type-id="ui-designer">
         <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/FormPhone.form">
+    <entry file="file://$PROJECT_DIR$/src/gui/guiForms/FormPhone.form">
       <provider editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
@@ -1371,7 +1316,7 @@
         <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/FormNewUser.form">
+    <entry file="file://$PROJECT_DIR$/src/gui/guiForms/FormNewUser.form">
       <provider editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
@@ -1381,69 +1326,282 @@
         <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/FormNewUser.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="501">
-          <caret line="27" column="51" lean-forward="false" selection-start-line="22" selection-start-column="8" selection-end-line="27" selection-end-column="51" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/FormConfirmSMS.form">
-      <provider editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
+    <entry file="file://$PROJECT_DIR$/src/gui/overlays/ProfileForm.form">
       <provider selected="true" editor-type-id="ui-designer">
         <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Fonts.java">
+    <entry file="file://$PROJECT_DIR$/src/gui/guiForms/MainForm.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="258">
-          <caret line="78" column="73" lean-forward="false" selection-start-line="78" selection-start-column="73" selection-end-line="78" selection-end-column="73" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/FormPhone.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="225">
-          <caret line="34" column="28" lean-forward="true" selection-start-line="34" selection-start-column="28" selection-end-line="34" selection-end-column="52" />
+        <state relative-caret-position="506">
+          <caret line="169" column="21" lean-forward="false" selection-start-line="169" selection-start-column="21" selection-end-line="169" selection-end-column="21" />
           <folding>
-            <element signature="e#2336#2337#0" expanded="true" />
-            <element signature="e#2374#2375#0" expanded="true" />
+            <element signature="e#6035#6036#0" expanded="true" />
+            <element signature="e#6101#6102#0" expanded="true" />
+            <element signature="e#6278#6279#0" expanded="true" />
+            <element signature="e#6331#6332#0" expanded="true" />
+            <element signature="e#6378#6379#0" expanded="true" />
+            <element signature="e#6428#6429#0" expanded="true" />
+            <element signature="e#6471#6472#0" expanded="true" />
+            <element signature="e#6528#6529#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/MyFrame.java">
+    <entry file="file://$PROJECT_DIR$/src/additionally/Colors.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="278">
-          <caret line="350" column="45" lean-forward="true" selection-start-line="350" selection-start-column="45" selection-end-line="350" selection-end-column="45" />
+        <state relative-caret-position="46">
+          <caret line="4" column="13" lean-forward="false" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
+          <folding>
+            <element signature="e#660#661#0" expanded="true" />
+            <element signature="e#702#703#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/additionally/Fonts.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1766">
+          <caret line="4" column="13" lean-forward="false" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/gui/GuiHelper.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="92">
+          <caret line="9" column="13" lean-forward="false" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/gui/additionally/ContactInfo.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="92">
+          <caret line="4" column="13" lean-forward="false" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/gui/additionally/ImagePanel.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-8">
+          <caret line="7" column="13" lean-forward="false" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/gui/additionally/MyBufferedOverlayDialog.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-8">
+          <caret line="7" column="13" lean-forward="false" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/gui/additionally/MyScrollbarUI.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-8">
+          <caret line="6" column="13" lean-forward="false" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/gui/additionally/PhotoPanel.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-8">
+          <caret line="6" column="13" lean-forward="false" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar:///usr/java/jdk1.8.0_144/src.zip!/com/sun/corba/se/pept/transport/ContactInfo.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="293">
+          <caret line="45" column="22" lean-forward="true" selection-start-line="45" selection-start-column="22" selection-end-line="45" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/additionally/Helper.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="141">
+          <caret line="111" column="20" lean-forward="false" selection-start-line="111" selection-start-column="20" selection-end-line="111" selection-end-column="20" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#4906#4907#0" expanded="true" />
-            <element signature="e#4953#4954#0" expanded="true" />
-            <element signature="e#5123#5124#0" expanded="true" />
-            <element signature="e#5179#5180#0" expanded="true" />
+            <element signature="e#4945#4946#0" expanded="true" />
+            <element signature="e#5015#5016#0" expanded="true" />
+            <marker date="1502568972000" expanded="true" signature="2491:2497" ph="{...}" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/ProfileForm.form">
+    <entry file="file://$PROJECT_DIR$/src/additionally/CodeDocumentFilter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-8">
+          <caret line="9" column="13" lean-forward="false" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/additionally/ComponentMover.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-8">
+          <caret line="22" column="13" lean-forward="false" selection-start-line="22" selection-start-column="13" selection-end-line="22" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/additionally/ComponentResizer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="437">
+          <caret line="30" column="30" lean-forward="true" selection-start-line="30" selection-start-column="30" selection-end-line="30" selection-end-column="30" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Main.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="276">
+          <caret line="12" column="22" lean-forward="false" selection-start-line="12" selection-start-column="22" selection-end-line="12" selection-end-column="22" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/gui/additionally/PersonNewUser.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="46">
+          <caret line="2" column="13" lean-forward="false" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/gui/guiForms/Decoration.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1529">
+          <caret line="23" column="21" lean-forward="false" selection-start-line="23" selection-start-column="21" selection-end-line="23" selection-end-column="21" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/gui/guiForms/FormConfirmSMS.form">
+      <provider editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
       <provider selected="true" editor-type-id="ui-designer">
         <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/ProfileForm.java">
+    <entry file="file://$PROJECT_DIR$/src/gui/guiForms/FormContact.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="419">
-          <caret line="41" column="5" lean-forward="true" selection-start-line="41" selection-start-column="5" selection-end-line="41" selection-end-column="5" />
+        <state relative-caret-position="426">
+          <caret line="68" column="14" lean-forward="false" selection-start-line="68" selection-start-column="14" selection-end-line="68" selection-end-column="14" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/gui/guiForms/FormNewUser.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1196">
+          <caret line="58" column="30" lean-forward="false" selection-start-line="58" selection-start-column="30" selection-end-line="58" selection-end-column="30" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/gui/guiForms/FormPhone.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="897">
+          <caret line="53" column="27" lean-forward="false" selection-start-line="53" selection-start-column="27" selection-end-line="53" selection-end-column="27" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/gui/guiForms/MessagesForm.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1817">
+          <caret line="84" column="29" lean-forward="false" selection-start-line="84" selection-start-column="29" selection-end-line="84" selection-end-column="29" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar:///usr/java/jdk1.8.0_144/src.zip!/javax/imageio/ImageIO.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="29693">
+          <caret line="1387" column="0" lean-forward="false" selection-start-line="1387" selection-start-column="0" selection-end-line="1387" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar:///usr/java/jdk1.8.0_144/src.zip!/java/lang/Class.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="49956">
+          <caret line="2259" column="24" lean-forward="false" selection-start-line="2259" selection-start-column="24" selection-end-line="2259" selection-end-column="24" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/additionally/Images.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2576">
+          <caret line="114" column="0" lean-forward="false" selection-start-line="114" selection-start-column="0" selection-end-line="114" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/gui/overlays/OverlayDialog.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="207">
+          <caret line="9" column="38" lean-forward="false" selection-start-line="9" selection-start-column="38" selection-end-line="9" selection-end-column="38" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/gui/overlays/ProfileForm.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2231">
+          <caret line="97" column="29" lean-forward="false" selection-start-line="97" selection-start-column="29" selection-end-line="97" selection-end-column="29" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/gui/guiForms/FormConfirmSMS.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="92">
+          <caret line="14" column="13" lean-forward="false" selection-start-line="14" selection-start-column="13" selection-end-line="14" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/gui/MyFrame.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="326">
+          <caret line="395" column="39" lean-forward="true" selection-start-line="395" selection-start-column="39" selection-end-line="395" selection-end-column="39" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#2506#2746#0" expanded="true" />
+            <element signature="e#2745#2746#0" expanded="true" />
+            <element signature="e#2945#3266#0" expanded="true" />
+            <element signature="e#3265#3266#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/gui/additionally/MessageForm.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="322">
+          <caret line="17" column="0" lean-forward="true" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>

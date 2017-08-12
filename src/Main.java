@@ -1,4 +1,4 @@
-import org.javagram.dao.ApiBridgeTelegramDAO;
+import gui.MyFrame;
 import org.javagram.dao.DebugTelegramDAO;
 import org.javagram.dao.TelegramDAO;
 
@@ -13,5 +13,7 @@ public class Main {
         frame = new MyFrame(telegramDAO);
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);
+
+
     }
 }
