@@ -84,7 +84,7 @@ public class Fonts {
 
     public static Font getLogoutOverlayFont() {
         if (logoutOverlayFont== null)
-            logoutOverlayFont = new Font("Open Sans Regular", Font.PLAIN, 20);
+            logoutOverlayFont = new Font("Open Sans Light", Font.PLAIN, 20);
         return logoutOverlayFont;
     }
 

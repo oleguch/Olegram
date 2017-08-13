@@ -27,15 +27,14 @@ public class ProfileForm extends OverlayBackground {
     {
 
         //phoneLabel.setFont(additionally.Fonts.getNameFont().deriveFont(0, 30));
-        phoneLabel.setForeground(Color.white);
+//        phoneLabel.setForeground(Color.white);
 
         Images.decorateAsImageButton(closeButton, Images.getIconBack(), null, null);
         Fonts.setFontToComponent(logoutButton, Fonts.getLogoutOverlayFont(), Colors.getLightBlueColor());
-        Fonts.setFontToComponent(phoneLabel, Fonts.getFontLabel(), Color.GRAY);
+        Fonts.setFontToComponent(phoneLabel, Fonts.getLogoutOverlayFont(), Color.GRAY);
         logoutButton.setText("<html><u>ВЫЙТИ");
         Fonts.setFontToComponent(titleLabel, Fonts.getOverlayTitleFont(), Colors.getLightBlueColor());
-        titleLabel.setText("<html><p align='center'>Настройки профиля");
-        Fonts.setFontToComponent(nameLabel, Fonts.getTextFieldFontOverlay(), Colors.getLightBlueColor());
+        Fonts.setFontToComponent(nameLabel, Fonts.getFontForRegistrationField(), Colors.getLightBlueColor());
 
     }
 
@@ -68,6 +67,7 @@ public class ProfileForm extends OverlayBackground {
 
         if (contactInfo != null) {
             ((gui.additionally.ImagePanel) photoPanel).setImage(contactInfo.getPhoto());
+            //nameLabel.setText("Олег Самылов");
             nameLabel.setText(contactInfo.getFirstName() + " " + contactInfo.getLastName());
             phone = contactInfo.getPhone();
             phoneLabel.setText(contactInfo.getClearedPhone().replaceAll(phoneRegexFrom, phoneRegexTo));
