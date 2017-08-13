@@ -4,6 +4,7 @@ import additionally.Colors;
 import additionally.Fonts;
 import additionally.Images;
 import gui.additionally.ContactInfo;
+import gui.additionally.ImagePanel;
 
 import javax.swing.*;
 import java.awt.*;
@@ -15,9 +16,8 @@ public class ProfileForm extends OverlayBackground {
     private JPanel rootPanel;
     private JLabel phoneLabel;
     private JLabel titleLabel;
-    private JTextField lastnameUserField;
-    private JTextField nameUserField;
-    private JButton saveButton;
+    private JLabel nameLabel;
+    private JPanel photoPanel;
 
     private final static String phoneRegexFrom = "^\\+?(\\d*)(\\d{3})(\\d{3})(\\d{2})(\\d{2})$", phoneRegexTo = "+$1($2)$3-$4-$5";
 
@@ -25,37 +25,29 @@ public class ProfileForm extends OverlayBackground {
     private int id = 0;
 
     {
-        Images.decorateAsImageButton(saveButton, Images.getButtonImage(), Images.getButtonImagePressed(), Color.WHITE);
-        saveButton.setFont(Fonts.getFontButton());
 
         //phoneLabel.setFont(additionally.Fonts.getNameFont().deriveFont(0, 30));
         phoneLabel.setForeground(Color.white);
 
         Images.decorateAsImageButton(closeButton, Images.getIconBack(), null, null);
         Fonts.setFontToComponent(logoutButton, Fonts.getLogoutOverlayFont(), Colors.getLightBlueColor());
-        nameUserField.setBorder(BorderFactory.createMatteBorder(0, 0, 1, 0, Color.WHITE));
-        lastnameUserField.setBorder(BorderFactory.createMatteBorder(0, 0, 1, 0, Color.WHITE));
-        Fonts.setFontToComponent(nameUserField, Fonts.getFontForRegistrationField(), Color.LIGHT_GRAY);
-        Fonts.setFontToComponent(lastnameUserField, Fonts.getFontForRegistrationField(), Color.LIGHT_GRAY);
-        nameUserField.setCaretColor(Color.WHITE);
-        lastnameUserField.setCaretColor(Color.WHITE);
         Fonts.setFontToComponent(phoneLabel, Fonts.getFontLabel(), Color.GRAY);
         logoutButton.setText("<html><u>ВЫЙТИ");
         Fonts.setFontToComponent(titleLabel, Fonts.getOverlayTitleFont(), Colors.getLightBlueColor());
         titleLabel.setText("<html><p align='center'>Настройки профиля");
-        saveButton.setFocusPainted(false);
+        Fonts.setFontToComponent(nameLabel, Fonts.getTextFieldFontOverlay(), Colors.getLightBlueColor());
+
     }
 
     private void createUIComponents() {
         rootPanel = this;
         logoutButton = new JButton();
-
+        photoPanel = new ImagePanel(null, true, true, 0);
         logoutButton.setOpaque(false);
         logoutButton.setBorderPainted(false);
         logoutButton.setFocusPainted(false);
         logoutButton.setContentAreaFilled(false);
 
-        //photoPanel = new gui.additionally.ImagePanel(null, true, true, 0);
 
         //Альтернтивное решение
         //closeButton = new ImageButton(additionally.Images.getCloseOverlay());
@@ -64,11 +56,9 @@ public class ProfileForm extends OverlayBackground {
 
     public ContactInfo getContactInfo() {
         ContactInfo info = new ContactInfo();
-//        String[] data = nameLabel.getText().trim().split("\\s+", 2); //На случай редактирования, которого пока нет
-//        info.setFirstName(data.length > 0 ? data[0] : "");
-        info.setFirstName(nameUserField.getText().trim());
-        info.setLastName(lastnameUserField.getText().trim());
-//        info.setLastName(data.length > 1 ? data[1] : "");
+        String[] data = nameLabel.getText().trim().split("\\s+", 2); //На случай редактирования, которого пока нет
+        info.setFirstName(data.length > 0 ? data[0] : "");
+        info.setLastName(data.length > 1 ? data[1] : "");
         info.setPhone(phone);
         info.setId(id);
         return info;
@@ -77,16 +67,14 @@ public class ProfileForm extends OverlayBackground {
     public void setContactInfo(ContactInfo contactInfo) {
 
         if (contactInfo != null) {
-            //((gui.additionally.ImagePanel) photoPanel).setImage(contactInfo.getPhoto());
-            //nameLabel.setText(contactInfo.getFirstName() + " " + contactInfo.getLastName());
-            nameUserField.setText(contactInfo.getFirstName());
-            lastnameUserField.setText(contactInfo.getLastName());
+            ((gui.additionally.ImagePanel) photoPanel).setImage(contactInfo.getPhoto());
+            nameLabel.setText(contactInfo.getFirstName() + " " + contactInfo.getLastName());
             phone = contactInfo.getPhone();
             phoneLabel.setText(contactInfo.getClearedPhone().replaceAll(phoneRegexFrom, phoneRegexTo));
             id = contactInfo.getId();
         } else {
-//            ((gui.additionally.ImagePanel) photoPanel).setImage(null);
-            //nameLabel.setText("");
+            ((gui.additionally.ImagePanel) photoPanel).setImage(null);
+            nameLabel.setText("");
             phone = "";
             phoneLabel.setText("");
             id = 0;
