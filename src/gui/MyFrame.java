@@ -141,12 +141,7 @@ public class MyFrame extends JFrame{
                 changeOverlayPanel(profileForm);
             }
         });
-        profileForm.addActionListenerForLogout(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent actionEvent) {
-                switchToBegin();
-            }
-        });
+
         profileForm.addActionListenerForClose(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
@@ -154,22 +149,7 @@ public class MyFrame extends JFrame{
             }
         });
 
-        mainForm.addSendMessageListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent actionEvent) {
-                Person buddy = formUsersList.getSelectedValue();
-                String text = mainForm.getMessageText().trim();
-                if (telegramProxy != null && buddy != null && !text.isEmpty()) {
-                    try {
-                        telegramProxy.sendMessage(buddy, text);
-                        mainForm.setMessageText("");
-                        checkForUpdates(true);
-                    } catch (Exception e) {
-                        showMessageError("Не могу отправить сообщение");
-                    }
-                }
-            }
-        });
+
         formUsersList.addListSelectionListener(new ListSelectionListener() {
             @Override
             public void valueChanged(ListSelectionEvent listSelectionEvent) {
@@ -339,18 +319,14 @@ public class MyFrame extends JFrame{
         updateTelegramProxy();
     }
 
-    private void destroyTelegramProxy() {
-        telegramProxy = null;
-        updateTelegramProxy();
-    }
 
     private void updateTelegramProxy() {
         messagesFrozen++;
         try {
             formUsersList.setTelegramProxy(telegramProxy);
             formUsersList.setSelectedValue(null);
-            //createMessagesForm();
-            //displayDialog(null);
+            createMessagesForm();
+            displayDialog(null);
             displayMe(telegramProxy != null ? telegramProxy.getMe() : null);
         } finally {
             messagesFrozen--;
@@ -388,74 +364,6 @@ public class MyFrame extends JFrame{
     }
 
 
-    private void switchToBegin() {
-        try {
-            destroyTelegramProxy();
-            changeOverlayPanel(null);
-            formPhone.clearNumber();
-            formConfirmSMS.clearCode();
-            formPhone.setFocusToFieldPhone();
-            nextForm(formPhone.getRootPanel());
-            telegramDAO.logOut();
-        } catch (Exception e) {
-            catchException(e);
-        }
-    }
-
-    protected void checkForUpdates(boolean force) {
-        if (telegramProxy != null) {
-            UpdateChanges updateChanges = telegramProxy.update(force ? TelegramProxy.FORCE_SYNC_UPDATE : TelegramProxy.USE_SYNC_UPDATE);
-
-            int photosChangedCount = updateChanges.getLargePhotosChanged().size() +
-                    updateChanges.getSmallPhotosChanged().size() +
-                    updateChanges.getStatusesChanged().size();
-
-            if (updateChanges.getListChanged()) {
-                updateContacts();
-            } else if (photosChangedCount != 0) {
-                formUsersList.repaint();
-            }
-
-            Person currentBuddy = getMessagesForm().getPerson();
-            Person targetPerson = formUsersList.getSelectedValue();
-
-            Dialog currentDialog = currentBuddy != null ? telegramProxy.getDialog(currentBuddy) : null;
-
-            if (!Objects.equals(targetPerson, currentBuddy) ||
-                    updateChanges.getDialogsToReset().contains(currentDialog) ||
-                    //updateChanges.getDialogsChanged().getChanged().containsKey(currentDialog) ||
-                    updateChanges.getDialogsChanged().getDeleted().contains(currentDialog)) {
-                updateMessages();
-            } else if (updateChanges.getPersonsChanged().getChanged().containsKey(currentBuddy)
-                    || updateChanges.getSmallPhotosChanged().contains(currentBuddy)
-                    || updateChanges.getLargePhotosChanged().contains(currentBuddy)) {
-                displayBuddy(targetPerson);
-            }
-
-            if (updateChanges.getPersonsChanged().getChanged().containsKey(telegramProxy.getMe())
-                    || updateChanges.getSmallPhotosChanged().contains(telegramProxy.getMe())
-                    || updateChanges.getLargePhotosChanged().contains(telegramProxy.getMe())) {
-                displayMe(telegramProxy.getMe());
-            }
-        }
-    }
-
-    private void updateContacts() {
-        messagesFrozen++;
-        try {
-            Person person = formUsersList.getSelectedValue();
-            formUsersList.setTelegramProxy(telegramProxy);
-            formUsersList.setSelectedValue(person);
-        } finally {
-            messagesFrozen--;
-        }
-    }
-
-    private void updateMessages() {
-        displayDialog(formUsersList.getSelectedValue());
-        mainForm.revalidate();
-        mainForm.repaint();
-    }
     private void displayDialog(Person person) {
         try {
             MessagesForm messagesForm = getMessagesForm();

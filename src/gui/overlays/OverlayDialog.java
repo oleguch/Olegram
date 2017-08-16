@@ -1,8 +1,6 @@
 package gui.overlays;
 
-import com.sun.prism.MaskTextureGraphics;
 import gui.additionally.MyBufferedOverlayDialog;
-import sun.java2d.x11.X11SurfaceDataProxy;
 
 import javax.swing.*;
 import java.awt.*;
