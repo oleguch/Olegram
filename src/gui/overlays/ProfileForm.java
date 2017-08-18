@@ -67,7 +67,6 @@ public class ProfileForm extends OverlayBackground {
 
         if (contactInfo != null) {
             ((gui.additionally.ImagePanel) photoPanel).setImage(contactInfo.getPhoto());
-            //nameLabel.setText("Олег Самылов");
             nameLabel.setText(contactInfo.getFirstName() + " " + contactInfo.getLastName());
             phone = contactInfo.getPhone();
             phoneLabel.setText(contactInfo.getClearedPhone().replaceAll(phoneRegexFrom, phoneRegexTo));
@@ -79,8 +78,6 @@ public class ProfileForm extends OverlayBackground {
             phoneLabel.setText("");
             id = 0;
         }
-        System.out.println(phone);
-
     }
 
     public void addActionListenerForLogout(ActionListener actionListener) {

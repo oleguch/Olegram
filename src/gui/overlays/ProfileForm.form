@@ -75,6 +75,7 @@
           <gridbag weightx="0.0" weighty="0.0"/>
         </constraints>
         <properties>
+          <focusPainted value="false"/>
           <maximumSize width="35" height="35"/>
           <minimumSize width="35" height="35"/>
           <opaque value="false"/>

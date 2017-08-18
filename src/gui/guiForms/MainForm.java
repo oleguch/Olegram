@@ -29,6 +29,8 @@ public class MainForm extends JPanel {
     private JPanel searchIconPanel;
     private JPanel buddyPanel;
     private JButton buddyEditButton;
+    private JPanel panelSetting;
+    private JPanel panelBuddyEdit;
 
     private String meText;
     private BufferedImage mePhoto;
@@ -48,6 +50,7 @@ public class MainForm extends JPanel {
         Images.decorateAsImageButton(sendMessageButton, Images.getSendMessageImage(), Images.getSendMessageImagePress(), null);
 
         Helper.clearBorder(messageTextArea);
+
 //        additionally.Helper.clearBorder(searchTextField);
 
     }
@@ -62,7 +65,7 @@ public class MainForm extends JPanel {
 
                 g.setColor(Colors.getLightBlueColor());
                 g.fillRect(0, 0, this.getWidth(), this.getHeight());
-                int leftMostPoint = settingsButton.getX();
+                int leftMostPoint = panelSetting.getX();
                 int rightMostPoint = 25;            //граница?, но почему справа, если это влияет на отступ логотипа слева?
                 //Установка текста фио пользователя
                 if (meText != null) {
@@ -97,7 +100,7 @@ public class MainForm extends JPanel {
             protected void paintComponent(Graphics graphics) {
                 super.paintComponent(graphics);
 
-                int leftMostPoint = buddyEditButton.getX();
+                int leftMostPoint = panelBuddyEdit.getX();
                 int rightMostPoint = 2;
 
                 if (buddyPhoto != null) {
@@ -192,7 +195,9 @@ public class MainForm extends JPanel {
         return this.messagesPanel.getComponent(0);
     }
 
-
+    public void addBuddyEditEventListener(ActionListener listener) {
+        this.buddyEditButton.addActionListener(listener);
+    }
 
 }
 

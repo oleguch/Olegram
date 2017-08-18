@@ -37,6 +37,8 @@ public class Images {
     private static BufferedImage settingsIconPress;
     private static BufferedImage logoMicro;
     private static BufferedImage iconBack;
+    private static BufferedImage iconPlus;
+    private static BufferedImage deleteUserButton;
 
     public static BufferedImage getIconLock() {
         if (iconLock == null)
@@ -107,6 +109,17 @@ public class Images {
         if (iconBack == null)
             iconBack= getImage("img/icon-back.png");
         return iconBack;
+    }
+
+    public static BufferedImage getIconPlus() {
+        if (iconPlus== null)
+            iconPlus= getImage("img/icon-plus.png");
+        return iconPlus;
+    }
+    public static BufferedImage getDeleteUserButton() {
+        if (deleteUserButton == null)
+            deleteUserButton = getImage("img/delete-user.png");
+        return deleteUserButton;
     }
 
 

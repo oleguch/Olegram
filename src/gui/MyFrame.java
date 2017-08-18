@@ -2,9 +2,9 @@ package gui;
 
 import additionally.Helper;
 import gui.additionally.ContactInfo;
+import gui.additionally.MyLayeredPane;
 import gui.additionally.PersonNewUser;
-import gui.overlays.OverlayDialog;
-import gui.overlays.ProfileForm;
+import gui.overlays.*;
 import org.javagram.dao.*;
 import org.javagram.dao.Dialog;
 import org.javagram.dao.proxy.TelegramProxy;
@@ -36,16 +36,15 @@ public class MyFrame extends JFrame{
     private ProfileForm profileForm = new ProfileForm();
     private OverlayDialog overlayDialog = new OverlayDialog();
     private int messagesFrozen;
-
-
-
-
-
     private static final int NAME_EMPTY=1,
                             SURNAME_EMPTY = 2,
                             FIELD_OK = 3;
     private TelegramDAO telegramDAO;
     private TelegramProxy telegramProxy;
+    private EditContactForm editContactForm = new EditContactForm();
+    private AddContactForm addContactForm = new AddContactForm();
+    private PlusOverlay plusOverlay = new PlusOverlay();
+    private MyLayeredPane contactsLayeredPane = new MyLayeredPane();
 
     public MyFrame(TelegramDAO telegramDAO) throws Exception {
         this.telegramDAO = telegramDAO;
@@ -63,7 +62,10 @@ public class MyFrame extends JFrame{
 
 
 
-        mainForm.setContactsPanel(formUsersList);
+        //mainForm.setContactsPanel(formUsersList);
+        mainForm.setContactsPanel(contactsLayeredPane);
+        contactsLayeredPane.add(formUsersList, new Integer(0));
+        contactsLayeredPane.add(plusOverlay, new Integer(1));
 
         formUsersList.addListSelectionListener(new ListSelectionListener() {
             @Override
@@ -73,6 +75,7 @@ public class MyFrame extends JFrame{
                 }
             }
         });
+
 
         addWindowListener(new WindowAdapter() {
             @Override
@@ -134,7 +137,6 @@ public class MyFrame extends JFrame{
         mainForm.addSettingEventListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                System.out.println("Button pressed");
                 Me me = telegramProxy.getMe();
                 ContactInfo contactInfo = Helper.toContactInfo(me, telegramProxy, false, false);
                 profileForm.setContactInfo(contactInfo);
@@ -162,6 +164,81 @@ public class MyFrame extends JFrame{
                 } else {
                     displayDialog(formUsersList.getSelectedValue());
                 }
+            }
+        });
+        mainForm.addSendMessageListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                Person buddy = formUsersList.getSelectedValue();
+                String text = mainForm.getMessageText().trim();
+                if (telegramProxy != null && buddy != null && !text.isEmpty()) {
+                    try {
+                        telegramProxy.sendMessage(buddy, text);
+                        mainForm.setMessageText("");
+                        checkForUpdates(true);
+                    } catch (Exception e) {
+                        showMessageError("Не могу отправить сообщение");
+                    }
+                }
+            }
+        });
+
+        mainForm.addBuddyEditEventListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                Person person = formUsersList.getSelectedValue();
+                if (person instanceof Contact) {
+                    editContactForm.setContactInfo(Helper.toContactInfo((Contact) person, telegramProxy, false, true));
+                    changeOverlayPanel(editContactForm);
+                }
+            }
+        });
+
+        editContactForm.addActionListenerForClose(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                changeOverlayPanel(null);
+            }
+        });
+
+        editContactForm.addActionListenerForSave(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                tryUpdateContact(editContactForm.getContactInfo());
+            }
+        });
+
+        editContactForm.addActionListenerForRemove(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                tryDeleteContact(editContactForm.getContactInfo());
+            }
+        });
+
+
+        plusOverlay.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                ContactInfo contactInfo = new ContactInfo();
+                Person person = formUsersList.getSelectedValue();
+                if (person instanceof KnownPerson && !(person instanceof Contact))
+                    contactInfo.setPhone(((KnownPerson) person).getPhoneNumber());
+                addContactForm.setContactInfo(contactInfo);
+                changeOverlayPanel(addContactForm);
+            }
+        });
+
+        addContactForm.addActionListenerForClose(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                changeOverlayPanel(null);
+            }
+        });
+
+        addContactForm.addActionListenerForAdd(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                tryAddContact(addContactForm.getContactInfo());
             }
         });
 
@@ -390,6 +467,125 @@ public class MyFrame extends JFrame{
         mainForm.revalidate();
         mainForm.repaint();
         return messagesForm;
+    }
+    protected void checkForUpdates(boolean force) {
+        if (telegramProxy != null) {
+            UpdateChanges updateChanges = telegramProxy.update(force ? TelegramProxy.FORCE_SYNC_UPDATE : TelegramProxy.USE_SYNC_UPDATE);
+
+            int photosChangedCount = updateChanges.getLargePhotosChanged().size() +
+                    updateChanges.getSmallPhotosChanged().size() +
+                    updateChanges.getStatusesChanged().size();
+
+            if (updateChanges.getListChanged()) {
+                updateContacts();
+            } else if (photosChangedCount != 0) {
+                formUsersList.repaint();
+            }
+
+            Person currentBuddy = getMessagesForm().getPerson();
+            Person targetPerson = formUsersList.getSelectedValue();
+
+            Dialog currentDialog = currentBuddy != null ? telegramProxy.getDialog(currentBuddy) : null;
+
+            if (!Objects.equals(targetPerson, currentBuddy) ||
+                    updateChanges.getDialogsToReset().contains(currentDialog) ||
+                    //updateChanges.getDialogsChanged().getChanged().containsKey(currentDialog) ||
+                    updateChanges.getDialogsChanged().getDeleted().contains(currentDialog)) {
+                updateMessages();
+            } else if (updateChanges.getPersonsChanged().getChanged().containsKey(currentBuddy)
+                    || updateChanges.getSmallPhotosChanged().contains(currentBuddy)
+                    || updateChanges.getLargePhotosChanged().contains(currentBuddy)) {
+                displayBuddy(targetPerson);
+            }
+
+            if (updateChanges.getPersonsChanged().getChanged().containsKey(telegramProxy.getMe())
+                    || updateChanges.getSmallPhotosChanged().contains(telegramProxy.getMe())
+                    || updateChanges.getLargePhotosChanged().contains(telegramProxy.getMe())) {
+                displayMe(telegramProxy.getMe());
+            }
+        }
+    }
+    private void updateContacts() {
+        messagesFrozen++;
+        try {
+            Person person = formUsersList.getSelectedValue();
+            formUsersList.setTelegramProxy(telegramProxy);
+            formUsersList.setSelectedValue(person);
+        } finally {
+            messagesFrozen--;
+        }
+    }
+
+    private void updateMessages() {
+        displayDialog(formUsersList.getSelectedValue());
+        mainForm.revalidate();
+        mainForm.repaint();
+    }
+
+    private boolean tryUpdateContact(ContactInfo info) {
+
+        String phone = info.getClearedPhone();
+
+        if (info.getFirstName().isEmpty() && info.getLastName().isEmpty()) {
+            showMessageError("Пожалуйста, введите имя и/или фамилию");
+            return false;
+        }
+
+        try {
+            telegramProxy.importContact(info.getPhone(), info.getFirstName(), info.getLastName());
+        } catch (Exception e) {
+            showMessageError("Ошибка на сервере при изменении контакта");
+            return false;
+        }
+
+        changeOverlayPanel(null);
+        checkForUpdates(true);
+        return true;
+    }
+
+    private boolean tryDeleteContact(ContactInfo info) {
+        int id = info.getId();
+
+        try {
+            telegramProxy.deleteContact(id);
+        } catch (Exception e) {
+            showMessageError("Ошибка на сервере при удалении контакта");
+            return false;
+        }
+
+        changeOverlayPanel(null);
+        checkForUpdates(true);
+        return true;
+    }
+    private boolean tryAddContact(ContactInfo info) {
+
+        String phone = info.getClearedPhone();
+        if (phone.isEmpty()) {
+            showMessageError("Пожалуйста, введите номер телефона");
+            return false;
+        }
+        if (info.getFirstName().isEmpty() && info.getLastName().isEmpty()) {
+            showMessageError("Пожалуйста, введите имя и/или фамилию");
+            return false;
+        }
+        for (Person person : telegramProxy.getPersons()) {
+            if (person instanceof Contact) {
+                if (((Contact) person).getPhoneNumber().replaceAll("\\D+", "").equals(phone)) {
+                    showMessageError("Контакт с таким номером уже существует");
+                    return false;
+                }
+            }
+        }
+        try {
+            telegramProxy.importContact(info.getPhone(), info.getFirstName(), info.getLastName());
+        } catch (Exception e) {
+            showMessageError("Ошибка на сервере при добавлении контакта");
+            return false;
+        }
+
+        changeOverlayPanel(null);
+        checkForUpdates(true);
+        return true;
     }
 }
 
