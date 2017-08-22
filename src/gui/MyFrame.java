@@ -265,12 +265,13 @@ public class MyFrame extends JFrame{
         String[] words = text.toLowerCase().split("\\s+");
         List<Person> persons = telegramProxy.getPersons();
         Person person = formUsersList.getSelectedValue();
-        person = searchFor(text.toLowerCase(), words, persons, person);
+        person = searchFor(text.toLowerCase(), words, persons, person);     //зачем передавать text, если он не используется?
         formUsersList.setSelectedValue(person);
         if (person == null)
             showMessageError("Ничего не найдено");
     }
 
+    //поиск возвращет первое совпадение, начиная со следующего выделенного персона?
     private static Person searchFor(String text, String[] words, List<? extends Person> persons, Person current) {
         int currentIndex = persons.indexOf(current);
 

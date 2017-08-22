@@ -4,11 +4,7 @@
     <list id="180bec09-c574-4d67-8261-bd82403d8192" name="Rejected commit: Default" comment="Выводж списка сконтактов с Именем, Фамилией и Телефоном" />
     <list default="true" id="01619a1b-5556-41c3-9fa4-a4c3fd8b8024" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Main.java" afterPath="$PROJECT_DIR$/src/Main.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/additionally/Images.java" afterPath="$PROJECT_DIR$/src/additionally/Images.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/gui/MyFrame.java" afterPath="$PROJECT_DIR$/src/gui/MyFrame.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/gui/guiForms/MainForm.form" afterPath="$PROJECT_DIR$/src/gui/guiForms/MainForm.form" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/gui/guiForms/MainForm.java" afterPath="$PROJECT_DIR$/src/gui/guiForms/MainForm.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="D:\Write\Java\Javagram\.idea\shelf/" />
@@ -72,8 +68,8 @@
       <file leaf-file-name="MyFrame.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/gui/MyFrame.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="427">
-              <caret line="280" column="22" lean-forward="false" selection-start-line="280" selection-start-column="22" selection-end-line="280" selection-end-column="22" />
+            <state relative-caret-position="207">
+              <caret line="273" column="26" lean-forward="true" selection-start-line="273" selection-start-column="26" selection-end-line="273" selection-end-column="26" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#2631#2871#0" expanded="true" />
@@ -642,13 +638,6 @@
       <option name="presentableId" value="Default" />
       <updated>1482675930488</updated>
     </task>
-    <task id="LOCAL-00010" summary="рабочий вариант, изменил формы, должно работать">
-      <created>1494325907641</created>
-      <option name="number" value="00010" />
-      <option name="presentableId" value="LOCAL-00010" />
-      <option name="project" value="LOCAL" />
-      <updated>1494325907641</updated>
-    </task>
     <task id="LOCAL-00011" summary="Убрал заголовок, добавил кнопки закрытия, свернуть">
       <created>1494330378904</created>
       <option name="number" value="00011" />
@@ -985,7 +974,14 @@
       <option name="project" value="LOCAL" />
       <updated>1503401463553</updated>
     </task>
-    <option name="localTasksCounter" value="59" />
+    <task id="LOCAL-00059" summary="добавил logout, добавил поиск">
+      <created>1503430767765</created>
+      <option name="number" value="00059" />
+      <option name="presentableId" value="LOCAL-00059" />
+      <option name="project" value="LOCAL" />
+      <updated>1503430767766</updated>
+    </task>
+    <option name="localTasksCounter" value="60" />
     <servers />
   </component>
   <component name="TodoView">
@@ -999,6 +995,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-1" y="0" width="1922" height="1035" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32936078" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -1008,17 +1005,17 @@
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3472988" sideWeight="0.52238804" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32977587" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24172185" sideWeight="0.47761193" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24172185" sideWeight="0.47761193" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32824427" sideWeight="0.48933902" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32855567" sideWeight="0.4978678" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.23290598" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.23290598" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2497332" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.392936" sideWeight="0.49573562" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.392936" sideWeight="0.49573562" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Nl-Palette" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -1098,7 +1095,6 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
-    <MESSAGE value="..." />
     <MESSAGE value="переделал confirmByCodeFromSMS" />
     <MESSAGE value="добавил форму списка контактов" />
     <MESSAGE value="убрал лишние ActionListener из формы контактов" />
@@ -1123,7 +1119,8 @@
     <MESSAGE value="убрал listener для кнопок выхода из профиля и кнопки отправки сообщения" />
     <MESSAGE value="добавил отправку сообщений, добавил оверлей изменения контакта, добавил оверлей добавления контакта" />
     <MESSAGE value="добавил Timer" />
-    <option name="LAST_COMMIT_MESSAGE" value="добавил Timer" />
+    <MESSAGE value="добавил logout, добавил поиск" />
+    <option name="LAST_COMMIT_MESSAGE" value="добавил logout, добавил поиск" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1538,8 +1535,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/gui/MyFrame.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="427">
-          <caret line="280" column="22" lean-forward="false" selection-start-line="280" selection-start-column="22" selection-end-line="280" selection-end-column="22" />
+        <state relative-caret-position="207">
+          <caret line="273" column="26" lean-forward="true" selection-start-line="273" selection-start-column="26" selection-end-line="273" selection-end-column="26" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#2631#2871#0" expanded="true" />
