@@ -4,7 +4,6 @@
     <list id="180bec09-c574-4d67-8261-bd82403d8192" name="Rejected commit: Default" comment="Выводж списка сконтактов с Именем, Фамилией и Телефоном" />
     <list default="true" id="01619a1b-5556-41c3-9fa4-a4c3fd8b8024" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/gui/MyFrame.java" afterPath="$PROJECT_DIR$/src/gui/MyFrame.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="D:\Write\Java\Javagram\.idea\shelf/" />
@@ -48,13 +47,6 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="MainForm.form" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/gui/guiForms/MainForm.form">
-          <provider selected="true" editor-type-id="ui-designer">
-            <state />
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="Main.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Main.java">
           <provider selected="true" editor-type-id="text-editor">
@@ -65,11 +57,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="MyFrame.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="MyFrame.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/gui/MyFrame.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="207">
-              <caret line="273" column="26" lean-forward="true" selection-start-line="273" selection-start-column="26" selection-end-line="273" selection-end-column="26" />
+            <state relative-caret-position="276">
+              <caret line="276" column="0" lean-forward="true" selection-start-line="276" selection-start-column="0" selection-end-line="276" selection-end-column="0" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#2631#2871#0" expanded="true" />
@@ -80,6 +72,50 @@
                 <element signature="e#9437#9438#0" expanded="true" />
                 <element signature="e#9602#9603#0" expanded="true" />
                 <element signature="e#9669#9670#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="MessageForm.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/gui/additionally/MessageForm.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="230">
+              <caret line="13" column="24" lean-forward="true" selection-start-line="13" selection-start-column="24" selection-end-line="13" selection-end-column="24" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="HintTextFieldUnderlined.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/gui/additionally/HintTextFieldUnderlined.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="92">
+              <caret line="4" column="0" lean-forward="false" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="HintTextField.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/gui/additionally/HintTextField.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="23">
+              <caret line="1" column="0" lean-forward="false" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="MessagesForm.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/gui/guiForms/MessagesForm.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="368">
+              <caret line="16" column="13" lean-forward="false" selection-start-line="16" selection-start-column="13" selection-end-line="16" selection-end-column="13" />
+              <folding>
+                <element signature="imports" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -205,7 +241,6 @@
         <option value="$PROJECT_DIR$/src/gui/overlays/ProfileForm.form" />
         <option value="$PROJECT_DIR$/src/additionally/HintTextField.java" />
         <option value="$PROJECT_DIR$/src/additionally/HintTextFieldUnderlined.java" />
-        <option value="$PROJECT_DIR$/src/gui/additionally/HintTextFieldUnderlined.java" />
         <option value="$PROJECT_DIR$/src/gui/overlays/PlusOverlay.form" />
         <option value="$PROJECT_DIR$/src/gui/overlays/PlusOverlay.java" />
         <option value="$PROJECT_DIR$/src/additionally/PhoneNumberDocumentFilter.java" />
@@ -218,9 +253,10 @@
         <option value="$PROJECT_DIR$/src/gui/guiForms/MainForm.form" />
         <option value="$PROJECT_DIR$/src/additionally/Images.java" />
         <option value="$PROJECT_DIR$/src/Main.java" />
-        <option value="$PROJECT_DIR$/src/gui/additionally/HintTextField.java" />
         <option value="$PROJECT_DIR$/src/gui/guiForms/MainForm.java" />
         <option value="$PROJECT_DIR$/src/gui/MyFrame.java" />
+        <option value="$PROJECT_DIR$/src/gui/additionally/HintTextFieldUnderlined.java" />
+        <option value="$PROJECT_DIR$/src/gui/additionally/HintTextField.java" />
       </list>
     </option>
   </component>
@@ -336,6 +372,14 @@
               <item name="gui" type="462c0819:PsiDirectoryNode" />
               <item name="guiForms" type="462c0819:PsiDirectoryNode" />
               <item name="MainForm" type="e9f4de52:FormNode" />
+            </path>
+            <path>
+              <item name="Olegram beta" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Olegram" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="gui" type="462c0819:PsiDirectoryNode" />
+              <item name="guiForms" type="462c0819:PsiDirectoryNode" />
+              <item name="MessagesForm" type="e9f4de52:FormNode" />
             </path>
             <path>
               <item name="Olegram beta" type="b2602c69:ProjectViewProjectNode" />
@@ -637,13 +681,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1482675930488</updated>
-    </task>
-    <task id="LOCAL-00011" summary="Убрал заголовок, добавил кнопки закрытия, свернуть">
-      <created>1494330378904</created>
-      <option name="number" value="00011" />
-      <option name="presentableId" value="LOCAL-00011" />
-      <option name="project" value="LOCAL" />
-      <updated>1494330378904</updated>
     </task>
     <task id="LOCAL-00012" summary="09.05.2017">
       <created>1494357156837</created>
@@ -981,7 +1018,14 @@
       <option name="project" value="LOCAL" />
       <updated>1503430767766</updated>
     </task>
-    <option name="localTasksCounter" value="60" />
+    <task id="LOCAL-00060" summary="пару комментов">
+      <created>1503431365183</created>
+      <option name="number" value="00060" />
+      <option name="presentableId" value="LOCAL-00060" />
+      <option name="project" value="LOCAL" />
+      <updated>1503431365183</updated>
+    </task>
+    <option name="localTasksCounter" value="61" />
     <servers />
   </component>
   <component name="TodoView">
@@ -995,7 +1039,6 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-1" y="0" width="1922" height="1035" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32936078" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -1010,7 +1053,7 @@
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32855567" sideWeight="0.4978678" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.23290598" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.23290598" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2497332" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -1095,7 +1138,6 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
-    <MESSAGE value="переделал confirmByCodeFromSMS" />
     <MESSAGE value="добавил форму списка контактов" />
     <MESSAGE value="убрал лишние ActionListener из формы контактов" />
     <MESSAGE value="логаут (который не работает), decoration к диалогам" />
@@ -1120,7 +1162,8 @@
     <MESSAGE value="добавил отправку сообщений, добавил оверлей изменения контакта, добавил оверлей добавления контакта" />
     <MESSAGE value="добавил Timer" />
     <MESSAGE value="добавил logout, добавил поиск" />
-    <option name="LAST_COMMIT_MESSAGE" value="добавил logout, добавил поиск" />
+    <MESSAGE value="пару комментов" />
+    <option name="LAST_COMMIT_MESSAGE" value="пару комментов" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1136,13 +1179,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/gui/guiForms/Decoration.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1380">
-          <caret line="60" column="22" lean-forward="false" selection-start-line="60" selection-start-column="16" selection-end-line="60" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/gui/guiForms/MainForm.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1265">
@@ -1341,14 +1377,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/gui/additionally/MessageForm.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="230">
-          <caret line="13" column="24" lean-forward="true" selection-start-line="13" selection-start-column="24" selection-end-line="13" selection-end-column="24" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/gui/overlays/PlusOverlay.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="322">
@@ -1486,22 +1514,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/gui/additionally/HintTextFieldUnderlined.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="161">
-          <caret line="7" column="48" lean-forward="true" selection-start-line="7" selection-start-column="48" selection-end-line="7" selection-end-column="48" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/gui/additionally/HintTextField.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="230">
-          <caret line="82" column="57" lean-forward="true" selection-start-line="82" selection-start-column="57" selection-end-line="82" selection-end-column="57" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/gui/guiForms/MainForm.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="483">
@@ -1535,8 +1547,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/gui/MyFrame.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="207">
-          <caret line="273" column="26" lean-forward="true" selection-start-line="273" selection-start-column="26" selection-end-line="273" selection-end-column="26" />
+        <state relative-caret-position="276">
+          <caret line="276" column="0" lean-forward="true" selection-start-line="276" selection-start-column="0" selection-end-line="276" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#2631#2871#0" expanded="true" />
@@ -1547,6 +1559,42 @@
             <element signature="e#9437#9438#0" expanded="true" />
             <element signature="e#9602#9603#0" expanded="true" />
             <element signature="e#9669#9670#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/gui/additionally/MessageForm.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="230">
+          <caret line="13" column="24" lean-forward="true" selection-start-line="13" selection-start-column="24" selection-end-line="13" selection-end-column="24" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/gui/additionally/HintTextFieldUnderlined.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="92">
+          <caret line="4" column="0" lean-forward="false" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/gui/additionally/HintTextField.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="23">
+          <caret line="1" column="0" lean-forward="false" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/gui/guiForms/MessagesForm.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="368">
+          <caret line="16" column="13" lean-forward="false" selection-start-line="16" selection-start-column="13" selection-end-line="16" selection-end-column="13" />
+          <folding>
+            <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
