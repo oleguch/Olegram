@@ -45,6 +45,7 @@ public class MyFrame extends JFrame{
     private AddContactForm addContactForm = new AddContactForm();
     private PlusOverlay plusOverlay = new PlusOverlay();
     private MyLayeredPane contactsLayeredPane = new MyLayeredPane();
+    private Timer timer;
 
     public MyFrame(TelegramDAO telegramDAO) throws Exception {
         this.telegramDAO = telegramDAO;
@@ -66,16 +67,6 @@ public class MyFrame extends JFrame{
         mainForm.setContactsPanel(contactsLayeredPane);
         contactsLayeredPane.add(formUsersList, new Integer(0));
         contactsLayeredPane.add(plusOverlay, new Integer(1));
-
-        formUsersList.addListSelectionListener(new ListSelectionListener() {
-            @Override
-            public void valueChanged(ListSelectionEvent e) {
-                if (telegramProxy != null) {
-                    displayBuddy(formUsersList.getSelectedValue());
-                }
-            }
-        });
-
 
         addWindowListener(new WindowAdapter() {
             @Override
@@ -241,6 +232,14 @@ public class MyFrame extends JFrame{
                 tryAddContact(addContactForm.getContactInfo());
             }
         });
+
+        timer = new Timer(2000, new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                checkForUpdates(false);
+            }
+        });
+        timer.start();
 
     }
 
