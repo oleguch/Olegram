@@ -39,6 +39,7 @@ public class Images {
     private static BufferedImage iconBack;
     private static BufferedImage iconPlus;
     private static BufferedImage deleteUserButton;
+    private static BufferedImage searchIcon;
 
     public static BufferedImage getIconLock() {
         if (iconLock == null)
@@ -120,6 +121,12 @@ public class Images {
         if (deleteUserButton == null)
             deleteUserButton = getImage("img/delete-user.png");
         return deleteUserButton;
+    }
+
+    public static BufferedImage getSearchIcon() {
+        if (searchIcon == null)
+            searchIcon = getImage("img/icon-search.png");
+        return searchIcon;
     }
 
 

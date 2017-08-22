@@ -162,7 +162,7 @@
                 </properties>
                 <border type="none"/>
                 <children>
-                  <grid id="98f85" binding="searchIconPanel" layout-manager="FlowLayout" hgap="5" vgap="5" flow-align="1">
+                  <grid id="98f85" binding="searchIconPanel" custom-create="true" layout-manager="FlowLayout" hgap="5" vgap="5" flow-align="1">
                     <constraints border-constraint="West"/>
                     <properties>
                       <background color="-1"/>
@@ -173,7 +173,7 @@
                     <border type="none"/>
                     <children/>
                   </grid>
-                  <component id="ccc5" class="javax.swing.JTextField" binding="searchTextField">
+                  <component id="ccc5" class="javax.swing.JTextField" binding="searchTextField" custom-create="true">
                     <constraints border-constraint="Center"/>
                     <properties/>
                   </component>

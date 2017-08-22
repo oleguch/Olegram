@@ -5,6 +5,7 @@ import additionally.Fonts;
 import additionally.Helper;
 import additionally.Images;
 import gui.GuiHelper;
+import gui.additionally.HintTextFieldUnderlined;
 
 import javax.swing.*;
 import java.awt.*;
@@ -51,7 +52,7 @@ public class MainForm extends JPanel {
 
         Helper.clearBorder(messageTextArea);
 
-//        additionally.Helper.clearBorder(searchTextField);
+        Helper.clearBorder(searchTextField);
 
     }
 
@@ -123,9 +124,9 @@ public class MainForm extends JPanel {
             }
         };
 
-//        searchTextField = new HintTextFieldUnderlined("", "Поиск...", false, false);
+        searchTextField = new HintTextFieldUnderlined("", "Поиск...", false, false);
 //
-//        searchIconPanel = new gui.additionally.ImagePanel(additionally.Images.getSearchIcon(), true, true, 2);
+        searchIconPanel = new gui.additionally.ImagePanel(additionally.Images.getSearchIcon(), true, true, 2);
     }
 
     public Component getContactsPanel() {
@@ -199,5 +200,16 @@ public class MainForm extends JPanel {
         this.buddyEditButton.addActionListener(listener);
     }
 
+    public void removeSearchEventListener(ActionListener listener) {
+        this.searchTextField.removeActionListener(listener);
+    }
+
+    public void addSearchEventListener(ActionListener listener) {
+        this.searchTextField.addActionListener(listener);
+    }
+
+    public String getSearchText() {
+        return this.searchTextField.getText();
+    }
 }
 

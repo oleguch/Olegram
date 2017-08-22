@@ -22,7 +22,7 @@ import java.io.IOException;
 import java.text.ParseException;
 import java.util.Objects;
 import gui.guiForms.*;
-import gui.additionally.PersonNewUser;
+import java.util.List;
 
 
 public class MyFrame extends JFrame{
@@ -241,6 +241,79 @@ public class MyFrame extends JFrame{
         });
         timer.start();
 
+        profileForm.addActionListenerForLogout(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                switchToBegin();
+            }
+        });
+
+        mainForm.addSearchEventListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                searchFor(mainForm.getSearchText());
+            }
+        });
+
+    }
+
+    private void searchFor(String text) {
+        text = text.trim();
+        if (text.isEmpty()) {
+            return;
+        }
+        String[] words = text.toLowerCase().split("\\s+");
+        List<Person> persons = telegramProxy.getPersons();
+        Person person = formUsersList.getSelectedValue();
+        person = searchFor(text.toLowerCase(), words, persons, person);
+        formUsersList.setSelectedValue(person);
+        if (person == null)
+            showMessageError("Ничего не найдено");
+    }
+
+    private static Person searchFor(String text, String[] words, List<? extends Person> persons, Person current) {
+        int currentIndex = persons.indexOf(current);
+
+        for (int i = 1; i <= persons.size(); i++) {
+            int index = (currentIndex + i) % persons.size();
+            Person person = persons.get(index);
+            if (contains(person.getFirstName().toLowerCase(), words)
+                    || contains(person.getLastName().toLowerCase(), words)) {
+                return person;
+            }
+        }
+        return null;
+    }
+
+    private static boolean contains(String text, String... words) {
+        for (String word : words) {
+            if (text.contains(word))
+                return true;
+        }
+        return false;
+    }
+
+    private void switchToBegin() {
+        try {
+            destroyTelegramProxy();
+            changeOverlayPanel(null);
+            showPhoneNumberRequest();
+            telegramDAO.logOut();
+        } catch (Exception e) {
+            catchException(e);
+        }
+    }
+
+    private void showPhoneNumberRequest() {
+        nextForm(formPhone.getRootPanel());
+        formPhone.clearNumber();
+        formConfirmSMS.clearCode();
+        formPhone.setFocusToFieldPhone();
+    }
+
+    private void destroyTelegramProxy() {
+        telegramProxy = null;
+        updateTelegramProxy();
     }
 
     //проверка ввода полей имени-фамилии нового пользователя
