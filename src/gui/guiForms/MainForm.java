@@ -52,8 +52,9 @@ public class MainForm extends JPanel {
 
         Helper.clearBorder(messageTextArea);
 
-        Helper.clearBorder(searchTextField);
-
+        //Helper.clearBorder(searchTextField);
+        //для отступа слева, а то текст идет сразу за иконкой поиска
+        searchTextField.setBorder(BorderFactory.createEmptyBorder(0,10,0,0));
     }
 
     private void createUIComponents() {
@@ -125,6 +126,7 @@ public class MainForm extends JPanel {
         };
 
         searchTextField = new HintTextFieldUnderlined("", "Поиск...", false, false);
+        Fonts.setFontToComponent(searchTextField, Fonts.getFontUserNameList(), Color.GRAY);
 //
         searchIconPanel = new gui.additionally.ImagePanel(additionally.Images.getSearchIcon(), true, true, 2);
     }

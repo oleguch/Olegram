@@ -83,7 +83,8 @@ public class HintTextField extends JTextField {
         if(getHintForeground() != null)
             return getHintForeground();
         else
-            return getForeground().brighter().brighter().brighter();
+            //return getForeground().brighter().brighter().brighter();
+            return Color.LIGHT_GRAY;
     }
 
     protected boolean isEmpty(String text) {
